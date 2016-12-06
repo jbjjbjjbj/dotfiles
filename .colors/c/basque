@@ -1,0 +1,25 @@
+*background:#ffffff
+*foreground:#161616
+
+*color0:    #bababa
+*color1:    #860405
+*color2:    #860405
+*color3:    #860405
+*color4:    #860405
+*color5:    #860405
+*color6:    #860405
+*color7:    #a95d4e
+
+*color8:    #888888
+*color9:    #ac0405
+*color10:   #ac0405
+*color11:   #ac0405
+*color12:   #ac0405
+*color13:   #ac0405
+*color14:   #ac0405
+*color15:   #000000
+
+URxvt*highlightColor:       #882200
+URxvt*highlightTextColor:   #ffffff
+
+*cursorColor:  #161616
