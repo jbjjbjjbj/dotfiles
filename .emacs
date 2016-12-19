@@ -11,7 +11,9 @@
  '(custom-enabled-themes (quote (tsdh-dark)))
  '(global-auto-revert-mode t)
  '(js-indent-level 2)
- '(package-selected-packages (quote (auto-complete neotree)))
+ '(package-selected-packages
+   (quote
+    (magit powerline-evil spaceline js2-mode jedi auto-complete undo-tree dashboard neotree)))
  '(tab-stop-list (quote (2)))
  '(tab-width 2)
  '(xterm-mouse-mode t))
@@ -47,7 +49,7 @@
 
 
 (global-unset-key "\C-z")
-(global-set-key "\C-z" 'advertised-undo)
+;;(global-set-key "\C-z" 'advertised-undo)
 
 (global-set-key [mouse-5]
     (lambda () (interactive) (next-line 3)))
@@ -95,3 +97,25 @@
               (setq list (cdr list))
               (setq buffer (car list))))
           (message "Refreshed open files"))
+
+
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+
+(require 'powerline)
+(powerline-center-theme)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; undo tree mode                                                         ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;turn on everywhere
+(global-undo-tree-mode 1)
+;; make ctrl-z undo
+(global-set-key (kbd "C-z") 'undo)
+;; make ctrl-Z redo
+(defalias 'redo 'undo-tree-redo)
+(global-set-key (kbd "C-S-z") 'redo)
+
+
+(global-set-key (kbd "C-x C-b") 'bs-show)
