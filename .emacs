@@ -121,3 +121,23 @@
 (global-set-key (kbd "C-x C-b") 'bs-show)
 (when (fboundp 'winner-mode)
       (winner-mode 1))
+
+
+
+;; Julians cool keybindings
+(global-unset-key (kbd "C-d"))
+(global-set-key (kbd "C-d u") 'undo-tree-visualize)
+(global-set-key (kbd "C-d r") '(lambda() (interactive) (load-file "~/.emacs")))
+(global-set-key (kbd "C-d i") 'indent-region)
+(global-set-key (kbd "C-d e") 'eshell)
+(global-set-key (kbd "C-d n") 'neotree)
+
+
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
+
+
+
+
+(display-time-mode 1)
+
