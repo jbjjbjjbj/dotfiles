@@ -1,16 +1,25 @@
-import requests, bs4
+import requests, bs4, re
 
-#res = requests.get("https://en.wikipedia.org/wiki/Special:Random")
-res = requests.get("https://en.wikipedia.org/wiki/Study")
-
-
-soup = bs4.BeautifulSoup(res.text)
+# res = requests.get("https://en.wikipedia.org/wiki/Special:Random")
+res = requests.get("https://en.wikipedia.org/wiki/Linux")
 
 
-element = soup.select("p > a")
+soup = bs4.BeautifulSoup(res.text, "html.parser")
 
-print(element[0])
 
-#while( soup.select(".firstHeading")[0] != "Philosophy"):
-#	
-#	print(soup.select(".firstHeading")[0].text)
+element = soup.select("#mw-content-text a[title]")
+
+
+pattern = re.compile("^\/.*")
+
+
+for i in element:
+	if "Edit section" not in i["title"] and pattern.match(i["href"]):
+		if "div" not in str(i.parent) and "th" not in str(i.parent) and "td" not in str(i.parent):
+			try:
+				i["class"]
+			except KeyError:
+				print(i)
+				break
+
+
