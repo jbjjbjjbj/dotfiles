@@ -8,6 +8,8 @@
 #
 # Requires: python3 and python-dbus (on Arch) or python3-dbus
 #           (on Debian) or equivalent
+#
+# Git link: https://github.com/garrett92895/gnome-volume-step-osd
 import dbus
 import sys
 from subprocess import getoutput
