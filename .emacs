@@ -12,8 +12,8 @@
  '(global-auto-revert-mode t)
  '(js-indent-level 2)
  '(package-selected-packages
-   (quote
-    (magit powerline-evil spaceline js2-mode jedi auto-complete undo-tree dashboard neotree)))
+	 (quote
+		(relative-line-numbers multi-web-mode magit powerline-evil spaceline js2-mode jedi auto-complete undo-tree dashboard neotree)))
  '(tab-stop-list (quote (2)))
  '(tab-width 2)
  '(xterm-mouse-mode t))
@@ -23,7 +23,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(global-linum-mode t)
+;;(global-linum-mode t)
 (setq python-shell-interpreter "/usr/bin/python")
 
 
@@ -50,7 +50,11 @@
 
 (global-unset-key "\C-z")
 ;;(global-set-key "\C-z" 'advertised-undo)
+(global-unset-key "\C-v")
+(global-set-key "\C-v" 'yank)
 
+(global-unset-key "\M-v")
+(global-set-key "\M-v" 'yank-pop)
 (global-set-key [mouse-5]
     (lambda () (interactive) (next-line 3)))
 
@@ -119,9 +123,24 @@
 
 
 (global-set-key (kbd "C-x C-b") 'bs-show)
+
+
+
+
+
 (when (fboundp 'winner-mode)
       (winner-mode 1))
 
+
+
+(global-set-key(kbd "C-M-<next>") 'scroll-other-window-down)
+
+
+(global-relative-line-numbers-mode)
+
+(ac-config-default)
+
+(global-auto-complete-mode t)
 
 
 ;; Julians cool keybindings
@@ -140,4 +159,5 @@
 
 
 (display-time-mode 1)
+
 
