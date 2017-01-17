@@ -94,7 +94,7 @@ alias lemon="~/.config/openbox/lemonbar | lemonbar -g 1355x20+5+5 -f terminus-9"
 
 PATH=/home/julian/Scripts:$PATH
 PATH=/home/julian/.gem/ruby/2.4.0/bin:$PATH
-fortune -n 100 computers | cowsay 
+fortune -n 100 | cowsay 
 rex
 
 
@@ -104,4 +104,7 @@ fi
 
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias emacs="emacs -nw"
+alias python="python3"
+alias pip="pip3"
+alias sudo="sudo "
+alias update="sudo apt update && sudo apt upgrade"
