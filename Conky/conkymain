@@ -74,4 +74,4 @@ ${else}${if_existing /proc/net/route enp4s0} Eth: ${exec /home/julian/Conky/getI
 ${else} Network disconnected${endif}${endif}${alignc}${color Tan2}TX           NETWORKING           RX
 ${if_existing /proc/net/route wlan0}${color white}Wlan: ${color 20a5e4}${upspeed Wlan0}$alignr${downspeed wlan0}${color white}:Wlan
 ${else}${if_existing /proc/net/route enp4s0}${color white}Eth: ${color 20a5e4}${upspeed enp4s0}$alignr${downspeed enp4s0}${color white}:Eth
-${else}${color white}Network disconnected${endif}${endif}
+${else}${color white}Network disconnected${endif}${endif} 
