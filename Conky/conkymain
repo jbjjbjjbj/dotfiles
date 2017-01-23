@@ -1,6 +1,8 @@
 background no
 use_xft yes
-xftfont Liberation Mono:size=8
+-- xftfont Liberation Mono:size=10
+-- xftfont Courier 10 Pitch:size=10
+xftfont Ubuntu Mono:size=10
 xftalpha 0.5
 update_interval 5.0
 total_run_times 0
@@ -32,9 +34,11 @@ cpu_avg_samples 4
 override_utf8_locale no
 text_buffer_size 1024
 
+
+
 TEXT
-${color white}
-$sysname $kernel on $machine ${color grey}
+${color orange}SYSTEM${hr 2}
+${color white}$sysname $kernel on $machine ${color grey}
 Uptime: $alignr ${color green} $uptime ${color grey}
 Mean Load: $alignr ${color green} $loadavg
 ${color white}$processes processes ${color magenta}($running_processes running) ${color green}
@@ -43,21 +47,19 @@ CPU1 ${cpu cpu1}% ${color purple}${cpubar cpu1}
 ${color grey}MEM $alignc $mem / $memmax $alignr $memperc%
 $membar
 swap $alignc $swap / $swapmax $alignr $swapperc%
-
 ${swapbar}
-${color white}TOP PROCESSOR USAGE ${hr 2}
-${color white}NAME               PID    CPU     MEM
-${color gray}1. ${top name 1}${top pid 1} ${top cpu 1} ${top mem 1}
-${color gray}2. ${top name 2}${top pid 2} ${top cpu 2} ${top mem 2}
-${color gray}3. ${top name 3}${top pid 3} ${top cpu 3} ${top mem 3}
-${color gray}4. ${top name 4}${top pid 4} ${top cpu 4} ${top mem 4}
-${color gray}5. ${top name 5}${top pid 5} ${top cpu 5} ${top mem 5}
-
-${color white}TOP MEMORY USAGE ${hr 2}
-${color white}NAME               PID    CPU     MEM
-${color gray}1. ${top_mem name 1}${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}
-${color gray}2. ${top_mem name 2}${top_mem pid 2} ${top_mem cpu 2} ${top_mem mem 2}
-${color gray}3. ${top_mem name 3}${top_mem pid 3} ${top_mem cpu 3} ${top_mem mem 3}
-${color gray}4. ${top_mem name 4}${top_mem pid 4} ${top_mem cpu 4} ${top_mem mem 4}
-${color gray}5. ${top_mem name 5}${top_mem pid 5} ${top_mem cpu 5} ${top_mem mem 5}
+${color orange}TOP PROCESSOR USAGE ${hr 2}
+${color gray}NAME               PID    CPU     MEM
+${color white}1. ${top name 1}${top pid 1} ${top cpu 1} ${top mem 1}
+2. ${top name 2}${top pid 2} ${top cpu 2} ${top mem 2}
+3. ${top name 3}${top pid 3} ${top cpu 3} ${top mem 3}
+4. ${top name 4}${top pid 4} ${top cpu 4} ${top mem 4}
+5. ${top name 5}${top pid 5} ${top cpu 5} ${top mem 5}
+${color orange}TOP MEMORY USAGE ${hr 2}
+${color gray}NAME               PID    CPU     MEM
+${color white}1. ${top_mem name 1}${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}
+2. ${top_mem name 2}${top_mem pid 2} ${top_mem cpu 2} ${top_mem mem 2}
+3. ${top_mem name 3}${top_mem pid 3} ${top_mem cpu 3} ${top_mem mem 3}
+4. ${top_mem name 4}${top_mem pid 4} ${top_mem cpu 4} ${top_mem mem 4}
+5. ${top_mem name 5}${top_mem pid 5} ${top_mem cpu 5} ${top_mem mem 5}
 
