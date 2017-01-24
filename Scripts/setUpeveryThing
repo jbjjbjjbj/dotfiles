@@ -23,10 +23,9 @@ git clone --bare https://bitbucket.org/durdn/cfg.git $HOME/.cfg
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 mkdir -p .config-backup
 config checkout
-if [ $? = 0 ]; then
-  echo "Please fix git errors"
-  read -p "Press enter to continue"
-fi;
+echo "Please fix git errors"
+read -p "Press enter to continue"
+
 config checkout
 config config status.showUntrackedFiles no
 
