@@ -1,0 +1,16 @@
+import requests, bs4
+
+#res = requests.get("https://en.wikipedia.org/wiki/Special:Random")
+res = requests.get("https://en.wikipedia.org/wiki/Study")
+
+
+soup = bs4.BeautifulSoup(res.text)
+
+
+element = soup.select("#mw-content-text a[title]")
+
+print(element)
+
+
+for i in element:
+	if(i[title])
