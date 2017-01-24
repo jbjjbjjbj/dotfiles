@@ -34,9 +34,6 @@ config config status.showUntrackedFiles no
 
 sudo apt -y install terminator
 
-sudo apt -y install texlive
-
-sudo apt -y install texlive-lang-european
 
 sudo apt -y install conky
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
