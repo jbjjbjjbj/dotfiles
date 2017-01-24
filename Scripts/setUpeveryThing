@@ -19,15 +19,8 @@ sudo apt -y install nano
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 
-git clone --bare https://bitbucket.org/durdn/cfg.git $HOME/.cfg
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-mkdir -p .config-backup
-config checkout
-echo "Please fix git errors"
-read -p "Press enter to continue"
 
-config checkout
-config config status.showUntrackedFiles no
+
 
 sudo apt -y install terminator
 
@@ -39,4 +32,10 @@ sudo apt update
 
 sudo apt -y install spotify-client
 sudo apt -y install virtualbox
+
+sudo apt -y install texlive
+sudo apt -y install texlive-lang-european
+sudo apt -y install texmaker
+
+
 
