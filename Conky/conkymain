@@ -27,7 +27,7 @@ default_shade_color red
 default_outline_color green
 alignment top_right
 gap_x 12
-gap_y 12
+gap_y 50
 no_buffers yes
 uppercase no
 cpu_avg_samples 4
@@ -65,13 +65,14 @@ ${color white}1. ${top_mem name 1}${top_mem pid 1} ${top_mem cpu 1} ${top_mem me
 ${color orange}MUSIC${hr 2}
 ${if_running spotify}${texeci 1 /usr/bin/spotify-nowplaying-work}${color white}Song:
  ${color gray}${exec /home/julian/Conky/spotify-nowplaying.sh}
+${else}${color gray}Spotify is closed
 ${endif}${color orange}NETWORK${hr 2}
 ${color white}Hostname:
 ${color gray} ${exec hostname}
 ${color white}Internal Ip:
 ${color gray}${if_existing /proc/net/route wlan0} Wlan: ${exec /home/julian/Conky/getInternalIp.sh}
-${else}${if_existing /proc/net/route enp4s0} Eth: ${exec /home/julian/Conky/getInternalIp.sh enp4s0}
-${else} Network disconnected${endif}${endif}${alignc}${color Tan2}TX           NETWORKING           RX
-${if_existing /proc/net/route wlan0}${color white}Wlan: ${color 20a5e4}${upspeed Wlan0}$alignr${downspeed wlan0}${color white}:Wlan
-${else}${if_existing /proc/net/route enp4s0}${color white}Eth: ${color 20a5e4}${upspeed enp4s0}$alignr${downspeed enp4s0}${color white}:Eth
-${else}${color white}Network disconnected${endif}${endif} 
+${else}${if_existing /proc/net/route enp4s0} Eth: ${exec /home/julian/Conky/getInternalIp.sh enp4s0}${else} Network disconnected${endif}${endif}
+${color orange}Services ${hr 2}
+${color white} Dropbox: ${color gray}${exec dropbox status}
+${color white} SSHD: ${color gray}${exec systemctl is-active ssh}
+
