@@ -46,7 +46,7 @@ if element != None:
     print("Updating packages")
     os.system("sudo apt update")
 
-    print("Installing", "grub-customizer")
-    os.system("sudo apt install " + "grub-customizer")
+    print("Installing", results[index-1][0])
+    os.system("sudo apt install " + results[index-1][0])
 else:
     print("No results where found for", sys.argv[1])
