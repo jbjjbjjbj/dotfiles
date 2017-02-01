@@ -1,0 +1,41 @@
+sudo apt -y update
+sudo apt -y upgrade
+
+sudo apt -y install zsh
+sudo apt -y install cowsay
+sudo apt -y install fortune
+sudo apt -y install htop
+sudo apt -y install python
+sudo apt -y install python-pip
+sudo apt -y install python3
+sudo apt -y install python3-pip
+sudo apt -y install git
+sudo apt -y install playonlinux
+
+sudo apt -y install emacs-nox
+sudo apt -y install vim
+sudo apt -y install nano
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+
+
+
+
+sudo apt -y install terminator
+
+
+sudo apt -y install conky
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
+echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt update
+
+sudo apt -y install spotify-client
+sudo apt -y install virtualbox
+
+sudo apt -y install texlive
+sudo apt -y install texlive-lang-european
+sudo apt -y install texmaker
+
+
+
