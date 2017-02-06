@@ -94,7 +94,7 @@ alias lemon="~/.config/openbox/lemonbar | lemonbar -g 1355x20+5+5 -f terminus-9"
 
 PATH=/home/julian/Scripts:$PATH
 PATH=/home/julian/.gem/ruby/2.4.0/bin:$PATH
-fortune -n 100 | cowsay 
+#fortune -n 100 | cowsay 
 rex
 
 
