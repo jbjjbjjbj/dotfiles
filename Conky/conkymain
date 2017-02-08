@@ -63,7 +63,7 @@ ${color white}1. ${top_mem name 1}${top_mem pid 1} ${top_mem cpu 1} ${top_mem me
 4. ${top_mem name 4}${top_mem pid 4} ${top_mem cpu 4} ${top_mem mem 4}
 5. ${top_mem name 5}${top_mem pid 5} ${top_mem cpu 5} ${top_mem mem 5}
 ${color orange}MUSIC${hr 2}
-${if_running spotify}${texeci 1 /usr/bin/spotify-nowplaying-work}${color white}Song:
+${if_running spotify}${color white}Song:
  ${color gray}${exec /home/julian/Conky/spotify-nowplaying.sh}
 ${else}${color gray}Spotify is closed
 ${endif}${color orange}NETWORK${hr 2}

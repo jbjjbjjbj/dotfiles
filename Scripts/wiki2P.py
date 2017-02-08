@@ -1,25 +1,46 @@
 import requests, bs4, re
 
-# res = requests.get("https://en.wikipedia.org/wiki/Special:Random")
-res = requests.get("https://en.wikipedia.org/wiki/Linux")
 
 
-soup = bs4.BeautifulSoup(res.text, "html.parser")
+
+def calculate(site):
+
+        print("Downloading wikipedia site: " + site)
 
 
-element = soup.select("#mw-content-text a[title]")
+        res = requests.get("https://en.wikipedia.org" + site)
+
+        print("Download completed analysing")
+
+        soup = bs4.BeautifulSoup(res.text, "html.parser")
 
 
-pattern = re.compile("^\/.*")
+        element = soup.find("div", {"class": "mw-content-ltr"}).find("p")
 
 
-for i in element:
-	if "Edit section" not in i["title"] and pattern.match(i["href"]):
-		if "div" not in str(i.parent) and "th" not in str(i.parent) and "td" not in str(i.parent):
-			try:
-				i["class"]
-			except KeyError:
-				print(i)
-				break
+        #print(element)
+
+        elements = element.find_all("a")
 
 
+
+
+        pattern = re.compile("\/wiki\/(?!File|Help).*")
+
+        results = ""
+
+
+        for i in elements:
+                if pattern.match(i["href"]) :
+                        results = i["href"]
+                        break
+
+        return results
+
+
+
+siter = "/wiki/Linux"
+
+while siter is not "philosophy":
+        input(siter)
+        siter = calculate(siter)
