@@ -44,6 +44,10 @@ Make gitignore
 Clone repository
 `git clone --bare <git-repo-url> $HOME/.cfg`
 
+Set git option
+
+`config config --local status.showUntrackedFiles no`
+
 Checkout
 `config checkout`
 
