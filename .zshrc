@@ -110,3 +110,7 @@ alias sudo="sudo "
 alias update="sudo apt update && sudo apt upgrade"
 alias emacs="emacsclient -c"
 alias cmacs="emacsclient -nw -c"
+xmodmap -e "keycode 62 = Up"
+
+
+alias redock="docker rm $(docker ps -a -q) && docker rmi $(docker images -q)"
