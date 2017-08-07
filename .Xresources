@@ -1,6 +1,7 @@
 !#include ".colors/sourcerer_mod"
 !#include ".colors/self_light"
-#include ".colors/c/contrast_need"
+#include ".colors/contrast_need"
+!#include ".colors/colory"
 !#include ".colors/google"
 URxvt*termName: rxvt-unicode
 
@@ -10,7 +11,7 @@ URxvt.scrollBar: false
 
 !URxvt*font: xft:Droid\ Sans\ Mono:regular:size=9:antialias=true:hinting=true
 URxvt*font: xft:terminus:regular:size=10:antialias=true:hinting=true
-
+URxvt*font: xft:Terminess Powerline:size=10
 
 URxvt.perl-ext-common: default,matcher,clipboard,keyboard-select,url-select
 URxvt.url-launcher: /usr/bin/surf
@@ -36,4 +37,3 @@ URxvt.url-select.video: mpv
 URxvt.url-select.button: 1
 
 ! Mine farver
-

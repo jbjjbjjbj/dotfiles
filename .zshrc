@@ -9,7 +9,7 @@ export TERM="xterm-256color"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="minimal"
+ZSH_THEME="bullet-train"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -87,6 +87,14 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
+BULLETTRAIN_PROMPT_ORDER=(
+  git
+  context
+  dir
+  time
+)
+
+
 PATH=/home/julian/Scripts:$PATH
 alias rex="xrdb ~/.Xresources"
 alias lemon="~/.config/openbox/lemonbar | lemonbar -g 1355x20+5+5 -f terminus-9"
@@ -95,7 +103,6 @@ alias lemon="~/.config/openbox/lemonbar | lemonbar -g 1355x20+5+5 -f terminus-9"
 PATH=/home/julian/Scripts:$PATH
 PATH=/home/julian/.gem/ruby/2.4.0/bin:$PATH
 #fortune -n 100 | cowsay 
-rex
 
 
 if [[ -r /usr/share/powerline/bindings/zsh/powerline.zsh ]]; then
@@ -110,7 +117,7 @@ alias sudo="sudo "
 alias update="sudo apt update && sudo apt upgrade"
 alias emacs="emacsclient -c"
 alias cmacs="emacsclient -nw -c"
+alias node="nodejs"
 xmodmap -e "keycode 62 = Up"
 
 
-alias redock="docker rm $(docker ps -a -q) && docker rmi $(docker images -q)"
