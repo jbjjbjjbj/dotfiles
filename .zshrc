@@ -116,6 +116,5 @@ alias pip="pip3"
 alias sudo="sudo "
 alias emacs="emacsclient -c"
 alias cmacs="emacsclient -nw -c"
-alias node="nodejs"
 
 
