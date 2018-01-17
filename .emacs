@@ -21,6 +21,7 @@
  '(ansi-color-names-vector
    ["#757575" "#CD5542" "#4A8F30" "#7D7C21" "#4170B3" "#9B55C3" "#68A5E9" "gray43"])
  '(beacon-color "#cc6666")
+ '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (ample)))
  '(custom-safe-themes
    (quote
@@ -34,11 +35,9 @@
      (800 1000 1200 1400 1600 1800 2000))))
  '(org-hide-leading-stars t)
  '(org-highlight-latex-and-related (quote (latex)))
- '(org-trello-current-prefix-keybinding "C-c o" nil (org-trello))
- '(org-trello-files (quote ("/home/julian/Dropbox/Notes2017.org")) nil (org-trello))
  '(package-selected-packages
    (quote
-    (projectile dashboard org-trello ample-theme tangotango-theme cyberpunk-theme color-theme-sanityinc-tomorrow)))
+    (projectile ample-theme tangotango-theme cyberpunk-theme color-theme-sanityinc-tomorrow)))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
@@ -70,16 +69,14 @@
 
 
 
-(require 'color-theme-sanityinc-tomorrow)
-
 (setq org-log-done 'time)
 
-
-(require 'org-trello)
 
 (setq-default org-display-custom-times t)
 (setq org-time-stamp-custom-formats '("<%a %e-%b-%Y>" . "<%a %e-%b-%Y %H:%M>"))
 
 (setq org-agenda-files '("~/Dropbox/Noter"))
 
-(add-hook 'after-init-hook (lambda () (org-agenda nil "a") (switch-to-buffer ("*Org Agenda*")) (delete-other-windows) ))
+
+
+(ac-config-default)
