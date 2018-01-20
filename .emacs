@@ -21,6 +21,7 @@
  '(ansi-color-names-vector
    ["#757575" "#CD5542" "#4A8F30" "#7D7C21" "#4170B3" "#9B55C3" "#68A5E9" "gray43"])
  '(beacon-color "#cc6666")
+ '(column-number-mode t)
  '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (ample)))
  '(custom-safe-themes
@@ -80,3 +81,22 @@
 
 
 (ac-config-default)
+
+(add-to-list 'load-path "/some/path/neotree")
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
+(setq c-default-style "k&r"
+      c-basic-offset 4)
+
+(add-hook 'c-mode-common-hook '(lambda () (c-toggle-auto-state 1)))
+
+(add-to-list 'auto-mode-alist '("\\.ino\\'" . c++-mode))
+
+
+(setq backup-directory-alist
+          `(("." . ,(concat user-emacs-directory "backups"))))
+
+
+(require 'evil)
+  (evil-mode 1)
