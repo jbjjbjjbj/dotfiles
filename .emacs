@@ -8,6 +8,8 @@
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize) ;; You might already have this line
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
@@ -97,3 +99,48 @@
 (setq backup-directory-alist
           `(("." . ,(concat user-emacs-directory "backups"))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Custom splitting functions ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun vsplit-last-buffer ()
+  (interactive)
+  (split-window-vertically)
+  (other-window 1 nil)
+  (switch-to-next-buffer)
+  )
+(defun hsplit-last-buffer ()
+  (interactive)
+   (split-window-horizontally)
+  (other-window 1 nil)
+  (switch-to-next-buffer)
+  )
+
+(global-set-key (kbd "C-x 2") 'vsplit-last-buffer)
+(global-set-key (kbd "C-x 3") 'hsplit-last-buffer)
+
+
+(global-set-key (kbd "C-å C-b")  'windmove-left)
+(global-set-key (kbd "C-å C-f") 'windmove-right)
+(global-set-key (kbd "C-å C-p")    'windmove-up)
+(global-set-key (kbd "C-å C-n")  'Windmove-down)
+
+
+(windmove-default-keybindings)
+
+(require 'buffer-move)
+(global-set-key (kbd "<C-S-up>")     'buf-move-up)
+(global-set-key (kbd "<C-S-down>")   'buf-move-down)
+(global-set-key (kbd "<C-S-left>")   'buf-move-left)
+(global-set-key (kbd "<C-S-right>")  'buf-move-right)
+
+
+(require 'workgroups2)
+
+(workgroups-mode 1) 
+
+(defun switch-to-last-buffer ()
+  (interactive)
+  (switch-to-buffer nil))
+
+(global-set-key (kbd "C-<backspace>") 'switch-to-last-buffer)
