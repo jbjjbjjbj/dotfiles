@@ -24,11 +24,11 @@
    ["#757575" "#CD5542" "#4A8F30" "#7D7C21" "#4170B3" "#9B55C3" "#68A5E9" "gray43"])
  '(beacon-color "#cc6666")
  '(column-number-mode t)
- '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (tango-dark)))
  '(custom-safe-themes
    (quote
     ("938d8c186c4cb9ec4a8d8bc159285e0d0f07bad46edf20aa469a89d0d2a586ea" "6de7c03d614033c0403657409313d5f01202361e35490a3404e33e46663c2596" "ed317c0a3387be628a48c4bbdb316b4fa645a414838149069210b66dd521733f" "d6922c974e8a78378eacb01414183ce32bc8dbf2de78aabcc6ad8172547cb074" "4e63466756c7dbd78b49ce86f5f0954b92bf70b30c01c494b37c586639fa3f6f" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" default)))
+ '(electric-pair-mode t)
  '(fci-rule-color "#373b41")
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
  '(org-agenda-time-grid
@@ -144,3 +144,35 @@
   (switch-to-buffer nil))
 
 (global-set-key (kbd "C-<backspace>") 'switch-to-last-buffer)
+
+(defun eval-and-replace ()
+  "Replace the preceding sexp with its value."
+  (interactive)
+  (backward-kill-sexp)
+  (condition-case nil
+      (prin1 (eval (read (current-kill 0)))
+             (current-buffer))
+    (error (message "Invalid expression")
+           (insert (current-kill 0)))))
+
+(global-set-key (kbd "C-c e") 'eval-and-replace)
+
+
+(require 'iy-go-to-char)
+(global-set-key (kbd "M-m") 'iy-go-to-char)
+
+
+(require 'expand-region)
+(global-set-key (kbd "M-n") 'er/expand-region)
+
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+    
+    ;;If you also use viper mode:
+(define-key viper-vi-global-user-map (kbd "SPC") 'ace-jump-mode)
+
+(require 'multiple-cursors)
+
+(global-set-key (kbd "M-p e") 'mc/edit-lines)
+(global-set-key (kbd "M-p f") 'mc/mark-next-like-this)
+(global-set-key (kbd "M-p b") 'mc/mark-previous-like-this)
+(global-set-key (kbd "M-p h") 'mc/mark-all-like-this)
