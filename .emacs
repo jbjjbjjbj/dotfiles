@@ -135,9 +135,6 @@
 (global-set-key (kbd "<C-S-right>")  'buf-move-right)
 
 
-(require 'workgroups2)
-
-(workgroups-mode 1) 
 
 (defun switch-to-last-buffer ()
   (interactive)
@@ -167,12 +164,11 @@
 
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
     
-    ;;If you also use viper mode:
-(define-key viper-vi-global-user-map (kbd "SPC") 'ace-jump-mode)
-
 (require 'multiple-cursors)
 
 (global-set-key (kbd "M-p e") 'mc/edit-lines)
 (global-set-key (kbd "M-p f") 'mc/mark-next-like-this)
 (global-set-key (kbd "M-p b") 'mc/mark-previous-like-this)
 (global-set-key (kbd "M-p h") 'mc/mark-all-like-this)
+
+
