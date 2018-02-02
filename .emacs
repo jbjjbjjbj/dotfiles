@@ -91,7 +91,7 @@
 (setq c-default-style "k&r"
       c-basic-offset 4)
 
-(add-hook 'c-mode-common-hook '(lambda () (c-toggle-auto-state 1)))
+;;(add-hook 'c-mode-common-hook '(lambda () (c-toggle-auto-state 1)))
 
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c++-mode))
 
@@ -170,5 +170,35 @@
 (global-set-key (kbd "M-p f") 'mc/mark-next-like-this)
 (global-set-key (kbd "M-p b") 'mc/mark-previous-like-this)
 (global-set-key (kbd "M-p h") 'mc/mark-all-like-this)
+
+
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+
+(require 'fortune)
+(setq fortune-dir "/usr/share/games/fortunes")
+(setq fortune-file "/usr/share/games/fortunes/fortunes")
+
+(defun dashboard-fortune (hej)
+  (insert "Fortune:\n")
+  (insert (with-temp-buffer
+	    (shell-command "fortune" t)
+	    (buffer-string)))
+  )
+
+
+(add-to-list 'dashboard-item-generators  '(custom . dashboard-fortune))
+
+(setq dashboard-items '((recents  . 5)
+			(bookmarks . 5)
+			(custom . 3)
+			))
+
+(require 'zone)
+(zone-when-idle 120)
+
+(show-paren-mode 1)
+
+
 
 
