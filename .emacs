@@ -194,9 +194,6 @@
 			(custom . 3)
 			))
 
-(require 'zone)
-(zone-when-idle 120)
-
 (show-paren-mode 1)
 
 
