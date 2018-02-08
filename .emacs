@@ -197,6 +197,7 @@
 
 (show-paren-mode 1)
 
+<<<<<<< HEAD
 (require 'dired-single)
 
 (defun my-dired-init ()
@@ -230,3 +231,11 @@
    (C . t)
    ))
 
+(require 'evil)
+(evil-mode 1)
+
+(require 'evil-surround)
+(global-evil-surround-mode 1)
+
+(display-time-mode 1)
+(display-battery-mode 1)
