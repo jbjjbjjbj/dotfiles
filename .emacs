@@ -197,5 +197,11 @@
 (show-paren-mode 1)
 
 
+(require 'evil)
+(evil-mode 1)
 
+(require 'evil-surround)
+(global-evil-surround-mode 1)
 
+(display-time-mode 1)
+(display-battery-mode 1)
