@@ -197,7 +197,7 @@
 
 (show-paren-mode 1)
 
-<<<<<<< HEAD
+
 (require 'dired-single)
 
 (defun my-dired-init ()
