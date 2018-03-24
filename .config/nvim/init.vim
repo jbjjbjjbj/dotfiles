@@ -23,12 +23,13 @@ Plugin 'nanotech/jellybeans.vim'
 
 Plugin 'Shougo/deoplete.nvim'
 
+Plugin 'agude/vim-eldar'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 
-colorscheme elflord
+colorscheme eldar
 
 syntax enable
 set number relativenumber
