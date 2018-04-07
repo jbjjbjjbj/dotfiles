@@ -15,6 +15,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-speeddating'
 
+Plugin 'vim-scripts/ReplaceWithRegister'
+
 Plugin 'zchee/deoplete-jedi'
 
 Plugin 'sirtaj/vim-openscad'
