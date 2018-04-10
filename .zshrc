@@ -6,6 +6,7 @@ export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
   export ZSH=/home/julian/.oh-my-zsh
 
+echo "Setting theme"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -49,12 +50,14 @@ ZSH_THEME="bullet-train"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+echo "Loading plugins"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git sudo)
 
+echo "Loading zsh"
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -86,7 +89,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
+echo "Setting up bullet train"
 BULLETTRAIN_PROMPT_ORDER=(
   git
   context
@@ -103,7 +106,7 @@ alias lemon="~/.config/openbox/lemonbar | lemonbar -g 1355x20+5+5 -f terminus-9"
 PATH=/home/julian/.gem/ruby/2.5.0/bin:$PATH
 #fortune -n 100 | cowsay 
 
-
+echo "Loading powerline"
 if [[ -r /usr/share/powerline/bindings/zsh/powerline.zsh ]]; then
     source /usr/share/powerline/bindings/zsh/powerline.zsh
 fi
@@ -117,8 +120,12 @@ alias vim="nvim"
 #alias emacs="emacsclient -c"
 #alias cmacs="emacsclient -nw -c"
 
+#Setup git lol
+git config --global alias.lol "log --graph --decorate  --abbrev-commit --all"
 
-eval $(thefuck --alias)
+
 
 alias hej="echo 'Hej, hvordan går det?'"
 export EDITOR=nvim
+echo "Done"
+clear

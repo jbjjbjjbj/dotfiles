@@ -16,6 +16,8 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-speeddating'
 
 Plugin 'vim-latex/vim-latex'
+Plugin 'vim-scripts/ReplaceWithRegister'
+
 
 Plugin 'vim-erlang/vim-erlang-runtime'
 
