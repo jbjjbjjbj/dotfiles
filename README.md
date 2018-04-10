@@ -42,7 +42,7 @@ Make gitignore
 `echo ".cfg" >> .gitignore`
 
 Clone repository
-`git clone --bare <git-repo-url> $HOME/.cfg`
+`git clone --bare 'https://github.com/jbjjbjjbj/newDotFiles' $HOME/.cfg`
 
 Set git option
 
