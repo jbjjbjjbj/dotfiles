@@ -1,9 +1,0 @@
-compton --config /home/julian/.config/compton &
-
-xsetroot -cursor_name arrow -fg white -bg black &
-
-feh --bg-scale /home/julian/Billeder/Wallpapers/B* &
-
-export _JAVA_AWT_WM_NONREPARENTING=1 &
-
-2bwm
