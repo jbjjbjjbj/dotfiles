@@ -51,3 +51,28 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 
 tnoremap <C-e> <C-\><C-n>
+
+" Map C-s
+noremap <silent> <C-S>     :update<CR>
+
+" Make ToBegin and ToEnd
+function! InputChar()
+    let c = getchar()
+    return type(c) == type(0) ? nr2char(c) : c
+endfunction
+
+function! ToEnd()
+    let s =  InputChar()
+    if s =~ "\<esc>" || s =~ "\<c-c>"  
+        return
+    endif
+    execute "normal! vi". s. "\<Esc>"
+endfunction
+
+function! ToBegin()
+    call ToEnd()
+    execute "'<"
+endfunction
+
+nnoremap <silent> ge :call ToEnd()<cr>
+nnoremap <silent> gb :call ToBegin()<cr>
