@@ -14,6 +14,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-fugitive'
 
 Plugin 'vim-latex/vim-latex'
 Plugin 'vim-scripts/ReplaceWithRegister'

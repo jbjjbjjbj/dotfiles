@@ -129,3 +129,12 @@ alias hej="echo 'Hej, hvordan går det?'"
 export EDITOR=nvim
 echo "Done"
 clear
+
+#Setup ssh agent
+if [[ $(ps -aux | grep ssh-agent | grep -v "grep" | wc -l) == "0" ]]; then
+    echo "ssh-agent not found" 
+    ssh-agent > ~/.ssh-agent-thing
+fi
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+    eval "$(<~/.ssh-agent-thing)"
+fi
