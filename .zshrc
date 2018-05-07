@@ -141,3 +141,4 @@ fi
 
 # Sæt sudo editor
 export SUDO_EDITOR=nvim
+SUDO_EDITOR=nvim
