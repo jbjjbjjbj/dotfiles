@@ -41,8 +41,10 @@ colorscheme eldar
 syntax enable
 set number relativenumber
 
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set noexpandtab
 
 let g:deoplete#enable_at_startup = 1
 

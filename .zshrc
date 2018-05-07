@@ -139,3 +139,5 @@ if [[ "$SSH_AGENT_PID" == "" ]]; then
     eval "$(<~/.ssh-agent-thing)"
 fi
 
+# Sæt sudo editor
+export SUDO_EDITOR=nvim
