@@ -32,6 +32,8 @@ Plugin 'Shougo/deoplete.nvim'
 
 Plugin 'agude/vim-eldar'
 
+Plugin 'scrooloose/nerdtree'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -79,3 +81,5 @@ endfunction
 
 nnoremap <silent> ge :call ToEnd()<cr>
 nnoremap <silent> gb :call ToBegin()<cr>
+
+map <C-n> :NERDTreeToggle<CR>
