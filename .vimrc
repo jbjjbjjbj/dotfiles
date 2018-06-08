@@ -11,6 +11,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'mileszs/ack.vim'
+
 Plugin 'autozimu/LanguageClient-neovim'
 
 Plugin 'tpope/vim-surround'
