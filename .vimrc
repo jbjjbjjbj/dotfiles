@@ -17,20 +17,13 @@ Plugin 'autozimu/LanguageClient-neovim'
 
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-speeddating'
-Plugin 'tpope/vim-fugitive'
 
 Plugin 'vim-latex/vim-latex'
 Plugin 'vim-scripts/ReplaceWithRegister'
 
-
-Plugin 'vim-erlang/vim-erlang-runtime'
-
 Plugin 'zchee/deoplete-jedi'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'sirtaj/vim-openscad'
 Plugin 'tmhedberg/matchit'
-Plugin 'nanotech/jellybeans.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Shougo/deoplete.nvim'
 
