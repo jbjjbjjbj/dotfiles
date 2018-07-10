@@ -113,9 +113,6 @@ fi
 
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias python="python3"
-alias pip="pip3"
-alias sudo="sudo "
 alias vim="nvim"
 #alias emacs="emacsclient -c"
 #alias cmacs="emacsclient -nw -c"
