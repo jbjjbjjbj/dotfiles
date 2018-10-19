@@ -13,6 +13,9 @@ mkdir /home/julian/.oh-my-zsh/custom/themes
 
 wget https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme -O /home/julian/.oh-my-zsh/custom/themes/bullet-train.zsh-theme
 
+cd ~/.oh-my-zsh/custom/plugins
+git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 echo ".cfg" >> .gitignore
 git clone --bare 'https://github.com/jbjjbjjbj/newDotFiles' $HOME/.cfg
@@ -20,3 +23,4 @@ config config --local status.showUntrackedFiles no
 config checkout -f
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+

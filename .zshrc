@@ -4,7 +4,7 @@ export TERM="xterm-256color"
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/julian/.oh-my-zsh
+export ZSH=/home/julian/.oh-my-zsh
 
 echo "Setting theme"
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -55,7 +55,7 @@ echo "Loading plugins"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo)
+plugins=(git sudo vi-mode zsh-syntax-highlighting)
 
 echo "Loading zsh"
 source $ZSH/oh-my-zsh.sh
@@ -98,12 +98,11 @@ BULLETTRAIN_PROMPT_ORDER=(
 )
 
 
-PATH=/home/julian/Scripts:$PATH
 alias rex="xrdb ~/.Xresources"
 alias lemon="~/.config/openbox/lemonbar | lemonbar -g 1355x20+5+5 -f terminus-9"
 
 
-PATH=/home/julian/.gem/ruby/2.5.0/bin:$PATH
+#PATH=/usr/local/MATLAB/R2018b/bin:$PATH
 #fortune -n 100 | cowsay 
 
 echo "Loading powerline"
@@ -132,3 +131,19 @@ clear
 # Sæt sudo editor
 export SUDO_EDITOR=nvim
 SUDO_EDITOR=nvim
+
+alias vimvimvim="vim"
+
+export KEYTIMEOUT=1
+
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
+ZSH_HIGHLIGHT_PATTERNS+=('-*$' 'fg=yellow,bold') 
+ZSH_HIGHLIGHT_PATTERNS+=('-* ' 'fg=yellow,bold') 
+ZSH_HIGHLIGHT_PATTERNS+=('"*"' 'fg=green,bold')
+
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,underline,bold
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=blue,underline,bold
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=white
+
