@@ -55,7 +55,7 @@ echo "Loading plugins"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo vi-mode zsh-syntax-highlighting)
+plugins=(git sudo zsh-syntax-highlighting)
 
 echo "Loading zsh"
 source $ZSH/oh-my-zsh.sh
@@ -134,7 +134,6 @@ SUDO_EDITOR=nvim
 
 alias vimvimvim="vim"
 
-export KEYTIMEOUT=1
 
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)

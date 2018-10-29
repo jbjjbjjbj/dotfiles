@@ -1,6 +1,6 @@
 setxkbmap -layout us -variant altgr-intl
 xcape -e "Control_L=Escape"
-feh --bg-fill /home/julian/Pictures/wallpaper.jpg
+feh --bg-fill /home/julian/Pictures/up1.jpg
 setxkbmap dk
 export _JAVA_AWT_WM_NONREPARENTING=1
 

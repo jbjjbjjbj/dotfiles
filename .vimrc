@@ -1,6 +1,6 @@
 
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype plugin on
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -11,20 +11,14 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'mileszs/ack.vim'
-
-"Plugin 'autozimu/LanguageClient-neovim'
-
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 
 Plugin 'vim-latex/vim-latex'
-Plugin 'vim-scripts/ReplaceWithRegister'
+
+Plugin 'racer-rust/vim-racer'
 
 Plugin 'zchee/deoplete-jedi'
-Plugin 'sirtaj/vim-openscad'
-Plugin 'tmhedberg/matchit'
-Plugin 'kien/ctrlp.vim'
 
 if has("nvim")
 	Plugin 'Shougo/deoplete.nvim'
@@ -35,8 +29,6 @@ else
 endif
 
 Plugin 'agude/vim-eldar'
-
-Plugin 'scrooloose/nerdtree'
 
 " Track the engine.
 Plugin 'SirVer/ultisnips'
@@ -123,3 +115,15 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Run  binding
 nnoremap <F5> :!terminator -e '"%:p" ;read -n 1'<CR>
 set completeopt-=preview
+
+
+" File finding
+set path+=**
+set wildmenu
+
+let g:netrw_liststyle=3
+
+
+" Snippits
+
+nnoremap ,html :-1read $HOME/.vim/snippets/skeleton.html<CR>
