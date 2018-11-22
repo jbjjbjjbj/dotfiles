@@ -10,7 +10,7 @@ echo "Setting theme"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bullet-train"
+ZSH_THEME="af-magic"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -55,7 +55,7 @@ echo "Loading plugins"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo zsh-syntax-highlighting)
+plugins=(git sudo)
 
 echo "Loading zsh"
 source $ZSH/oh-my-zsh.sh
@@ -134,15 +134,9 @@ SUDO_EDITOR=nvim
 
 alias vimvimvim="vim"
 
-
-
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
-ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
-ZSH_HIGHLIGHT_PATTERNS+=('-*$' 'fg=yellow,bold') 
-ZSH_HIGHLIGHT_PATTERNS+=('-* ' 'fg=yellow,bold') 
-ZSH_HIGHLIGHT_PATTERNS+=('"*"' 'fg=green,bold')
-
-ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,underline,bold
-ZSH_HIGHLIGHT_STYLES[precommand]=fg=blue,underline,bold
-ZSH_HIGHLIGHT_STYLES[arg0]=fg=white
-
+# Gem
+# Install Ruby Gems to ~/gems
+export GEM_HOME=$HOME/gems
+export PATH=$HOME/gems/bin:$PATH
+PATH=/home/julian/.gem/ruby/2.5.0/bin:$PATH
+PATH=/home/julian/.local/bin:$PATH
