@@ -13,7 +13,8 @@ while true; do
 
 	BATT=$( acpi -b | sed 's/.*[charging|unknown], \([0-9]*\)%.*/\1/gi' )
 	TIME=$(/bin/date +"%H:%M")
+	IP=$(hostname -i)
 
-	xsetroot -name "$TIME $BATT%"
+	xsetroot -name "$IP $TIME $BATT%"
 	sleep 10
 done

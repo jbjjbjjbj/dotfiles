@@ -18,9 +18,9 @@
     background_darkness = 0.93
     background_type = transparent
     cursor_color = "#ffffff"
-    font = Monospace 10
+    font = Ubuntu Mono 11
     foreground_color = "#ffffff"
-    palette = "#050505:#b81109:#1cb228:#baa407:#2c5fad:#e35682:#16a085:#ffffff:#1c1b19:#e8160c:#24e534:#fcdf09:#408afc:#e02c6d:#1abc9c:#ebe3e3"
+    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
     scrollback_infinite = True
     scrollbar_position = hidden
     show_titlebar = False
