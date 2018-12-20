@@ -140,3 +140,7 @@ export GEM_HOME=$HOME/gems
 export PATH=$HOME/gems/bin:$PATH
 PATH=/home/julian/.gem/ruby/2.5.0/bin:$PATH
 PATH=/home/julian/.local/bin:$PATH
+
+export NVIM_PYTHON_LOG_FILE=/tmp/log
+export NVIM_PYTHON_LOG_LEVEL=DEBUG
+

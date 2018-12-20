@@ -2,44 +2,38 @@
 set nocompatible              " be iMproved, required
 filetype plugin on
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Plugins
+	" set the runtime path to include Vundle and initialize
+	set rtp+=~/.vim/bundle/Vundle.vim
+	call vundle#begin()
+	" alternatively, pass a path where Vundle should install plugins
+	"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+	" let Vundle manage Vundle, required
+	Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-fugitive'
+	Plugin 'ervandew/supertab'
 
-Plugin 'vim-latex/vim-latex'
+	Plugin 'tpope/vim-surround'
+	Plugin 'tpope/vim-repeat'
 
-Plugin 'racer-rust/vim-racer'
+	Plugin 'racer-rust/vim-racer'
+	Plugin 'davidhalter/jedi-vim'
 
-Plugin 'zchee/deoplete-jedi'
+	Plugin 'agude/vim-eldar'
+	Plugin 'scrooloose/nerdtree'
 
-if has("nvim")
-	Plugin 'Shougo/deoplete.nvim'
-else
-	Plugin 'Shougo/deoplete.nvim'
-	Plugin 'roxma/nvim-yarp'
-	Plugin 'roxma/vim-hug-neovim-rpc'
-endif
+	" Track the engine.
+	Plugin 'SirVer/ultisnips'
 
-Plugin 'agude/vim-eldar'
-Plugin 'scrooloose/nerdtree'
+	" Snippets are separated from the engine. Add this if you want them:
+	Plugin 'honza/vim-snippets'
 
-" Track the engine.
-Plugin 'SirVer/ultisnips'
+	Plugin 'junegunn/goyo.vim'
+	Plugin 'jreybert/vimagit'
 
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
-
-call vundle#end()            " required
-filetype plugin indent on    " required
+	call vundle#end()            " required
+	filetype plugin indent on    " required
 
 
 colorscheme eldar
@@ -52,36 +46,46 @@ set shiftwidth=4
 set softtabstop=4
 set noexpandtab
 
-let g:deoplete#enable_at_startup = 1
-
-tnoremap <C-e> <C-\><C-n>
-
-" Map C-s
-noremap <silent> <C-S>     :update<CR>
-
-map <C-n> :NERDTreeToggle<CR>
+set inccommand=split
 
 " Required for operations modifying multiple buffers like rename.
 set hidden
 
+" Snippits
+	" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+	let g:UltiSnipsExpandTrigger="<c-b>"
+	let g:UltiSnipsJumpForwardTrigger="<c-b>"
+	let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-b>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+	" If you want :UltiSnipsEdit to split your window.
+	let g:UltiSnipsEditSplit="vertical"
 
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+	" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+	" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " File finding
-set path+=**
-set wildmenu
+	set path+=**
+	set wildmenu
 
-let g:netrw_liststyle=3
+	let g:netrw_liststyle=3
 
+" autocmd BufEnter * call ncm2#enable_for_buffer()
+" let g:ncm2#auto_popup = 0
+set completeopt=menuone,preview
 
-set inccommand=split
-autocmd FileType python setlocal completeopt-=preview
+" Keymapping
+	map <C-n> :NERDTreeToggle<CR>
+
+	" Leader stuff
+		let mapleader=" "
+
+		map <leader>z :Goyo<CR>
+		map <leader>mm :make V=1<CR>
+		map <leader>mf :make flash V=1<CR>
+
+		" Example on filetype specific
+		" autocmd FileType tex map <leader>o :w !detex \| wc -w<CR>
+
+" Enforcing filetypes
+	autocmd BufRead,BufNewFile *.ino set filetype=c
+	autocmd FileType python setlocal completeopt-=preview
