@@ -81,7 +81,7 @@ set completeopt=menuone,preview
 
 		map <leader>z :Goyo<CR>
 		map <leader>mm :make V=1<CR>
-		map <leader>mf :make flash V=1<CR>
+		map <leader>mf :!make flash V=1<CR>
 
 		" Example on filetype specific
 		" autocmd FileType tex map <leader>o :w !detex \| wc -w<CR>

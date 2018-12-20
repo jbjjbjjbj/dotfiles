@@ -65,7 +65,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -144,3 +144,7 @@ PATH=/home/julian/.local/bin:$PATH
 export NVIM_PYTHON_LOG_FILE=/tmp/log
 export NVIM_PYTHON_LOG_LEVEL=DEBUG
 
+alias rman="apropos . | shuf -n 1 | awk '{print $1}'| xargs man"
+
+
+export TERM=st
