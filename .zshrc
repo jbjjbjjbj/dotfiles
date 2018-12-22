@@ -122,22 +122,29 @@ git config --global alias.lol "log --graph --decorate  --abbrev-commit --all"
 
 
 alias hej="echo 'Hej, hvordan går det?'"
+export EDITOR=nvim
 echo "Done"
 clear
 
 #Setup ssh agent
 
 # Sæt sudo editor
+export SUDO_EDITOR=nvim
 SUDO_EDITOR=nvim
 
 alias vimvimvim="vim"
 
 # Gem
 # Install Ruby Gems to ~/gems
+export GEM_HOME=$HOME/gems
+export PATH=$HOME/gems/bin:$PATH
 PATH=/home/julian/.gem/ruby/2.5.0/bin:$PATH
 PATH=/home/julian/.local/bin:$PATH
+
+export NVIM_PYTHON_LOG_FILE=/tmp/log
+export NVIM_PYTHON_LOG_LEVEL=DEBUG
 
 alias rman="apropos . | shuf -n 1 | awk '{print $1}'| xargs man"
 
 
-source .envars
+export TERM=st
