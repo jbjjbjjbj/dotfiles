@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export _JAVA_AWT_WM_NONREPARENTING=1
+export EDITOR=nvim
+export SUDO_EDITOR=nvim
+export GEM_HOME=$HOME/gems
+export PATH=$HOME/gems/bin:$PATH
+
+export TERM=st
+export NVIM_PYTHON_LOG_FILE=/tmp/log
+export NVIM_PYTHON_LOG_LEVEL=DEBUG
+
