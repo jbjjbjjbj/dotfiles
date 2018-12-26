@@ -1,7 +1,5 @@
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-# clone
-git clone https://github.com/powerline/fonts.git --depth=1
 # install
 cd fonts
 ./install.sh
@@ -24,3 +22,15 @@ config checkout -f
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
+mkdir Software
+cd Software
+
+git clone https://github.com/jbjjbjjbj/Custom-dwm6.1.git
+cd Custom-dwm6.1
+sudo make install
+cd ..
+
+git clone https://github.com/jbjjbjjbj/Custom-st.git
+cd Custom-st
+sudo make install
+cd
