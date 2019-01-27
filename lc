@@ -1,0 +1,75 @@
+#!/bin/bash
+
+Menu="Program Info System"
+System="update poweroff syspend set-keyboard"
+Info="battery"
+Program="cups-website vim emacs htop"
+All="$System $Info $Program"
+
+handle_stuff() {
+
+# Dmemu listing
+	if [ "$1" = "--list" ]; then
+		printf "Program\nInfo\nSystem"
+	fi
+	if [ "$1" = "--dmenu" ]; then
+		./lc $(echo $Menu $All | tr " " "\n" | dmenu -i -p Launch)
+	fi
+	if [ "$1" = "System" ]; then
+		./lc $(echo $System | tr " " "\n" | dmenu -i -p Launch)
+	fi
+	if [ "$1" = "Info" ]; then
+		./lc $(echo $Info | tr " " "\n" | dmenu -i -p Launch)
+	fi
+	if [ "$1" = "Program" ]; then
+		./lc $(echo $Program | tr " " "\n" | dmenu -i -p Launch)
+	fi
+
+# System info
+	if [ "$1" = "-b" ] || [ "$1" = "battery" ]; then
+		notify-send "Battery information" "$(acpi | grep 1:)"
+	fi
+
+# System maintenance
+	if [ "$1" = "-u" ] || [ "$1" = "update" ]; then
+		st -e sudo pacman -Syu
+	fi
+	if [ "$1" = "--xk" ] || [ "$1" = "set-keyboard" ]; then
+		setxkbmap -layout us -variant altgr-intl
+		xmodmap .Xmodmap
+	fi
+
+# POWER COMMANDS
+	if [ "$1" = "-s" ] || [ "$1" = "suspend" ]; then
+		systemctl suspend
+	fi
+	if [ "$1" = "-p" ] || [ "$1" = "poweroff" ]; then
+		poweroff
+	fi
+
+# Launch
+	if [ "$1" = "-v" ] || [ "$1" = "vim" ]; then
+		st -e nvim
+	fi
+	if [ "$1" = "--emacs" ] || [ "$1" = "emacs" ]; then
+		st -e emacs
+	fi
+	if [ "$1" = "--ht" ] || [ "$1" = "htop" ]; then
+		st -e htop
+	fi
+	if [ "$1" = "--cups" ] || [ "$1" = "cups-website" ]; then
+		firefox "http://localhost:631/"
+	fi
+
+# Calc
+	if [ "$(echo $1 | head -c 1)" = "=" ]; then
+		calc="$(echo $1 | cut -c 2-)"
+		notify-send "Result" "$calc = $(echo $calc | bc)"
+	fi
+}
+
+
+for var in "$@"
+do
+	handle_stuff "$var" &
+done

@@ -9,10 +9,10 @@ export SSH_AUTH_SOCK
 
 xmodmap .Xmodmap
 
-nextcloud &
 nm-applet &
 xscreensaver &
 xss-lock -- xscreensaver-command --lock &
+dunst &
 
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent > ~/.ssh-agent-thing

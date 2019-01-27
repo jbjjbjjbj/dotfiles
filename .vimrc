@@ -12,25 +12,36 @@ filetype plugin on
 	" let Vundle manage Vundle, required
 	Plugin 'VundleVim/Vundle.vim'
 
+	" Completion
 	Plugin 'ervandew/supertab'
 
 	Plugin 'tpope/vim-surround'
 	Plugin 'tpope/vim-repeat'
 
+	" ctags stuff
+	Plugin 'ludovicchabant/vim-gutentags'
+
+	" Language support
 	Plugin 'racer-rust/vim-racer'
 	Plugin 'davidhalter/jedi-vim'
+	Plugin 'junegunn/goyo.vim'
 
+	" Color theme
 	Plugin 'agude/vim-eldar'
+
+	" File management
 	Plugin 'scrooloose/nerdtree'
 
-	" Track the engine.
+	" Snippits
 	Plugin 'SirVer/ultisnips'
-
-	" Snippets are separated from the engine. Add this if you want them:
 	Plugin 'honza/vim-snippets'
 
-	Plugin 'junegunn/goyo.vim'
+	" Git
 	Plugin 'jreybert/vimagit'
+
+	" Tagbar use <F4>
+	Plugin 'majutsushi/tagbar'
+
 
 	call vundle#end()            " required
 	filetype plugin indent on    " required
@@ -46,7 +57,6 @@ set shiftwidth=4
 set softtabstop=4
 set noexpandtab
 
-set inccommand=split
 
 " Required for operations modifying multiple buffers like rename.
 set hidden
@@ -75,6 +85,7 @@ set completeopt=menuone,preview
 
 " Keymapping
 	map <C-n> :NERDTreeToggle<CR>
+	map <F4> :TagbarToggle<CR>
 
 	" Leader stuff
 		let mapleader=" "
@@ -85,7 +96,9 @@ set completeopt=menuone,preview
 
 		" Example on filetype specific
 		" autocmd FileType tex map <leader>o :w !detex \| wc -w<CR>
+		autocmd FileType asciidoc nnoremap <leader>c :!asciidoctor %<CR>
 
 " Enforcing filetypes
 	autocmd BufRead,BufNewFile *.ino set filetype=c
+	autocmd BufRead,BufNewFile *.asc set filetype=asciidoc
 	autocmd FileType python setlocal completeopt-=preview
