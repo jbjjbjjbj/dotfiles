@@ -1,0 +1,13 @@
+* newDotFiles
+
+  This is where i keep my dotfiles and scripts.
+
+** Dotfile management
+
+   I use [[https://www.gnu.org/software/stow/][GNU Stow]] for dot file management. This splits the dotfiles into multiple modules, 
+   for example can zsh be installed without installing dwm.
+
+   To install a package or module one can run.
+
+   : stow emacs
+   

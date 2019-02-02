@@ -1,9 +1,10 @@
 #!/bin/bash
 
-Menu="Program Info System"
+Menu="Program Info System File"
 System="update poweroff syspend set-keyboard"
 Info="battery"
 Program="cups-website vim emacs htop"
+Commonfiles=".vimrc .zshrc"
 All="$System $Info $Program"
 
 handle_stuff() {
@@ -23,6 +24,9 @@ handle_stuff() {
 	fi
 	if [ "$1" = "Program" ]; then
 		./lc $(echo $Program | tr " " "\n" | dmenu -i -p Launch)
+	fi
+	if [ "$1" = "File" ]; then
+		st -e nvim $(echo $Commonfiles | tr " " "\n" | dmenu -i -p Launch)
 	fi
 
 # System info
@@ -46,6 +50,8 @@ handle_stuff() {
 	if [ "$1" = "-p" ] || [ "$1" = "poweroff" ]; then
 		poweroff
 	fi
+
+# Mics
 
 # Launch
 	if [ "$1" = "-v" ] || [ "$1" = "vim" ]; then

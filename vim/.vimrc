@@ -1,6 +1,8 @@
 
 set nocompatible              " be iMproved, required
 filetype plugin on
+set shellslash
+
 
 " Plugins
 	" set the runtime path to include Vundle and initialize
@@ -25,6 +27,7 @@ filetype plugin on
 	Plugin 'racer-rust/vim-racer'
 	Plugin 'davidhalter/jedi-vim'
 	Plugin 'junegunn/goyo.vim'
+	Plugin 'vim-latex/vim-latex'
 
 	" Color theme
 	Plugin 'agude/vim-eldar'
@@ -57,6 +60,10 @@ set shiftwidth=4
 set softtabstop=4
 set noexpandtab
 
+let g:tex_flavor='latex'
+
+
+set inccommand=split
 
 " Required for operations modifying multiple buffers like rename.
 set hidden
