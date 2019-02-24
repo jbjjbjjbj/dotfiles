@@ -1,5 +1,5 @@
 setxkbmap -layout us -variant altgr-intl
-feh --bg-fill /home/julian/Pictures/up1.*
+feh --bg-fill /home/julian/Pictures/defaultWall.*
 export _JAVA_AWT_WM_NONREPARENTING=1
 export TERM=st
 

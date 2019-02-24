@@ -115,6 +115,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias vim="nvim"
 #alias emacs="emacsclient -c"
 #alias cmacs="emacsclient -nw -c"
+alias sc="systemctl"
 
 #Setup git lol
 git config --global alias.lol "log --graph --decorate  --abbrev-commit --all"

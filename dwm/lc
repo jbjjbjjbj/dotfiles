@@ -3,7 +3,7 @@
 Menu="Program Info System File"
 System="update poweroff syspend set-keyboard"
 Info="battery"
-Program="cups-website vim emacs htop"
+Program="cups-website vim emacs htop scrot"
 Commonfiles=".vimrc .zshrc"
 All="$System $Info $Program"
 
@@ -47,11 +47,14 @@ handle_stuff() {
 	if [ "$1" = "-s" ] || [ "$1" = "suspend" ]; then
 		systemctl suspend
 	fi
-	if [ "$1" = "-p" ] || [ "$1" = "poweroff" ]; then
+	if [ "$1" = "poweroff" ]; then
 		poweroff
 	fi
 
 # Mics
+	if [ "$1" = "-p" ] || [ "$1" = "scrot" ]; then
+		scrot /tmp/%Y-%m-%d-%T-screenshot.png
+	fi
 
 # Launch
 	if [ "$1" = "-v" ] || [ "$1" = "vim" ]; then
