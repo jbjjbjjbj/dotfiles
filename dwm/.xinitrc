@@ -15,6 +15,7 @@ nm-applet &
 xscreensaver &
 xss-lock -- xscreensaver-command --lock &
 dunst &
+xcompmgr &
 
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent > ~/.ssh-agent-thing

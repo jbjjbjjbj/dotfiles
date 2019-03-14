@@ -15,7 +15,7 @@ set shellslash
 	Plugin 'VundleVim/Vundle.vim'
 
 	" Completion
-	Plugin 'ervandew/supertab'
+	Plugin 'Valloric/YouCompleteMe'
 
 	Plugin 'tpope/vim-surround'
 	Plugin 'tpope/vim-repeat'
@@ -28,6 +28,7 @@ set shellslash
 	Plugin 'davidhalter/jedi-vim'
 	Plugin 'junegunn/goyo.vim'
 	Plugin 'vim-latex/vim-latex'
+	Plugin 'jceb/vim-orgmode'
 
 	" Color theme
 	Plugin 'agude/vim-eldar'
@@ -36,8 +37,8 @@ set shellslash
 	Plugin 'scrooloose/nerdtree'
 
 	" Snippits
-	Plugin 'SirVer/ultisnips'
-	Plugin 'honza/vim-snippets'
+	" Plugin 'SirVer/ultisnips'
+	" Plugin 'honza/vim-snippets'
 
 	" Git
 	Plugin 'jreybert/vimagit'
@@ -70,15 +71,13 @@ set hidden
 
 " Snippits
 	" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-	let g:UltiSnipsExpandTrigger="<c-b>"
-	let g:UltiSnipsJumpForwardTrigger="<c-b>"
-	let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+	" let g:UltiSnipsExpandTrigger="<c-b>"
+	" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+	" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 	" If you want :UltiSnipsEdit to split your window.
-	let g:UltiSnipsEditSplit="vertical"
+	" let g:UltiSnipsEditSplit="vertical"
 
-	" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-	" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " File finding
 	set path+=**
@@ -93,6 +92,8 @@ set completeopt=menuone,preview
 " Keymapping
 	map <C-n> :NERDTreeToggle<CR>
 	map <F4> :TagbarToggle<CR>
+	inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+	inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 	" Leader stuff
 		let mapleader=" "

@@ -1,50 +1,31 @@
 #!/bin/bash
 
-Menu="Program Info System File"
-System="update poweroff syspend set-keyboard"
-Info="battery"
-Program="cups-website vim emacs htop scrot"
-Commonfiles=".vimrc .zshrc"
-All="$System $Info $Program"
+Commands="update poweroff suspend set-keyboard caps-lock battery cups-website vim emacs htop scrot overleaf-render overleaf"
 
 handle_stuff() {
-
-# Dmemu listing
-	if [ "$1" = "--list" ]; then
-		printf "Program\nInfo\nSystem"
-	fi
 	if [ "$1" = "--dmenu" ]; then
-		./lc $(echo $Menu $All | tr " " "\n" | dmenu -i -p Launch)
+		./lc $(echo $Commands | tr " " "\n" | dmenu -i -p ":")
 	fi
-	if [ "$1" = "System" ]; then
-		./lc $(echo $System | tr " " "\n" | dmenu -i -p Launch)
-	fi
-	if [ "$1" = "Info" ]; then
-		./lc $(echo $Info | tr " " "\n" | dmenu -i -p Launch)
-	fi
-	if [ "$1" = "Program" ]; then
-		./lc $(echo $Program | tr " " "\n" | dmenu -i -p Launch)
-	fi
-	if [ "$1" = "File" ]; then
-		st -e nvim $(echo $Commonfiles | tr " " "\n" | dmenu -i -p Launch)
+
+	if [ "$1" = "edit" ] || [ "$1" = "e" ]; then
+		notify-send "$*"
+		st -e nvim $(echo $* | cut -d" " -f2-)
 	fi
 
 # System info
-	if [ "$1" = "-b" ] || [ "$1" = "battery" ]; then
+	if [ "$1" = "b" ] || [ "$1" = "battery" ]; then
 		notify-send "Battery information" "$(acpi | grep 1:)"
 	fi
 
 # System maintenance
-	if [ "$1" = "-u" ] || [ "$1" = "update" ]; then
-		st -e sudo pacman -Syu
-	fi
-	if [ "$1" = "--xk" ] || [ "$1" = "set-keyboard" ]; then
+	if [ "$1" = "sk" ] || [ "$1" = "set-keyboard" ]; then
 		setxkbmap -layout us -variant altgr-intl
 		xmodmap .Xmodmap
+		xcape -e "Control_R=Escape"
 	fi
 
 # POWER COMMANDS
-	if [ "$1" = "-s" ] || [ "$1" = "suspend" ]; then
+	if [ "$1" = "s" ] || [ "$1" = "suspend" ]; then
 		systemctl suspend
 	fi
 	if [ "$1" = "poweroff" ]; then
@@ -52,22 +33,33 @@ handle_stuff() {
 	fi
 
 # Mics
-	if [ "$1" = "-p" ] || [ "$1" = "scrot" ]; then
+	if [ "$1" = "p" ] || [ "$1" = "scrot" ]; then
 		scrot /tmp/%Y-%m-%d-%T-screenshot.png
 	fi
 
+	if [ "$1" = "overleaf-render" ]; then
+		sh ~/Documents/overleafRenderer/compile.sh
+	fi
+
+	if [ "$1" = "caps-lock" ] || [ "$1" = "cl" ]; then
+		xdotool key Caps_Lock
+	fi
+
 # Launch
-	if [ "$1" = "-v" ] || [ "$1" = "vim" ]; then
+	if [ "$1" = "vi" ] || [ "$1" = "vim" ]; then
 		st -e nvim
 	fi
-	if [ "$1" = "--emacs" ] || [ "$1" = "emacs" ]; then
+	if [ "$1" = "emacs" ]; then
 		st -e emacs
 	fi
-	if [ "$1" = "--ht" ] || [ "$1" = "htop" ]; then
+	if [ "$1" = "ht" ] || [ "$1" = "htop" ]; then
 		st -e htop
 	fi
-	if [ "$1" = "--cups" ] || [ "$1" = "cups-website" ]; then
+	if [ "$1" = "cups" ] || [ "$1" = "cups-website" ]; then
 		firefox "http://localhost:631/"
+	fi
+	if [ "$1" = "overleaf" ]; then
+		firefox -p Sharelatex --no-remote
 	fi
 
 # Calc
@@ -78,7 +70,4 @@ handle_stuff() {
 }
 
 
-for var in "$@"
-do
-	handle_stuff "$var" &
-done
+handle_stuff $* &

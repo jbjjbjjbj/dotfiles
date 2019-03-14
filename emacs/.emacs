@@ -68,6 +68,23 @@
 ;;
 ;; General config
 ;;
+(use-package calfw
+  :ensure t)
+(use-package calfw-ical
+  :ensure t)
+(use-package calfw-org
+  :ensure t)
+
+(defun open-calendar ()
+  (interactive)
+  (cfw:open-calendar-buffer :contents-sources
+			    (list
+			     (cfw:org-create-source "Green")
+			     )
+			    )
+  )
+
+(setq backup-directory-alist `(("." . "~/.saves")))
 
 (setq initial-buffer-choice nil)
 (setq org-support-shift-select t)
