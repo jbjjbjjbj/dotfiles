@@ -24,14 +24,16 @@ set shellslash
 	Plugin 'editorconfig/editorconfig-vim'
 
 	" Color theme
-	Plugin 'agude/vim-eldar'
+	" Plugin 'agude/vim-eldar'
+	Plugin 'ntk148v/vim-horizon'
+	" Plugin 'fatih/molokai'
 
 	" File management
 	" Plugin 'scrooloose/nerdtree'
 	Plugin 'tpope/vim-vinegar'
 
 	" Git
-	Plugin 'jreybert/vimagit'
+	" Plugin 'jreybert/vimagit'
 
 	" Tagbar use <F4>
 	Plugin 'majutsushi/tagbar'
@@ -40,7 +42,7 @@ set shellslash
 	filetype plugin indent on    " required
 
 
-colorscheme eldar
+colorscheme horizon
 
 syntax enable
 set number relativenumber
@@ -83,6 +85,7 @@ set completeopt=menuone,preview
 	map <F4> :TagbarToggle<CR>
 	inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 	inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+	nnoremap <C-b> :b 
 
 	" Leader stuff
 		let mapleader=" "
