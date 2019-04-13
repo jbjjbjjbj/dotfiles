@@ -20,32 +20,21 @@ set shellslash
 	Plugin 'tpope/vim-surround'
 	Plugin 'tpope/vim-repeat'
 
-	" ctags stuff
-	Plugin 'ludovicchabant/vim-gutentags'
-
-	" Language support
-	Plugin 'racer-rust/vim-racer'
-	Plugin 'davidhalter/jedi-vim'
-	Plugin 'junegunn/goyo.vim'
-	Plugin 'vim-latex/vim-latex'
-	Plugin 'jceb/vim-orgmode'
+	" Editor config
+	Plugin 'editorconfig/editorconfig-vim'
 
 	" Color theme
 	Plugin 'agude/vim-eldar'
 
 	" File management
-	Plugin 'scrooloose/nerdtree'
-
-	" Snippits
-	" Plugin 'SirVer/ultisnips'
-	" Plugin 'honza/vim-snippets'
+	" Plugin 'scrooloose/nerdtree'
+	Plugin 'tpope/vim-vinegar'
 
 	" Git
 	Plugin 'jreybert/vimagit'
 
 	" Tagbar use <F4>
 	Plugin 'majutsushi/tagbar'
-
 
 	call vundle#end()            " required
 	filetype plugin indent on    " required

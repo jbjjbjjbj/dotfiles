@@ -1,6 +1,7 @@
 #!/bin/bash
 
-Commands="update poweroff suspend set-keyboard caps-lock battery cups-website vim emacs htop scrot overleaf-render overleaf"
+Commands="update poweroff suspend set-keyboard caps-lock battery cups-website vim emacs htop scrot overleaf-render overleaf win pass wall stat"
+statScripts="ram.sh status.sh net.sh mathiasServerPlayers.sh"
 
 handle_stuff() {
 	if [ "$1" = "--dmenu" ]; then
@@ -45,6 +46,13 @@ handle_stuff() {
 		xdotool key Caps_Lock
 	fi
 
+	if [ "$1" = "win" ]; then
+		vboxmanage startvm "Windows xp"
+	fi
+	if [ "$1" = "wall" ]; then
+		feh --bg-fill Pictures/defaultWall.*
+	fi
+
 # Launch
 	if [ "$1" = "vi" ] || [ "$1" = "vim" ]; then
 		st -e nvim
@@ -60,6 +68,13 @@ handle_stuff() {
 	fi
 	if [ "$1" = "overleaf" ]; then
 		firefox -p Sharelatex --no-remote
+	fi
+	if [ "$1" = "pass" ]; then
+		sh ~/Scripts/passmenu --type
+	fi
+
+	if [ "$1" = "stat" ]; then
+		sh /home/julian/Scripts/$(echo $statScripts | tr " " "\n" | dmenu -i -p "stat")
 	fi
 
 # Calc

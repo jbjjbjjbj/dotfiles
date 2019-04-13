@@ -14,7 +14,6 @@ xcape -e "Control_R=Escape"
 nm-applet &
 xscreensaver &
 xss-lock -- xscreensaver-command --lock &
-dunst &
 xcompmgr &
 
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
@@ -28,5 +27,6 @@ while true; do
 	dwm
 done &
 
+play ~/Winsounds/login.wav -q &
 
 exec sh /home/julian/.dwmSession.sh

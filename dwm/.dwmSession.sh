@@ -9,12 +9,13 @@ fi
 
 echo $$ > $PIDFILE
 
+for file in /home/julian/Scripts/enMenuScripts/*
+do
+	sh $file &
+done
+
 while true; do
-
-	BATT=$( acpi -b | sed 's/.*[charging|unknown], \([0-9]*\)%.*/\1/gi' )
-	TIME=$(/bin/date +"%H:%M")
-	IP=$(ip -4 a | grep "inet " | sed "s:inet \(.*\)/.*:\1:" | tr -d " " | tr "\n" " ")
-
-	xsetroot -name "$IP $TIME $BATT%"
-	sleep 10
+	xsetroot -name "$(cat /tmp/dsb* | tr -d '\n')"
+	sleep 1
+	inotifywait -q -e modify /tmp/dsb*
 done

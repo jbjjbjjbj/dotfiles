@@ -659,7 +659,7 @@ c.content.javascript.alert = True
 ##   - true
 ##   - false
 ##   - ask
-c.content.media_capture = False
+c.content.media_capture = 'ask'
 
 ## Allow websites to lock your mouse pointer.
 ## Type: BoolAsk
@@ -776,7 +776,7 @@ c.content.xss_auditing = True
 ## Directory to save downloads to. If unset, a sensible OS-specific
 ## default is used.
 ## Type: Directory
-c.downloads.location.directory = "/tmp/web"
+c.downloads.location.directory = "/tmp"
 
 ## Prompt the user for the download location. If set to false,
 ## `downloads.location.directory` will be used.

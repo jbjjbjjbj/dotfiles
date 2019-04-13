@@ -55,7 +55,7 @@ echo "Loading plugins"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo)
+plugins=(git sudo pass taskwarrior)
 
 echo "Loading zsh"
 source $ZSH/oh-my-zsh.sh
@@ -98,11 +98,8 @@ BULLETTRAIN_PROMPT_ORDER=(
 )
 
 
-alias rex="xrdb ~/.Xresources"
-alias lemon="~/.config/openbox/lemonbar | lemonbar -g 1355x20+5+5 -f terminus-9"
-
-
 #PATH=/usr/local/MATLAB/R2018b/bin:$PATH
+PATH=~/go/bin:$PATH
 #fortune -n 100 | cowsay 
 
 echo "Loading powerline"
@@ -149,3 +146,12 @@ alias rman="apropos . | shuf -n 1 | awk '{print $1}'| xargs man"
 
 
 export TERM=st
+
+command_not_found_handler () {
+	#play -q ~/Winsounds/error.wav &
+    printf "zsh: command not found: $1\n"
+    return 127
+}
+
+# opam configuration
+test -r /home/julian/.opam/opam-init/init.zsh && . /home/julian/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
