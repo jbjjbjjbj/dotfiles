@@ -55,7 +55,9 @@ set noexpandtab
 let g:tex_flavor='latex'
 
 
-set inccommand=split
+if has('nvim')
+	set inccommand=split
+endif
 
 " Required for operations modifying multiple buffers like rename.
 set hidden

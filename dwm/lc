@@ -1,7 +1,7 @@
 #!/bin/bash
 
-Commands="update poweroff suspend set-keyboard caps-lock battery cups-website vim emacs htop scrot overleaf-render overleaf win pass wall stat"
-statScripts="ram.sh status.sh net.sh mathiasServerPlayers.sh"
+Commands="update poweroff suspend set-keyboard caps-lock battery cups-website vim emacs htop scrot overleaf-render overleaf win pass wall stat mic"
+statScripts="ram.sh status.sh net.sh mic.sh"
 
 handle_stuff() {
 	if [ "$1" = "--dmenu" ]; then
@@ -51,6 +51,9 @@ handle_stuff() {
 	fi
 	if [ "$1" = "wall" ]; then
 		feh --bg-fill Pictures/defaultWall.*
+	fi
+	if [ "$1" = "mic" ]; then
+		amixer set Capture toggle
 	fi
 
 # Launch
