@@ -1016,7 +1016,7 @@ c.editor.command = ['gvim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
 
 ## Leave insert mode if a non-editable element is clicked.
 ## Type: Bool
-# c.input.insert_mode.auto_leave = True
+c.input.insert_mode.auto_leave = False
 
 ## Automatically enter insert mode if an editable element is focused
 ## after loading the page.
@@ -1027,7 +1027,7 @@ c.editor.command = ['gvim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
 ## unreliable on this setting, and they may match the url you are
 ## navigating to, or the URL you are navigating from.
 ## Type: Bool
-# c.input.insert_mode.leave_on_load = True
+c.input.insert_mode.leave_on_load = False
 
 ## Switch to insert mode when clicking flash and other plugins.
 ## Type: Bool
@@ -1471,7 +1471,7 @@ c.tabs.background = True
 ## Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 ## for a blank page.
 ## Type: FuzzyUrl
-c.url.default_page = 'https://google.dk/'
+c.url.default_page = 'https://www.startpage.com/'
 
 ## URL segments where `:navigate increment/decrement` will search for a
 ## number.
@@ -1498,11 +1498,11 @@ c.url.default_page = 'https://google.dk/'
 ## used by prepending the search engine name to the search term, e.g.
 ## `:open google qutebrowser`.
 ## Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}', 'ddg': 'https://duckduckgo.com/?q={}'}
+c.url.searchengines = {'DEFAULT': 'https://www.startpage.com/do/dsearch?query={}', 'GOOGLE': 'https://www.google.com/search?q={}', 'ddg': 'https://duckduckgo.com/?q={}'}
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
-c.url.start_pages = ['https://google.dk']
+c.url.start_pages = ['https://www.startpage.com/']
 
 ## URL parameters to strip with `:yank url`.
 ## Type: List of String

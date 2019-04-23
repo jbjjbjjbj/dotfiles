@@ -9,7 +9,6 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets)
 export SSH_AUTH_SOCK
 
 xmodmap .Xmodmap
-xcape -e "Control_R=Escape"
 
 nm-applet &
 xscreensaver &
