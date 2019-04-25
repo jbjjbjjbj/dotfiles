@@ -89,6 +89,11 @@ set completeopt=menuone,preview
 	inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 	nnoremap <C-b> :b 
 
+	" When moving more lines make it a jump. If couns i 2 it will run m'2j,
+	" thus storing it on the jumplist and then jumping
+	nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '' ) . 'j'
+	nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '' ) . 'k'
+
 	" Leader stuff
 		let mapleader=" "
 
