@@ -1498,11 +1498,11 @@ c.url.default_page = 'https://www.startpage.com/'
 ## used by prepending the search engine name to the search term, e.g.
 ## `:open google qutebrowser`.
 ## Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://www.startpage.com/do/dsearch?query={}', 'GOOGLE': 'https://www.google.com/search?q={}', 'ddg': 'https://duckduckgo.com/?q={}'}
+c.url.searchengines = {'STARTPAGE': 'https://www.startpage.com/do/dsearch?query={}', 'DEFAULT': 'https://www.google.com/search?q={}', 'ddg': 'https://duckduckgo.com/?q={}'}
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
-c.url.start_pages = ['https://www.startpage.com/']
+c.url.start_pages = ['https://www.google.dk/']
 
 ## URL parameters to strip with `:yank url`.
 ## Type: List of String

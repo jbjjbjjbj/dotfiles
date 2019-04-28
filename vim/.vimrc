@@ -1,4 +1,3 @@
-
 set nocompatible              " be iMproved, required
 filetype plugin on
 set shellslash
