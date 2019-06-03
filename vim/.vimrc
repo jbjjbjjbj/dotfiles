@@ -14,7 +14,14 @@ set shellslash
 	Plugin 'VundleVim/Vundle.vim'
 
 	" Completion
-	Plugin 'Valloric/YouCompleteMe'
+	Plugin 'autozimu/LanguageClient-neovim'
+	if has('nvim')
+	  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	else
+	  Plugin 'Shougo/deoplete.nvim'
+	  Plugin 'roxma/nvim-yarp'
+	  Plugin 'roxma/vim-hug-neovim-rpc'
+	endif
 
 	Plugin 'tpope/vim-surround'
 	Plugin 'tpope/vim-repeat'
@@ -43,6 +50,16 @@ set shellslash
 
 colorscheme horizon
 
+" Completion
+let g:LanguageClient_serverCommands = {
+	\ 'rust': ['/usr/bin/rustup', 'run', 'stable', 'rls' ],
+	\ 'c': ['/usr/bin/cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}' ]
+	\ }
+
+let g:LanguageClient_useVirtualText = 0
+let g:LanguageClient_diagnosticsEnable = 0
+let g:deoplete#enable_at_startup = 1
+
 syntax enable
 set number relativenumber
 
@@ -52,7 +69,6 @@ set softtabstop=4
 set noexpandtab
 
 let g:tex_flavor='latex'
-
 
 if has('nvim')
 	set inccommand=split
@@ -84,8 +100,16 @@ set completeopt=menuone,preview
 " Keymapping
 	map <C-n> :NERDTreeToggle<CR>
 	map <F4> :TagbarToggle<CR>
-	inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-	inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+	inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
+	inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-x>\<C-o>"
+
+	nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+	nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+	nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+	nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
 	nnoremap <C-b> :b 
 
 	" When moving more lines make it a jump. If couns i 2 it will run m'2j,
@@ -108,3 +132,6 @@ set completeopt=menuone,preview
 	autocmd BufRead,BufNewFile *.ino set filetype=c
 	autocmd BufRead,BufNewFile *.asc set filetype=asciidoc
 	autocmd FileType python setlocal completeopt-=preview
+
+" Path settings
+	let g:ycm_rust_src_path = '~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'

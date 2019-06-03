@@ -39,7 +39,7 @@ handle_stuff() {
 	fi
 
 	if [ "$1" = "overleaf-render" ]; then
-		sh ~/Documents/overleafRenderer/compile.sh
+		st sh ~/Documents/overleafRenderer/compile.sh
 	fi
 
 	if [ "$1" = "caps-lock" ] || [ "$1" = "cl" ]; then
@@ -50,7 +50,7 @@ handle_stuff() {
 		vboxmanage startvm "Windows xp"
 	fi
 	if [ "$1" = "wall" ]; then
-		feh --bg-fill Pictures/defaultWall.*
+		feh --bg-tile Pictures/defaultWall.*
 	fi
 	if [ "$1" = "mic" ]; then
 		amixer set Capture toggle

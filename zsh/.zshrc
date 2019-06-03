@@ -155,3 +155,4 @@ command_not_found_handler () {
 
 # opam configuration
 test -r /home/julian/.opam/opam-init/init.zsh && . /home/julian/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+export ANSIBLE_NOCOWS=1
