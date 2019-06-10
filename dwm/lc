@@ -73,7 +73,7 @@ handle_stuff() {
 		firefox -p Sharelatex --no-remote
 	fi
 	if [ "$1" = "pass" ]; then
-		sh ~/Scripts/passmenu --type
+		bash ~/Scripts/passmenu --type
 	fi
 
 	if [ "$1" = "stat" ]; then

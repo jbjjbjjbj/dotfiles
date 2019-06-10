@@ -5,7 +5,7 @@ export TERM=st
 
 dbus-update-activation-environment --systemd DISPLAY
 
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets)
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
 xmodmap .Xmodmap
