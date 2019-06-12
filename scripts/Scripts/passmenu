@@ -25,4 +25,4 @@ else
 fi
 
 notify-send "Done"
-pass $password | grep login | cut -d' ' -f2- | xclip -selection c 
+# pass $password | grep login | cut -d' ' -f2- | xclip -selection c 

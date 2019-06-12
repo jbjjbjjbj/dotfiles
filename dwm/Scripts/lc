@@ -5,7 +5,7 @@ statScripts="ram.sh status.sh net.sh mic.sh"
 
 handle_stuff() {
 	if [ "$1" = "--dmenu" ]; then
-		./lc $(echo $Commands | tr " " "\n" | dmenu -i -p ":")
+		$0 $(echo $Commands | tr " " "\n" | dmenu -i -p ":")
 	fi
 
 	if [ "$1" = "edit" ] || [ "$1" = "e" ]; then
@@ -73,7 +73,7 @@ handle_stuff() {
 		firefox -p Sharelatex --no-remote
 	fi
 	if [ "$1" = "pass" ]; then
-		bash ~/Scripts/passmenu --type
+		bash $HOME/Scripts/passmenu
 	fi
 
 	if [ "$1" = "stat" ]; then
