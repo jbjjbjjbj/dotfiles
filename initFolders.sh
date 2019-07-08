@@ -4,3 +4,4 @@ mkdir -p ~/Scripts
 mkdir -p ~/Scripts/enMenuScripts
 mkdir -p ~/.config/qutebrowser
 mkdir -p ~/.config/nvim
+mkdir -p ~/.config/i3
