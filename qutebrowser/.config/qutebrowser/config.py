@@ -869,7 +869,7 @@ c.editor.command = ['gvim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
 
 ## Font used for prompts.
 ## Type: Font
-# c.fonts.prompts = '10pt sans-serif'
+c.fonts.prompts = '10pt monospace'
 
 ## Font used in the statusbar.
 ## Type: Font
