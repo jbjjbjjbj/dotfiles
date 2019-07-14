@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Create symlinked status dir
+mkdir -p ~/Scripts/enMenuScripts

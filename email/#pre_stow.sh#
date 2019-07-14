@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# make needed folders
+mkdir -p ~/Scripts
+mkdir -p ~/.config/alot

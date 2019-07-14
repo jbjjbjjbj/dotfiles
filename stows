@@ -1,0 +1,22 @@
+#!/bin/bash
+
+flags=""
+
+# Allow for flags into the setup things
+while test $# != 0
+do
+    case "$1" in
+		-D) 
+			# Collect flag
+			flags="$flags -D" ;;
+		*) 
+			# Run pre
+			sh "./$1/#pre_stow.sh#" $flags
+			# Run stow 
+			stow $flags $1
+			# Run post
+			sh "./$1/#post_stow.sh#" $flags ;;
+    esac
+    shift
+done
+
