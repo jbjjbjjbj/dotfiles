@@ -1,0 +1,12 @@
+quit_on_last_bclose = True
+
+[accounts]
+    [[work]]
+        realname = Julian T
+        address = julian@jtle.dk
+        gpg_key = BE0CE332
+        sent_box = maildir://~/.mail/mailbox/sent
+		sendmail_command = msmtp -a mailbox -t
+
+[bindings]
+	q = bclose

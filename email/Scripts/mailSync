@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Sync with IMAP
+mbsync -a
+
+# Index the mails
+notmuch new
+
+# Mark Sent mail
+notmuch tag +sent -inbox -new folder:mailbox/sent

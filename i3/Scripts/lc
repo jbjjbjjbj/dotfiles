@@ -1,6 +1,8 @@
 #!/bin/bash
 
-Commands="update poweroff suspend set-keyboard caps-lock battery cups-website vim emacs htop scrot overleaf-render overleaf win pass wall stat mic"
+LOGFILE=.lc.log
+
+Commands="update poweroff suspend set-keyboard caps-lock battery cups-website vim emacs htop scrot overleaf-render overleaf win pass wall stat mic mail"
 statScripts="ram.sh status.sh net.sh mic.sh"
 
 handle_stuff() {
@@ -55,6 +57,9 @@ handle_stuff() {
 	if [ "$1" = "mic" ]; then
 		amixer set Capture toggle
 	fi
+	if [ "$1" = "mail" ]; then
+		Scripts/mailSync
+	fi
 
 # Launch
 	if [ "$1" = "vi" ] || [ "$1" = "vim" ]; then
@@ -88,4 +93,4 @@ handle_stuff() {
 }
 
 
-handle_stuff $* &
+handle_stuff $* 2>&1 | tee -a $LOGFILE
