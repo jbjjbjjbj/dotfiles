@@ -59,6 +59,7 @@ handle_stuff() {
 	fi
 	if [ "$1" = "mail" ]; then
 		Scripts/mailSync
+		dunstify "Mail" "$(notmuch count tag:unread and tag:inbox) unread mail"
 	fi
 
 # Launch

@@ -118,6 +118,10 @@ bindsym $mod+minus scratchpad show
 # Mail scratchpad
 bindsym $mod+m [title="^alot"] scratchpad show
 
+# Multiple monitors
+bindsym $mod+period move workspace to output right
+bindsym $mod+comma move workspace to output left
+
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2

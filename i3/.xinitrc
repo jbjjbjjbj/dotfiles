@@ -1,8 +1,8 @@
 setxkbmap -layout us -variant altgr-intl
 export _JAVA_AWT_WM_NONREPARENTING=1
 feh --bg-tile /home/julian/Pictures/defaultWall.*
-export TERM=st
-export TERMINAL=st
+export TERM=termite
+export TERMINAL=termite
 
 dbus-update-activation-environment --systemd DISPLAY
 
@@ -12,6 +12,7 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets)
 
 xmodmap .Xmodmap
 xcape -e "Control_R=Escape"
+dunst &
 
 nm-applet &
 xscreensaver &
