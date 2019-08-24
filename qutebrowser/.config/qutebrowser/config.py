@@ -10,7 +10,7 @@
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.
 ## Type: Dict
-c.aliases = {'w': 'session-save', 'q': 'tab-close', 'qa': 'quit', 'wq': 'quit --save', 'wqa': 'quit --save', 'tabe' : 'open -t', 'nod' : 'download-clear'}
+c.aliases = {'w': 'session-save', 'q': 'tab-close', 'qa': 'quit', 'wq': 'quit --save', 'wqa': 'quit --save', 'tabe' : 'open -t', 'noh' : 'download-clear'}
 
 ## Time interval (in milliseconds) between auto-saves of
 ## config/cookies/etc.
@@ -1471,7 +1471,7 @@ c.tabs.background = True
 ## Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 ## for a blank page.
 ## Type: FuzzyUrl
-c.url.default_page = 'https://www.startpage.com/'
+c.url.default_page = 'https://www.google.dk/'
 
 ## URL segments where `:navigate increment/decrement` will search for a
 ## number.
@@ -1498,12 +1498,12 @@ c.url.default_page = 'https://www.startpage.com/'
 ## used by prepending the search engine name to the search term, e.g.
 ## `:open google qutebrowser`.
 ## Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://www.startpage.com/do/dsearch?query={}', 'ggl': 'https://www.google.com/search?q={}', 'ddg': 'https://duckduckgo.com/?q={}'}
+c.url.searchengines = {'stp': 'https://www.startpage.com/do/dsearch?query={}', 'DEFAULT': 'https://www.google.com/search?q={}', 'ddg': 'https://duckduckgo.com/?q={}'}
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
 #c.url.start_pages = ['https://www.google.dk/']
-c.url.start_pages = c.url.searchengines['DEFAULT'].split('/')[2]
+c.url.start_pages = ['https://riot.fricloud.dk/', c.url.searchengines['DEFAULT'].split('/')[2]]
 
 ## URL parameters to strip with `:yank url`.
 ## Type: List of String
