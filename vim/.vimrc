@@ -28,8 +28,8 @@ set shellslash
 
 	" Color theme
 	" Plugin 'agude/vim-eldar'
-	Plugin 'ntk148v/vim-horizon'
-	" Plugin 'fatih/molokai'
+	" Plugin 'ntk148v/vim-horizon'
+	Plugin 'rakr/vim-colors-rakr'
 
 	" File management
 	" Plugin 'scrooloose/nerdtree'
@@ -37,6 +37,9 @@ set shellslash
 
 	" Git
 	" Plugin 'jreybert/vimagit'
+	
+	" File support
+	Plugin 'cespare/vim-toml'
 
 	" Tagbar use <F4>
 	Plugin 'majutsushi/tagbar'
@@ -45,7 +48,7 @@ set shellslash
 	filetype plugin indent on    " required
 
 
-colorscheme horizon
+colorscheme rakr
 
 " Completion
 	" let g:LanguageClient_serverCommands = {
