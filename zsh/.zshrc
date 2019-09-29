@@ -6,7 +6,6 @@ export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
 export ZSH=/home/julian/.oh-my-zsh
 
-echo "Setting theme"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -50,14 +49,12 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-echo "Loading plugins"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git sudo pass taskwarrior)
 
-echo "Loading zsh"
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -89,7 +86,6 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-echo "Setting up bullet train"
 BULLETTRAIN_PROMPT_ORDER=(
   git
   context
@@ -102,7 +98,6 @@ BULLETTRAIN_PROMPT_ORDER=(
 PATH=~/go/bin:$PATH
 #fortune -n 100 | cowsay 
 
-echo "Loading powerline"
 if [[ -r /usr/share/powerline/bindings/zsh/powerline.zsh ]]; then
     source /usr/share/powerline/bindings/zsh/powerline.zsh
 fi
@@ -121,8 +116,6 @@ git config --global alias.lol "log --graph --decorate  --abbrev-commit --all"
 
 alias hej="echo 'Hej, hvordan går det?'"
 export EDITOR=nvim
-echo "Done"
-clear
 
 #Setup ssh agent
 
@@ -158,3 +151,17 @@ test -r /home/julian/.opam/opam-init/init.zsh && . /home/julian/.opam/opam-init/
 export ANSIBLE_NOCOWS=1
 
 export PATH=$HOME/Scripts:$PATH
+
+# Creates a new shell in the current shell
+alias new="ZSH_NEST=$((ZSH_NEST + 1)) zsh"
+
+# If we are a subshell add it to the PS1
+if [ ! -z "$ZSH_NEST" ] 
+then
+	export PS1=$(echo $PS1 | sed "s:}%:}[$ZSH_NEST]%:")
+fi
+
+
+bindkey "^P" up-line-or-search
+
+

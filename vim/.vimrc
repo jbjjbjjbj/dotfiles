@@ -40,15 +40,22 @@ set shellslash
 	
 	" File support
 	Plugin 'cespare/vim-toml'
+	Plugin 'vim-scripts/TagHighlight'
+	Plugin 'lervag/vimtex'
+	Plugin 'LnL7/vim-nix'
 
-	" Tagbar use <F4>
-	Plugin 'majutsushi/tagbar'
-
+	Plugin 'junegunn/vim-easy-align'
 	call vundle#end()            " required
 	filetype plugin indent on    " required
 
 
 colorscheme rakr
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " Completion
 	" let g:LanguageClient_serverCommands = {
@@ -131,3 +138,31 @@ set completeopt=menuone,preview
 	autocmd BufRead,BufNewFile *.asc set filetype=asciidoc
 	autocmd FileType python setlocal completeopt-=preview
 
+" Highlightning
+	let g:DoNotGenerateTags = 1
+	" Remove pink color from functions
+	highlight clear Function
+	" Remove color from struct members
+	highlight link Member NonText
+
+
+" Spell check
+	set spelllang=en
+	autocmd FileType tex set spell
+
+" Latex support
+	let g:vimtex_quickfix_blgparser = {'disable': 1}
+	let g:vimtex_quickfix_open_on_warning = 0
+	let g:vimtex_compiler_latexmk = {
+        \ 'backend' : 'nvim',
+        \ 'background' : 0,
+        \ 'build_dir' : '',
+        \ 'callback' : 1,
+        \ 'continuous' : 0,
+        \ 'executable' : 'latexmk',
+        \ 'hooks' : [],
+        \ 'options' : [
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \ ],
+        \}
