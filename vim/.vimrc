@@ -68,6 +68,8 @@ nmap ga <Plug>(EasyAlign)
 	" let g:deoplete#enable_at_startup = 1
 	let g:go_def_mode='gopls'
 	let g:go_info_mode='gopls'
+	let b:vcm_tab_complete = 'omni'
+	autocmd FileType vim let b:vcm_tab_complete = 'vim'
 
 syntax enable
 set number relativenumber
