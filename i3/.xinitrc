@@ -1,8 +1,8 @@
 setxkbmap -layout us -variant altgr-intl
 export _JAVA_AWT_WM_NONREPARENTING=1
 feh --bg-tile /home/julian/Pictures/defaultWall.*
-export TERM=st
-export TERMINAL=st
+export TERM=xfce4-terminal
+export TERMINAL=xfce4-terminal
 
 dbus-update-activation-environment --systemd DISPLAY
 
