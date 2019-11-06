@@ -38,8 +38,8 @@ set shellslash
 	" Plugin 'tpope/vim-vinegar'
 
 	" Git
-	Plugin 'jreybert/vimagit'
-	Plugin 'tpope/vim-fugitive'
+	" Plugin 'jreybert/vimagit'
+	" Plugin 'tpope/vim-fugitive'
 	
 	" File support
 	Plugin 'cespare/vim-toml'
@@ -49,7 +49,6 @@ set shellslash
 	" Plugin 'rust-lang/rust.vim'
 	" Plugin 'racer-rust/vim-racer'
 
-	Plugin 'junegunn/vim-easy-align'
 	call vundle#end()            " required
 	filetype plugin indent on    " required
 
@@ -68,6 +67,7 @@ set shellslash
 	let g:go_info_mode='gopls'
 	" let g:rustfmt_autosave = 1
 
+	" autocmd FileType c let b:vcm_tab_complete = 'omni'
 	autocmd FileType c let b:vcm_tab_complete = 'omni'
 	autocmd FileType go let b:vcm_tab_complete = 'omni'
 	autocmd FileType vim let b:vcm_tab_complete = 'vim'
@@ -75,7 +75,8 @@ set shellslash
 	set completeopt=menuone
 
 syntax enable
-set number relativenumber
+set number 
+set relativenumber
 
 set tabstop=4
 set shiftwidth=4
@@ -111,12 +112,8 @@ set hidden
 " let g:ncm2#auto_popup = 0
 
 " Keymapping
-	map <F4> :TagbarToggle<CR>
-
 	nnoremap <C-b> :b 
 
-	nnoremap <silent> <Plug>QuickNext :cnext<CR> :call repeat#set("\<Plug>QuickNext")<CR>
-	nnoremap <silent> <Plug>QuickPrev :cprev<CR> :call repeat#set("\<Plug>QuickPrev")<CR>
 	nnoremap ,, :copen<CR><c-w><c-p>
 
 	cnoreabbrev ln lnext
@@ -126,7 +123,10 @@ set hidden
 
 	nmap <C-j> <Plug>QuickNext
 	nmap <C-k> <Plug>QuickPrev
+	" nnoremap <C-h> :LspHover<CR>
 	nmap - :Exp<CR>
+	cnoreabbrev instime put =strftime('%Y-%m-%dT%I%M')
+
 
 	" When moving more lines make it a jump. If couns i 2 it will run m'2j,
 	" thus storing it on the jumplist and then jumping
@@ -149,10 +149,25 @@ set hidden
 		" Start interactive EasyAlign for a motion/text object (e.g. gaip)
 		nmap ga <Plug>(EasyAlign)
 
+	" Split stuff https://janneinosaka.blogspot.com/2014/10/automatically-resize-vim-splits.html
+	function Splitresize()
+		let hmax = max([winwidth(0), float2nr(&columns*0.66), 90])
+		let vmax = max([winheight(0), float2nr(&lines*0.66), 25])
+		exe "vertical resize" . (min([hmax, 140]))
+		exe "resize" . (min([vmax, 60]))
+	endfunction
+	" move between splits without the ctrl-w prefix
+
+	nnoremap <silent><C-J> <C-W><C-J>:call Splitresize()<CR>
+	nnoremap <silent><C-K> <C-W><C-K>:call Splitresize()<CR>
+	nnoremap <silent><C-L> <C-W><C-L>:call Splitresize()<CR>
+	nnoremap <silent><C-H> <C-W><C-H>:call Splitresize()<CR>
+
+
+
 " Enforcing filetypes
 	autocmd BufRead,BufNewFile *.ino set filetype=c
 	autocmd BufRead,BufNewFile *.asc set filetype=asciidoc
-	autocmd FileType python setlocal completeopt-=preview
 
 " Highlightning
 	if (empty($TMUX))
