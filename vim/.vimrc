@@ -83,6 +83,9 @@ set shiftwidth=4
 set softtabstop=4
 set noexpandtab
 
+" Check if file has changed
+au FocusGained,BufEnter * :checktime
+
 let g:tex_flavor='latex'
 
 if has('nvim')
