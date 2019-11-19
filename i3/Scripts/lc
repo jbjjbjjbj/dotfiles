@@ -2,7 +2,7 @@
 
 LOGFILE=.lc.log
 
-Commands="update poweroff suspend set-keyboard caps-lock battery cups-website vim emacs htop scrot overleaf-render overleaf win pass wall stat mic mail"
+Commands="common update poweroff suspend set-keyboard caps-lock battery cups-website vim emacs htop scrot overleaf-render overleaf win pass wall stat mic mail"
 statScripts="ram.sh status.sh net.sh mic.sh"
 
 handle_stuff() {
@@ -84,6 +84,9 @@ handle_stuff() {
 
 	if [ "$1" = "stat" ]; then
 		sh /home/julian/Scripts/$(echo $statScripts | tr " " "\n" | dmenu -i -p "stat")
+	fi
+	if [ "$1" = "common" ]; then
+		python Scripts/commondocs.py ~/commondocs.json $(python Scripts/commondocs.py ~/commondocs.json | dmenu)
 	fi
 
 # Calc
