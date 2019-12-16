@@ -53,7 +53,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo pass taskwarrior)
+plugins=(git sudo pass)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -64,46 +64,14 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-BULLETTRAIN_PROMPT_ORDER=(
-  git
-  context
-  dir
-  time
-)
 
 
-#PATH=/usr/local/MATLAB/R2018b/bin:$PATH
 PATH=~/go/bin:$PATH
-#fortune -n 100 | cowsay 
-
-if [[ -r /usr/share/powerline/bindings/zsh/powerline.zsh ]]; then
-    source /usr/share/powerline/bindings/zsh/powerline.zsh
-fi
 
 alias ed="ed -p '> '"
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias vim="nvim"
 #alias emacs="emacsclient -c"
 #alias cmacs="emacsclient -nw -c"
@@ -123,32 +91,6 @@ export EDITOR=nvim
 export SUDO_EDITOR=nvim
 SUDO_EDITOR=nvim
 
-alias vimvimvim="vim"
-
-# Gem
-# Install Ruby Gems to ~/gems
-export GEM_HOME=$HOME/gems
-export PATH=$HOME/gems/bin:$PATH
-PATH=/home/julian/.gem/ruby/2.5.0/bin:$PATH
-PATH=/home/julian/.local/bin:$PATH
-PATH=/home/julian/.cargo/bin:$PATH
-
-export NVIM_PYTHON_LOG_FILE=/tmp/log
-export NVIM_PYTHON_LOG_LEVEL=DEBUG
-
-alias rman="apropos . | shuf -n 1 | awk '{print $1}'| xargs man"
-
-
-export TERM=st
-
-command_not_found_handler () {
-	#play -q ~/Winsounds/error.wav &
-    printf "zsh: command not found: $1\n"
-    return 127
-}
-
-# opam configuration
-test -r /home/julian/.opam/opam-init/init.zsh && . /home/julian/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 export ANSIBLE_NOCOWS=1
 
 export PATH=$HOME/Scripts:$PATH
@@ -162,7 +104,13 @@ then
 	export PS1=$(echo $PS1 | sed "s:}%:}[$ZSH_NEST]%:")
 fi
 
-
 bindkey "^P" up-line-or-search
 
-
+function gittr {
+	if [ $# -eq 0 ]
+	then
+		git push -u origin HEAD
+		return
+	fi
+	git push -u $1 HEAD
+}
