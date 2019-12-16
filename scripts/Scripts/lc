@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 LOGFILE=.lc.log
 
@@ -86,7 +86,7 @@ handle_stuff() {
 		sh /home/julian/Scripts/$(echo $statScripts | tr " " "\n" | dmenu -i -p "stat")
 	fi
 	if [ "$1" = "common" ]; then
-		python Scripts/commondocs.py ~/commondocs.json $(python Scripts/commondocs.py ~/commondocs.json | dmenu)
+		python3 Scripts/commondocs.py ~/commondocs.json $(python3 Scripts/commondocs.py ~/commondocs.json | $DMENU)
 	fi
 
 # Calc
