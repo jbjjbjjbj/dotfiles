@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+feh --bg-tile /home/julian/Pictures/defaultWall.*
+export TERM=xfce4-terminal
+export TERMINAL=xfce4-terminal
+
+xmodmap .Xmodmap
+xcape -e "Control_R=Escape"
+
+nm-applet &
+xscreensaver &
+xss-lock -- xscreensaver-command --lock &
+# xcompmgr &
+
+# play ~/Winsounds/login.wav -q &
+
+autorandr -c
+xfce4-panel &
+
+exec bspwm
+# exec i3

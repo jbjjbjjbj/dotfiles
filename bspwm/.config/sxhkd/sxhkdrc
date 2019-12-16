@@ -1,6 +1,9 @@
 
 alt + i
-	xfce4-terminal
+	termite
+
+alt + w
+	./Scripts/lc common
 
 # program launcher
 alt + d
