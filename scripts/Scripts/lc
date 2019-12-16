@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
 LOGFILE=.lc.log
+DMENU="rofi -dmenu"
 
 Commands="common update poweroff suspend set-keyboard caps-lock battery cups-website vim emacs htop scrot overleaf-render overleaf win pass wall stat mic mail"
 statScripts="ram.sh status.sh net.sh mic.sh"
 
 handle_stuff() {
 	if [ "$1" = "--dmenu" ]; then
-		$0 $(echo $Commands | tr " " "\n" | dmenu -i -p ":")
+		$0 $(echo $Commands | tr " " "\n" | $DMENU -i -p "lc")
 	fi
 
 	if [ "$1" = "edit" ] || [ "$1" = "e" ]; then
@@ -83,7 +84,7 @@ handle_stuff() {
 	fi
 
 	if [ "$1" = "stat" ]; then
-		sh /home/julian/Scripts/$(echo $statScripts | tr " " "\n" | dmenu -i -p "stat")
+		sh /home/julian/Scripts/$(echo $statScripts | tr " " "\n" | $DMENU -i -p "stat")
 	fi
 	if [ "$1" = "common" ]; then
 		python3 Scripts/commondocs.py ~/commondocs.json $(python3 Scripts/commondocs.py ~/commondocs.json | $DMENU)
