@@ -1,5 +1,0 @@
-clear lock
-clear control
-keycode 66 = Control_R
-add control = Control_R Control_L
-

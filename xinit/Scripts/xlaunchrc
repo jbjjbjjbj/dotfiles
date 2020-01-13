@@ -1,7 +1,18 @@
 #!/usr/bin/env bash
+
+set +e
+
+setxkbmap -layout us -variant altgr-intl
+
+export _JAVA_AWT_WM_NONREPARENTING=1
 feh --bg-tile /home/julian/Pictures/defaultWall.*
 export TERM=xfce4-terminal
 export TERMINAL=xfce4-terminal
+
+export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
+
+dbus-update-activation-environment --systemd DISPLAY &
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets) &
 
 xmodmap .Xmodmap
 xcape -e "Control_R=Escape"
@@ -9,6 +20,7 @@ xcape -e "Control_R=Escape"
 nm-applet &
 xscreensaver &
 xss-lock -- xscreensaver-command --lock &
+dunst &
 # xcompmgr &
 
 # play ~/Winsounds/login.wav -q &
@@ -16,5 +28,4 @@ xss-lock -- xscreensaver-command --lock &
 autorandr -c
 xfce4-panel &
 
-exec bspwm
-# exec i3
+# Please do not block
