@@ -28,6 +28,3 @@ bspc rule -a firefox desktop=^9
 bspc config normal_border_color "#555753"
 bspc config active_border_color "#555753"
 bspc config focused_border_color "#3465a4"
-
-# Launch other stuff
-~/Scripts/xlaunchrc

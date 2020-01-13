@@ -7,7 +7,7 @@ alt + w
 
 # program launcher
 alt + d
-	rofi -show run
+	rofi -show drun
 
 alt + semicolon
 	Scripts/lc --dmenu
