@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 DMENU="rofi -dmenu"
+NOTIFY="notify-send"
 
 shopt -s nullglob globstar
 
@@ -26,5 +27,5 @@ else
 		xdotool type --clearmodifiers --file -
 fi
 
-notify-send "Done"
+$NOTIFY "Done"
 # pass $password | grep login | cut -d' ' -f2- | xclip -selection c 
