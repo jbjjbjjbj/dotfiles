@@ -110,7 +110,7 @@ set shellslash
         \ ],
         \}
 
-" File finding
+" File management
 	" Fuzzy like menu
 	set path+=**
 	set wildmenu

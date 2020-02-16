@@ -53,7 +53,7 @@ handle_stuff() {
 		vboxmanage startvm "Windows xp"
 	fi
 	if [ "$1" = "wall" ]; then
-		feh --bg-tile Pictures/defaultWall.*
+		~/Scripts/setwall
 	fi
 	if [ "$1" = "mic" ]; then
 		amixer set Capture toggle
