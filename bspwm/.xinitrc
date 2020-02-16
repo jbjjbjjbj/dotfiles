@@ -1,4 +1,5 @@
 
+export LOPTS="panel"
 # Launch other stuff
 source ~/Scripts/xlaunchrc
 

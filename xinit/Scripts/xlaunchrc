@@ -5,27 +5,46 @@ set +e
 setxkbmap -layout us -variant altgr-intl
 
 export _JAVA_AWT_WM_NONREPARENTING=1
-feh --bg-tile /home/julian/Pictures/defaultWall.*
-export TERM=xfce4-terminal
-export TERMINAL=xfce4-terminal
+export TERM=termite
+export TERMINAL=termite
 
 export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
-
-dbus-update-activation-environment --systemd DISPLAY &
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets) &
 
 xmodmap .Xmodmap
 xcape -e "Control_R=Escape"
 
 nm-applet &
 xscreensaver &
+
+# set wallpaper
+~/Scripts/setwall
+
 xss-lock -- xscreensaver-command --lock &
 dunst &
-# xcompmgr &
+play ~/Winsounds/login.wav -q &
 
-# play ~/Winsounds/login.wav -q &
+# Set dbus display variable
+dbus-update-activation-environment --systemd DISPLAY
 
 autorandr -c
-xfce4-panel &
+
+for arg in "$LOPTS"
+do
+	case $arg in
+		*"panel"*)
+			echo starting panel
+			xfce4-panel &
+			;;
+		*"composer"*)
+			echo starting comp
+			xcompmgr &
+			;;
+		*"gnome-keyring"*)
+			dbus-update-activation-environment --systemd DISPLAY &
+			eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets) &
+			;;
+	esac
+done
+
 
 # Please do not block
