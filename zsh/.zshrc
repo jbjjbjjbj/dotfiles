@@ -69,11 +69,6 @@ alias vim="nvim"
 #alias cmacs="emacsclient -nw -c"
 alias sc="systemctl"
 
-#Setup git lol
-git config --global alias.lol "log --graph --decorate  --abbrev-commit --all"
-
-
-
 alias hej="echo 'Hej, hvordan går det?'"
 export EDITOR=nvim
 

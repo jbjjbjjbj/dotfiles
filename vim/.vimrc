@@ -14,14 +14,15 @@ set shellslash
 	Plugin 'VundleVim/Vundle.vim'
 
 	" Completion
-	"Plugin 'prabirshrestha/async.vim'
-	"Plugin 'prabirshrestha/vim-lsp'
-	Plugin 'fatih/vim-go'
+	Plugin 'prabirshrestha/async.vim'
+	Plugin 'prabirshrestha/vim-lsp'
+	" Plugin 'fatih/vim-go'
 	Plugin 'ajh17/VimCompletesMe'
-	Plugin 'ludovicchabant/vim-gutentags'
+	" Plugin 'ludovicchabant/vim-gutentags'
 
 	Plugin 'tpope/vim-surround'
 	Plugin 'tpope/vim-repeat'
+	Plugin 'tpope/vim-unimpaired'
 
 	" Editor config
 	Plugin 'editorconfig/editorconfig-vim'
@@ -40,7 +41,7 @@ set shellslash
 
 	" Git
 	" Plugin 'jreybert/vimagit'
-	" Plugin 'tpope/vim-fugitive'
+	Plugin 'tpope/vim-fugitive'
 	
 	" File support
 	" Plugin 'cespare/vim-toml'
@@ -58,16 +59,42 @@ set shellslash
 	filetype plugin indent on    " required
 
 " Completion
-	let g:go_def_mode='gopls'
-	let g:go_info_mode='gopls'
+	set completeopt=menuone
+	" let g:go_def_mode='gopls'
+	" let g:go_info_mode='gopls'
 	" let g:rustfmt_autosave = 1
 
-	" autocmd FileType c let b:vcm_tab_complete = 'omni'
 	autocmd FileType c let b:vcm_tab_complete = 'omni'
 	autocmd FileType go let b:vcm_tab_complete = 'omni'
 	autocmd FileType vim let b:vcm_tab_complete = 'vim'
 
-	set completeopt=menuone
+	" Setup lsp servers
+	if executable('clangd')
+		au User lsp_setup call lsp#register_server({
+					\ 'name': 'clangd',
+					\ 'cmd': {server_info->['clangd']},
+					\ 'whitelist': ['c', 'cpp'],
+					\ })
+	endif
+
+	" Enable csp if available, stolen from lsp github
+	function! s:on_lsp_buffer_enabled() abort
+		echo "Enabling lsp"
+		set omnifunc=lsp#complete
+		set signcolumn=yes
+		nmap <buffer> gd <plug>(lsp-definition)
+		nmap <buffer> <f2> <plug>(lsp-rename)
+		" refer to doc to add more commands
+	endfunction
+
+	augroup lsp_install
+		au!
+		" call s:on_lsp_buffer_enabled only for languages that has the server registered.
+		autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+	augroup END
+
+	let g:lsp_log_verbose = 1
+	let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 
 " General vim settings
 	syntax enable
@@ -80,7 +107,7 @@ set shellslash
 	set noexpandtab
 
 	" Remove statusline
-	set laststatus=0
+	set laststatus=1
 
 	" Check if file has changed
 	au FocusGained,BufEnter * :checktime
@@ -90,6 +117,13 @@ set shellslash
 	endif
 
 	set hidden
+
+	" Case insensitive search if all letters are small
+	set smartcase
+	set ignorecase
+
+	" Persistent undo
+	set undofile
 
 " Latex stuff
 	let g:tex_flavor='latex'
@@ -129,6 +163,7 @@ set shellslash
 
 		map <leader>mm :make V=1<CR>
 		map <leader>mf :make flash V=1<CR>
+		map <leader>t :terminal<CR>i
 
 " Enforcing filetypes
 	autocmd BufRead,BufNewFile *.ino set filetype=c
