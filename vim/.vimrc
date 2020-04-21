@@ -16,7 +16,7 @@ set shellslash
 	" Completion
 	Plugin 'prabirshrestha/async.vim'
 	Plugin 'prabirshrestha/vim-lsp'
-	" Plugin 'fatih/vim-go'
+	Plugin 'fatih/vim-go'
 	Plugin 'ajh17/VimCompletesMe'
 	" Plugin 'ludovicchabant/vim-gutentags'
 
@@ -51,6 +51,8 @@ set shellslash
 	" Plugin 'rust-lang/rust.vim'
 	" Plugin 'racer-rust/vim-racer'
 	
+	Plugin 'vimwiki/vimwiki'
+	
 
 	" Snippets are separated from the engine. Add this if you want them:
 	" Plugin 'honza/vim-snippets'
@@ -65,15 +67,33 @@ set shellslash
 	" let g:rustfmt_autosave = 1
 
 	autocmd FileType c let b:vcm_tab_complete = 'omni'
+	autocmd FileType py let b:vcm_tab_complete = 'omni'
 	autocmd FileType go let b:vcm_tab_complete = 'omni'
 	autocmd FileType vim let b:vcm_tab_complete = 'vim'
 
 	" Setup lsp servers
+	let g:lsp_diagnostics_echo_cursor = 0
+	let g:lsp_signature_help_enabled = 0
+	let g:lsp_insert_text_enabled = 0
+	if executable('pyls')
+		au User lsp_setup call lsp#register_server({
+					\ 'name': 'python',
+					\ 'cmd': {server_info->['pyls']},
+					\ 'whitelist': ['python'],
+					\ })
+	endif
 	if executable('clangd')
 		au User lsp_setup call lsp#register_server({
 					\ 'name': 'clangd',
 					\ 'cmd': {server_info->['clangd']},
 					\ 'whitelist': ['c', 'cpp'],
+					\ })
+	endif
+	if executable('gopls')
+		au User lsp_setup call lsp#register_server({
+					\ 'name': 'golang',
+					\ 'cmd': {server_info->['gopls']},
+					\ 'whitelist': ['go'],
 					\ })
 	endif
 
@@ -93,9 +113,6 @@ set shellslash
 		autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 	augroup END
 
-	let g:lsp_log_verbose = 1
-	let g:lsp_log_file = expand('/tmp/vim-lsp.log')
-
 " General vim settings
 	syntax enable
 	set number 
@@ -105,6 +122,7 @@ set shellslash
 	set shiftwidth=4
 	set softtabstop=4
 	set noexpandtab
+	set colorcolumn=80
 
 	" Remove statusline
 	set laststatus=1
@@ -124,6 +142,12 @@ set shellslash
 
 	" Persistent undo
 	set undofile
+
+	" Exit insert mode on inactivity
+	" au CursorHoldI * stopinsert
+
+" Vimwiki stuff
+	let g:vimwiki_list = [{'path': '~/Documents/vimwiki', 'path_html': '~/Documents/vimwiki/export'}]
 
 " Latex stuff
 	let g:tex_flavor='latex'
@@ -164,6 +188,7 @@ set shellslash
 		map <leader>mm :make V=1<CR>
 		map <leader>mf :make flash V=1<CR>
 		map <leader>t :terminal<CR>i
+		map <leader>s :!echo > jtle_build_it<CR>
 
 " Enforcing filetypes
 	autocmd BufRead,BufNewFile *.ino set filetype=c
