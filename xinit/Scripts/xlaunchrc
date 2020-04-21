@@ -11,7 +11,7 @@ export TERMINAL=termite
 export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
 
 xmodmap .Xmodmap
-xcape -e "Control_R=Escape"
+#xcape -e "Control_R=Escape"
 
 nm-applet &
 xscreensaver &
