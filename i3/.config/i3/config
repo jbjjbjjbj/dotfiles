@@ -113,6 +113,13 @@ set $ws10 "10"
 # DWM alt tab behavior
 bindsym $mod+Tab workspace back_and_forth
 
+# Mark stuff
+# Create mark
+bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+
+bindsym $mod+Shift+s swap container with mark s
+
 # scratchpad
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -120,8 +127,9 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
 
-# Mail scratchpad
-bindsym $mod+m [title="^alot"] scratchpad show
+# Create a new terminal scratchpad
+bindsym $mod+Shift+i exec --no-startup-id i3-sensible-terminal --title float
+for_window [title="float"] floating enable
 
 # Multiple monitors
 bindsym $mod+period move workspace to output right
@@ -162,7 +170,7 @@ bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
 # launch script thingy
 bindsym $mod+semicolon exec --no-startup-id Scripts/lc --dmenu
-bindsym $mod+Shift+i exec --no-startup-id Scripts/lc common
+bindsym $mod+Shift+o exec --no-startup-id Scripts/lc common
 
 # default app workspaces
 assign [class="qutebrowser"] $ws9
@@ -198,6 +206,7 @@ mode "resize" {
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym Control+bracketleft mode "default"
         bindsym $mod+r mode "default"
 }
 
