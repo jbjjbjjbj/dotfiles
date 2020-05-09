@@ -24,7 +24,7 @@ handle_stuff() {
 # System maintenance
 	if [ "$1" = "sk" ] || [ "$1" = "set-keyboard" ]; then
 		setxkbmap -layout us -variant altgr-intl
-		xcape -e "Control_R=Escape"
+		#xcape -e "Control_R=Escape"
 		xmodmap .Xmodmap
 	fi
 

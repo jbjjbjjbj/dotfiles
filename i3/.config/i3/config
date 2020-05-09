@@ -116,9 +116,13 @@ bindsym $mod+Tab workspace back_and_forth
 # Mark stuff
 # Create mark
 bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
-bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+bindsym $mod+n exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 
+# Swap stuff
 bindsym $mod+Shift+s swap container with mark s
+
+# Sticky
+bindsym $mod+g sticky toggle
 
 # scratchpad
 # Make the currently focused window a scratchpad
@@ -173,9 +177,8 @@ bindsym $mod+semicolon exec --no-startup-id Scripts/lc --dmenu
 bindsym $mod+Shift+o exec --no-startup-id Scripts/lc common
 
 # default app workspaces
-assign [class="qutebrowser"] $ws9
 assign [class="firefox"] $ws9
-assign [class="evolution"] $ws8
+assign [class="Evolution"] $ws8
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

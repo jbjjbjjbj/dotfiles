@@ -23,9 +23,12 @@ set shellslash
 	Plugin 'tpope/vim-surround'
 	Plugin 'tpope/vim-repeat'
 	Plugin 'tpope/vim-unimpaired'
+	Plugin 'tpope/vim-commentary'
+
+	Plugin 'godlygeek/tabular'
 
 	" Editor config
-	Plugin 'editorconfig/editorconfig-vim'
+	" Plugin 'editorconfig/editorconfig-vim'
 
 	" Color theme
 	" Plugin 'agude/vim-eldar'
@@ -34,10 +37,6 @@ set shellslash
 	" Plugin 'rakr/vim-one'
 	Plugin 'morhetz/gruvbox'
 	" Plugin 'ntk148v/vim-horizon'
-
-	" File management
-	" Plugin 'scrooloose/nerdtree'
-	" Plugin 'tpope/vim-vinegar'
 
 	" Git
 	" Plugin 'jreybert/vimagit'
@@ -51,7 +50,7 @@ set shellslash
 	" Plugin 'rust-lang/rust.vim'
 	" Plugin 'racer-rust/vim-racer'
 	
-	Plugin 'vimwiki/vimwiki'
+	" Plugin 'vimwiki/vimwiki'
 	
 
 	" Snippets are separated from the engine. Add this if you want them:
@@ -118,11 +117,18 @@ set shellslash
 	set number 
 	set relativenumber
 
+	" More sensible splitting
+	set splitbelow splitright
+
 	set tabstop=4
-	set shiftwidth=4
 	set softtabstop=4
-	set noexpandtab
-	set colorcolumn=80
+    set shiftwidth=4
+	set expandtab
+	set colorcolumn=79
+
+	" Show 5 lines above and below cursor
+	set scrolloff=5
+    set list
 
 	" Remove statusline
 	set laststatus=1
@@ -142,6 +148,8 @@ set shellslash
 
 	" Persistent undo
 	set undofile
+
+	set autoread
 
 	" Exit insert mode on inactivity
 	" au CursorHoldI * stopinsert
