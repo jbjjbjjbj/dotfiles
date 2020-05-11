@@ -1,6 +1,6 @@
 
 export LOPTS="composer"
 # Launch other stuff
-source ~/Scripts/xlaunchrc
+source ~/Scripts/xlaunchrc >> $HOME/.xlaunch.log
 
 exec i3

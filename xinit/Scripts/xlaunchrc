@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set +e
+set -e
 
 setxkbmap -layout us -variant altgr-intl
 
@@ -14,19 +14,15 @@ xmodmap .Xmodmap
 #xcape -e "Control_R=Escape"
 
 nm-applet &
-xscreensaver &
 
 # set wallpaper
 ~/Scripts/setwall
 
-xss-lock -- xscreensaver-command --lock &
 dunst &
 play ~/Winsounds/login.wav -q &
 
 # Set dbus display variable
 dbus-update-activation-environment --systemd DISPLAY
-
-autorandr -c
 
 for arg in "$LOPTS"
 do
@@ -43,6 +39,13 @@ do
 			dbus-update-activation-environment --systemd DISPLAY &
 			eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets) &
 			;;
+        *"screensaver"*)
+            xscreensaver &
+            xss-lock -- xscreensaver-command --lock &
+            ;;
+        *"autorandr"*)
+            autorandr -c
+            ;;
 	esac
 done
 
