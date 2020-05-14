@@ -80,8 +80,6 @@ SUDO_EDITOR=nvim
 
 export ANSIBLE_NOCOWS=1
 
-export PATH=$HOME/Scripts:$PATH
-
 # Creates a new shell in the current shell
 alias new="ZSH_NEST=$((ZSH_NEST + 1)) zsh"
 
@@ -92,6 +90,7 @@ then
 fi
 
 bindkey "^P" up-line-or-search
+bindkey -v
 
 function gittr {
 	if [ $# -eq 0 ]

@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 PIDFILE=/home/julian/.dwmSession.pid
 
 kill `cat $PIDFILE`
