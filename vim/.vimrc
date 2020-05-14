@@ -2,7 +2,6 @@ set nocompatible              " be iMproved, required
 filetype plugin on
 set shellslash
 
-
 " Plugins
 	" set the runtime path to include Vundle and initialize
 	set rtp+=~/.vim/bundle/Vundle.vim
@@ -18,7 +17,6 @@ set shellslash
 	Plugin 'prabirshrestha/vim-lsp'
 	Plugin 'fatih/vim-go'
 	Plugin 'ajh17/VimCompletesMe'
-	" Plugin 'ludovicchabant/vim-gutentags'
 
 	Plugin 'tpope/vim-surround'
 	Plugin 'tpope/vim-repeat'
@@ -39,16 +37,11 @@ set shellslash
 	" Plugin 'ntk148v/vim-horizon'
 
 	" Git
-	" Plugin 'jreybert/vimagit'
 	Plugin 'tpope/vim-fugitive'
 	
 	" File support
 	" Plugin 'cespare/vim-toml'
-	" Plugin 'vim-scripts/TagHighlight'
 	Plugin 'lervag/vimtex'
-	" Plugin 'LnL7/vim-nix'
-	" Plugin 'rust-lang/rust.vim'
-	" Plugin 'racer-rust/vim-racer'
 	
 	" Plugin 'vimwiki/vimwiki'
 	
@@ -63,17 +56,18 @@ set shellslash
 	set completeopt=menuone
 	" let g:go_def_mode='gopls'
 	" let g:go_info_mode='gopls'
-	" let g:rustfmt_autosave = 1
 
 	autocmd FileType c let b:vcm_tab_complete = 'omni'
 	autocmd FileType py let b:vcm_tab_complete = 'omni'
 	autocmd FileType go let b:vcm_tab_complete = 'omni'
 	autocmd FileType vim let b:vcm_tab_complete = 'vim'
 
-	" Setup lsp servers
+    " Lsp options
 	let g:lsp_diagnostics_echo_cursor = 0
 	let g:lsp_signature_help_enabled = 0
 	let g:lsp_insert_text_enabled = 0
+
+	" Setup lsp servers
 	if executable('pyls')
 		au User lsp_setup call lsp#register_server({
 					\ 'name': 'python',
@@ -132,9 +126,6 @@ set shellslash
 
 	" Remove statusline
 	set laststatus=1
-
-	" Check if file has changed
-	au FocusGained,BufEnter * :checktime
 
 	if has('nvim')
 		set inccommand=split
@@ -195,8 +186,6 @@ set shellslash
 
 		map <leader>mm :make V=1<CR>
 		map <leader>mf :make flash V=1<CR>
-		map <leader>t :terminal<CR>i
-		map <leader>s :!echo > jtle_build_it<CR>
 
 " Enforcing filetypes
 	autocmd BufRead,BufNewFile *.ino set filetype=c
@@ -211,4 +200,4 @@ set shellslash
 
 " Spell check
 	set spelllang=en
-	autocmd FileType tex set spell
+	autocmd FileType tex,markdown,rst set spell
