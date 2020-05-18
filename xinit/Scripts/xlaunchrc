@@ -26,19 +26,19 @@ dbus-update-activation-environment --systemd DISPLAY
 
 for arg in "$LOPTS"
 do
-	case $arg in
-		*"panel"*)
-			echo starting panel
-			xfce4-panel &
-			;;
-		*"composer"*)
-			echo starting comp
-			xcompmgr &
-			;;
-		*"gnome-keyring"*)
-			dbus-update-activation-environment --systemd DISPLAY &
-			eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets) &
-			;;
+    case $arg in
+        *"panel"*)
+            echo starting panel
+            xfce4-panel &
+            ;;
+        *"composer"*)
+            echo starting comp
+            xcompmgr &
+            ;;
+        *"gnome-keyring"*)
+            dbus-update-activation-environment --systemd DISPLAY &
+            eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets) &
+            ;;
         *"screensaver"*)
             xscreensaver &
             xss-lock -- xscreensaver-command --lock &
@@ -46,7 +46,7 @@ do
         *"autorandr"*)
             autorandr -c
             ;;
-	esac
+    esac
 done
 
 
