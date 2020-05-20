@@ -17,6 +17,7 @@ set shellslash
     Plugin 'prabirshrestha/vim-lsp'
     Plugin 'fatih/vim-go'
     Plugin 'ajh17/VimCompletesMe'
+    Plugin 'Shougo/echodoc.vim'
 
     Plugin 'tpope/vim-surround'
     Plugin 'tpope/vim-repeat'
@@ -56,6 +57,11 @@ set shellslash
     set completeopt=menuone
     " let g:go_def_mode='gopls'
     " let g:go_info_mode='gopls'
+
+    if has('nvim')
+        let g:echodoc#enable_at_startup = 1
+        let g:echodoc#type = 'virtual'
+    endif
 
     autocmd FileType c let b:vcm_tab_complete = 'omni'
     autocmd FileType py let b:vcm_tab_complete = 'omni'
