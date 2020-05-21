@@ -46,6 +46,9 @@ do
         *"autorandr"*)
             autorandr -c
             ;;
+        *"autorun"*)
+            ~/.xautorun
+            ;;
     esac
 done
 

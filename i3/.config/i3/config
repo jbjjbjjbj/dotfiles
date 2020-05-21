@@ -179,6 +179,8 @@ bindsym $mod+Shift+o exec --no-startup-id Scripts/lc common
 # default app workspaces
 assign [class="firefox"] $ws9
 assign [class="Evolution"] $ws8
+assign [class="Fractal"] $ws7
+assign [class="quassel"] $ws7
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
