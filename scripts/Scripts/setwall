@@ -1,3 +1,67 @@
 #!/usr/bin/env bash
 
-feh --bg-fill Pictures/defaultWall.*
+DEFPATH="$HOME/Pictures/defaultWall"
+BINNAME="setwall"
+
+function unsetwall() {
+    rm ${DEFPATH}.*
+}
+
+function setwall() {
+    feh --bg-fill $1
+}
+
+function help() {
+    echo "Wallpaper mangement script"
+    echo
+    echo "Syntax: ${BINNAME} OPTIONS"
+    echo "options:"
+    echo "  -r, --refresh               reapply the wallpaper"
+    echo "  -u, --unset                 unset the current wallpaper"
+    echo "  -s PATH, --set PATH         set a new default wallpaper"
+    echo "  -p PATH, --preview PATH     set a wallpaper"
+}
+
+if [[ $# -eq 0 ]]
+then
+    echo "${BINNAME}: no arguments given" 1>&2
+    help
+    exit 1
+fi
+
+while [[ $# -gt 0 ]]
+do
+    key="$1"
+    case $key in
+        -r|--refresh)
+            setwall "${DEFPATH}.*"
+            shift
+            ;;
+        -u|--unset)
+            unsetwall
+            shift
+            ;;
+        -s|--set)
+            unsetwall
+            EXTENSION=`echo "$2" | cut -d'.' -f2`
+            ln -s $(pwd)/$2 "$DEFPATH.$EXTENSION"
+            setwall "${DEFPATH}.*"
+            shift
+            shift
+            ;;
+        -p|--preview)
+            setwall "$2"
+            shift
+            shift
+            ;;
+        -h|--help)
+            help
+            shift
+            exit 0
+            ;;
+        *)
+            echo "${BINNAME}: unknown option $key" 1>&2
+            exit 1
+    esac
+done
+
