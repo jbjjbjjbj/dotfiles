@@ -16,7 +16,7 @@ xmodmap .Xmodmap
 nm-applet &
 
 # set wallpaper
-~/Scripts/setwall -r
+~/Scripts/setwall -A
 
 dunst &
 play ~/Winsounds/login.wav -q &

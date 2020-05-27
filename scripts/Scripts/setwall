@@ -1,13 +1,37 @@
 #!/usr/bin/env bash
 
 DEFPATH="$HOME/Pictures/defaultWall"
+WALLFILE="$HOME/Pictures/wallconfig"
 BINNAME="setwall"
 
-function unsetwall() {
-    rm ${DEFPATH}.*
+function unsetwalls() {
+    echo unsetting $@
+    for wall in $@; do
+        sed -i.bak "/$wall/d" $WALLFILE
+    done
+}
+function delete() {
+    echo deleting wallfile
+    rm $WALLFILE
+}
+function unsetall() {
+    echo clearing wallfile
+    echo -n > $WALLFILE
 }
 
-function setwall() {
+function setwalls() {
+    for wall in $@; do
+        if grep -q $wall "$WALLFILE"; then
+            echo $wall already set
+        else
+            echo setting $wall
+            echo $wall >> $WALLFILE
+        fi
+    done
+}
+
+function applywall() {
+    echo applying wallpaper $1
     feh --bg-fill $1
 }
 
@@ -16,52 +40,103 @@ function help() {
     echo
     echo "Syntax: ${BINNAME} OPTIONS"
     echo "options:"
-    echo "  -r, --refresh               reapply the wallpaper"
-    echo "  -u, --unset                 unset the current wallpaper"
-    echo "  -s PATH, --set PATH         set a new default wallpaper"
-    echo "  -p PATH, --preview PATH     set a wallpaper"
+    echo "  -A, --apply                     applies a random wallpaper"
+    echo "  -S, --set FILES                 sets new wallpapers"
+    echo "  -U, --unset [OPTIONS] [FILES]   unsets new wallpapers"
+    echo "  -P, --preview FILE              temporarily sets a wallpaper"
+    echo "  -h, --help                      this message"
+    echo
+    echo "unset options:"
+    echo "  -a, --all                       clears wallconfig file"
+    echo "  -d, --delete                    deleted wallconfig file"
 }
 
-if [[ $# -eq 0 ]]
-then
+function unknown() {
+    echo "${BINNAME}: unknown option $1" 1>&2
+    exit 1
+}
+
+if [[ $# -eq 0 ]]; then
     echo "${BINNAME}: no arguments given" 1>&2
     help
     exit 1
 fi
 
-while [[ $# -gt 0 ]]
-do
-    key="$1"
-    case $key in
-        -r|--refresh)
-            setwall "${DEFPATH}.*"
-            shift
+mode="N"
+pos=""
+
+while [[ $# -gt 0 ]]; do
+    keys="$1"
+    # If $1 does is single - argument
+    if [[ $1 == '-'* ]] && [[ ! $1 == '--'* ]] ; then
+        # Remove first -
+        keys=${keys#?}
+        # Place space between each character
+        keys=$(echo $keys | sed 's/./-& /g')
+    fi
+
+    for key in $keys; do
+        case $mode in 
+            U)
+                case $key in
+                    -a|--all)
+                    unsetall
+                    exit 0
+                    ;;
+                -d|--delete)
+                    delete
+                    exit 0
+                    ;;
+                '-'*|'--'*)
+                    unknown $key
+                    ;;
+                *)
+                    pos="$pos $key"
+                    shift
+                    ;;
+                esac
+                ;;
+            S)
+                pos="$pos $key"
+                shift
+                ;;
+            *)
+            case $key in
+                -A|--apply)
+                    applywall $(shuf -n 1 $WALLFILE)
+                    exit 0
+                    ;;
+                -U|--unset)
+                    mode="U"
+                    shift
+                    ;;
+                -S|--set)
+                    mode="S"
+                    shift
+                    ;;
+                -P|--preview)
+                    applywall $2
+                    exit 0
+                    ;;
+                -h|--help)
+                    help
+                    shift
+                    exit 0
+                    ;;
+                *)
+                    unknown $key
+                    ;;
+            esac
             ;;
-        -u|--unset)
-            unsetwall
-            shift
-            ;;
-        -s|--set)
-            unsetwall
-            EXTENSION=`echo "$2" | cut -d'.' -f2`
-            ln -s $(pwd)/$2 "$DEFPATH.$EXTENSION"
-            setwall "${DEFPATH}.*"
-            shift
-            shift
-            ;;
-        -p|--preview)
-            setwall "$2"
-            shift
-            shift
-            ;;
-        -h|--help)
-            help
-            shift
-            exit 0
-            ;;
-        *)
-            echo "${BINNAME}: unknown option $key" 1>&2
-            exit 1
-    esac
+        esac
+    done
 done
 
+case $mode in
+    U)
+        unsetwalls $pos
+        ;;
+    S)
+        setwalls $pos
+        ;;
+esac
