@@ -1,5 +1,5 @@
 
-export LOPTS="xscreensaver composer"
+export LOPTS="screensaver composer"
 # Launch other stuff
 source ~/Scripts/xlaunchrc >> $HOME/.xlaunch.log
 
