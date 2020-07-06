@@ -3,7 +3,7 @@
 LOGFILE=.lc.log
 DMENU="rofi -dmenu"
 
-Commands="common update poweroff suspend set-keyboard caps-lock battery cups-website vim emacs htop scrot overleaf-render overleaf win pass wall stat mic mail"
+Commands="sync lock common update poweroff suspend set-keyboard caps-lock battery cups-website vim emacs htop scrot overleaf-render overleaf win pass wall stat mic mail region"
 statScripts="ram.sh status.sh net.sh mic.sh"
 
 handle_stuff() {
@@ -35,10 +35,16 @@ handle_stuff() {
 	if [ "$1" = "poweroff" ]; then
 		poweroff
 	fi
+	if [ "$1" = "lock" ]; then
+		xscreensaver-command --lock
+	fi
 
 # Mics
 	if [ "$1" = "p" ] || [ "$1" = "scrot" ]; then
 		scrot /tmp/%Y-%m-%d-%T-screenshot.png
+	fi
+	if [ "$1" = "region" ]; then
+        import /tmp/$(date -Iseconds)-screenshot.png
 	fi
 
 	if [ "$1" = "overleaf-render" ]; then
@@ -57,10 +63,6 @@ handle_stuff() {
 	fi
 	if [ "$1" = "mic" ]; then
 		amixer set Capture toggle
-	fi
-	if [ "$1" = "mail" ]; then
-		Scripts/mailSync
-		dunstify "Mail" "$(notmuch count tag:unread and tag:inbox) unread mail"
 	fi
 
 # Launch
@@ -89,6 +91,11 @@ handle_stuff() {
 	if [ "$1" = "common" ]; then
 		python3 Scripts/commondocs.py ~/commondocs.json $(python3 Scripts/commondocs.py ~/commondocs.json | $DMENU)
 	fi
+
+    if [ "$1" = "sync" ]; then
+        ./Scripts/sync.sh
+        dunstify "Sync complete" "Sync completed at $(date)"
+    fi
 
 # Calc
 	if [ "$(echo $1 | head -c 1)" = "=" ]; then
