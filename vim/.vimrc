@@ -64,14 +64,20 @@ set shellslash
     endif
 
     autocmd FileType c let b:vcm_tab_complete = 'omni'
+    autocmd FileType cpp let b:vcm_tab_complete = 'omni'
     autocmd FileType py let b:vcm_tab_complete = 'omni'
     autocmd FileType go let b:vcm_tab_complete = 'omni'
+    autocmd FileType ruby let b:vcm_tab_complete = 'omni'
     autocmd FileType vim let b:vcm_tab_complete = 'vim'
 
     " Lsp options
-    let g:lsp_diagnostics_echo_cursor = 0
     let g:lsp_signature_help_enabled = 0
     let g:lsp_insert_text_enabled = 0
+    let g:lsp_virtual_text_enabled = 0
+    let g:lsp_diagnostics_echo_cursor = 1
+    let g:lsp_highlights_enabled = 0
+    let g:lsp_textprop_enabled = 0
+    let g:lsp_signs_enabled = 1
 
     " Setup lsp servers
     if executable('pyls')
@@ -94,6 +100,13 @@ set shellslash
         			\ 'cmd': {server_info->['gopls']},
         			\ 'whitelist': ['go'],
         			\ })
+    endif
+    if executable('solargraph')
+        au User lsp_setup call lsp#register_server({
+            \ 'name': 'ruby',
+            \ 'cmd': {server_info->['solargraph', 'stdio']},
+            \ 'whitelist': ['ruby', 'rb'],
+            \ })
     endif
 
     " Enable csp if available, stolen from lsp github
@@ -124,18 +137,21 @@ set shellslash
     set softtabstop=4
     set shiftwidth=4
     set expandtab
-    set colorcolumn=79
+    set colorcolumn=80
 
     " Show 5 lines above and below cursor
-    set scrolloff=5
+    set scrolloff=3
     set list
 
-    " Remove statusline
+    " Configure statusline
     set laststatus=1
 
     if has('nvim')
+        " Preview substitution
         set inccommand=split
     endif
+
+    set background=dark
 
     set hidden
 
