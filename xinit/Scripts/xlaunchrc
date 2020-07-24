@@ -24,29 +24,33 @@ play ~/Winsounds/login.wav -q &
 # Set dbus display variable
 dbus-update-activation-environment --systemd DISPLAY
 
-for arg in "$LOPTS"
+sxhkd &
+
+args="$LOPTS"
+for arg in $args
 do
+    echo $arg
     case $arg in
-        *"panel"*)
+        panel)
             echo starting panel
             xfce4-panel &
             ;;
-        *"composer"*)
+        composer)
             echo starting comp
             xcompmgr &
             ;;
-        *"gnome-keyring"*)
+        gnome-keyring)
             dbus-update-activation-environment --systemd DISPLAY &
             eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets) &
             ;;
-        *"screensaver"*)
+        screensaver)
             xscreensaver &
             xss-lock -- xscreensaver-command --lock &
             ;;
-        *"autorandr"*)
+        autorandr)
             autorandr -c
             ;;
-        *"autorun"*)
+        autorun)
             ~/.xautorun
             ;;
     esac
