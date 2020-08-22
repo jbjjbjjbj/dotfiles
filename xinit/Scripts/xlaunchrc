@@ -24,8 +24,6 @@ play ~/Winsounds/login.wav -q &
 # Set dbus display variable
 dbus-update-activation-environment --systemd DISPLAY
 
-sxhkd &
-
 args="$LOPTS"
 for arg in $args
 do
@@ -44,8 +42,7 @@ do
             eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets) &
             ;;
         screensaver)
-            xscreensaver &
-            xss-lock -- xscreensaver-command --lock &
+            xss-lock -- $HOME/Scripts/lock.sh &
             ;;
         autorandr)
             autorandr -c
