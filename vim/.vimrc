@@ -15,8 +15,7 @@ set shellslash
     " Completion
     Plugin 'prabirshrestha/async.vim'
     Plugin 'prabirshrestha/vim-lsp'
-    Plugin 'fatih/vim-go'
-    Plugin 'ajh17/VimCompletesMe'
+    Plugin 'lifepillar/vim-mucomplete'
     Plugin 'Shougo/echodoc.vim'
 
     Plugin 'tpope/vim-surround'
@@ -42,33 +41,30 @@ set shellslash
     
     " File support
     " Plugin 'cespare/vim-toml'
-    Plugin 'lervag/vimtex'
+    "Plugin 'lervag/vimtex'
     
     " Plugin 'vimwiki/vimwiki'
     
 
-    " Snippets are separated from the engine. Add this if you want them:
-    " Plugin 'honza/vim-snippets'
+    " Snippits
+    Plugin 'SirVer/ultisnips'
+    Plugin 'honza/vim-snippets'
 
     call vundle#end()            " required
     filetype plugin indent on    " required
 
 " Completion
-    set completeopt=menuone
-    " let g:go_def_mode='gopls'
-    " let g:go_info_mode='gopls'
+    set completeopt+=menuone
+    set completeopt+=noselect
+
+    let g:UltiSnipsExpandTrigger = '<C-s>'
+    let g:mucomplete#chains = {}
+    let g:mucomplete#chains.default = [ 'ulti', 'path', 'omni', 'keyn' ]
 
     if has('nvim')
         let g:echodoc#enable_at_startup = 1
         let g:echodoc#type = 'virtual'
     endif
-
-    autocmd FileType c let b:vcm_tab_complete = 'omni'
-    autocmd FileType cpp let b:vcm_tab_complete = 'omni'
-    autocmd FileType py let b:vcm_tab_complete = 'omni'
-    autocmd FileType go let b:vcm_tab_complete = 'omni'
-    autocmd FileType ruby let b:vcm_tab_complete = 'omni'
-    autocmd FileType vim let b:vcm_tab_complete = 'vim'
 
     " Lsp options
     let g:lsp_signature_help_enabled = 0
