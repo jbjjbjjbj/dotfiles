@@ -1,5 +1,4 @@
 # The following lines were added by compinstall
-
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' list-colors ''
@@ -10,6 +9,7 @@ zstyle :compinstall filename '/home/julian/.zshrc'
 
 autoload -Uz compinit
 compinit
+
 #
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
@@ -19,6 +19,9 @@ SAVEHIST=1000000
 unsetopt beep
 # End of lines configured by zsh-newuser-install
 
+#
+# Prompt setup
+#
 autoload -U colors && colors
 
 function git_info {
@@ -36,23 +39,12 @@ function git_info {
 setopt PROMPT_SUBST
 PROMPT='%F{032}%~$(git_info)%F{032} %(!.#.>) %F{255}'
 
-bindkey "^P" up-line-or-search
-bindkey "^[[A" history-search-backward
-bindkey "^[[B" history-search-forward
-
-
-export EDITOR=nvim
-export SUDO_EDITOR=$EDITOR
-export LANG=en_US.UTF-8
-export TERM="xterm-256color"
-export LSCOLORS="Gxfxcxdxbxegedabagacad"
-
+#
+# General setting
+#
 # Same colors for tab completion and ls
 eval "$(dircolors)"
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-alias vim="nvim"
-alias ls='ls --color=auto'
 
 # Expand with dots
 # https://michael.thegrebs.com/2012/09/04/zsh-completion-waiting-dots/
@@ -63,3 +55,29 @@ expand-or-complete-with-dots() {
 }
 zle -N expand-or-complete-with-dots
 bindkey "^I" expand-or-complete-with-dots
+
+# Shift-tab
+zmodload zsh/complist
+bindkey -M menuselect '^[[Z' reverse-menu-complete
+
+#
+# Keybinding
+#
+bindkey "^P" up-line-or-search
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
+
+#
+# Env
+#
+export EDITOR=nvim
+export SUDO_EDITOR=$EDITOR
+export LANG=en_US.UTF-8
+export TERM="xterm-256color"
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+
+#
+# Alias
+#
+alias vim="nvim"
+alias ls='ls --color=auto'
