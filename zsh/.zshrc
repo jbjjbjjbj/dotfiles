@@ -1,102 +1,68 @@
-export TERM="xterm-256color"
+# The following lines were added by compinstall
 
-# Path to your oh-my-zsh installation.
-export ZSH=/home/julian/.oh-my-zsh
-
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="af-magic"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo pass)
-
-source $ZSH/oh-my-zsh.sh
+zstyle ':completion:*' completer _expand _complete _ignored _approximate
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' matcher-list '+' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'l:|=* r:|=*' 'r:|[._-]=* r:|=*'
+zstyle ':completion:*' menu select=5
+zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
+zstyle :compinstall filename '/home/julian/.zshrc'
 
 autoload -Uz compinit
 compinit
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
 #
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=1000000
+unsetopt beep
+# End of lines configured by zsh-newuser-install
 
+autoload -Uz vcs_info
+autoload -U colors && colors
+zstyle ':vcs_info:*' formats '%F{075}(%F{078}%b%u%c%F{075})'
+precmd() {vcs_info}
 
-PATH=~/go/bin:$PATH
+function git_info {
+    local bname="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
+    local statc=""
+    if [ -n "$bname" ]; then
+        if [ -n "$(git status --porcelain 2> /dev/null)" ]; then
+            # statc="%{\e[0;3${MNML_ERR_COLOR}m%}"
+            statc="%F{220}*"
+        fi
+        print "%F{075}(%F{078}$bname$statc%F{075})"
+    fi
+}
 
-alias ed="ed -p '> '"
-alias vim="nvim"
-#alias emacs="emacsclient -c"
-#alias cmacs="emacsclient -nw -c"
-alias sc="systemctl"
-
-alias hej="echo 'Hej, hvordan går det?'"
-export EDITOR=nvim
-
-#Setup ssh agent
-
-# Sæt sudo editor
-export SUDO_EDITOR=nvim
-SUDO_EDITOR=nvim
-
-export ANSIBLE_NOCOWS=1
-
-# Creates a new shell in the current shell
-alias new="ZSH_NEST=$((ZSH_NEST + 1)) zsh"
-
-# If we are a subshell add it to the PS1
-if [ ! -z "$ZSH_NEST" ] 
-then
-	export PS1=$(echo $PS1 | sed "s:}%:}[$ZSH_NEST]%:")
-fi
+setopt PROMPT_SUBST
+PROMPT='%F{032}%~$(git_info)%F{032} %(!.#.>) %F{255}'
 
 bindkey "^P" up-line-or-search
-bindkey -v
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
 
-function gittr {
-	if [ $# -eq 0 ]
-	then
-		git push -u origin HEAD
-		return
-	fi
-	git push -u $1 HEAD
+
+export EDITOR=nvim
+export SUDO_EDITOR=$EDITOR
+export LANG=en_US.UTF-8
+export TERM="xterm-256color"
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+
+# Same colors for tab completion and ls
+eval "$(dircolors)"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+alias vim="nvim"
+alias ls='ls --color=auto'
+
+# Expand with dots
+# https://michael.thegrebs.com/2012/09/04/zsh-completion-waiting-dots/
+expand-or-complete-with-dots() {
+  echo -n "\e[31m...\e[0m"
+  zle expand-or-complete
+  zle redisplay
 }
+zle -N expand-or-complete-with-dots
+bindkey "^I" expand-or-complete-with-dots
