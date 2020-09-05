@@ -1,7 +1,12 @@
+# Todo list
+cat $HOME/todo.txt
 # Vim stuff
 alias vim "nvim"
 set -x EDITOR nvim
 set -x SUDO_EDITOR nvim
+
+# Other things
+set -x TERM xterm-256color
 
 # Path
 set -x PATH $PATH $HOME/go/bin

@@ -37,7 +37,7 @@ function git_info {
 }
 
 setopt PROMPT_SUBST
-PROMPT='%F{032}%~$(git_info)%F{032} %(!.#.>) %{$reset_color%}'
+PROMPT='%F{032}%~$(git_info)%F{032} %(!.#.>) %F{255}'
 
 bindkey "^P" up-line-or-search
 bindkey "^[[A" history-search-backward
@@ -49,6 +49,10 @@ export SUDO_EDITOR=$EDITOR
 export LANG=en_US.UTF-8
 export TERM="xterm-256color"
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
+
+# Same colors for tab completion and ls
+eval "$(dircolors)"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 alias vim="nvim"
 alias ls='ls --color=auto'
