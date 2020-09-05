@@ -2,6 +2,7 @@
 
 DEFPATH="$HOME/Pictures/defaultWall"
 WALLFILE="$HOME/Pictures/wallconfig"
+WALLLINK="$HOME/Pictures/current_wall"
 BINNAME="setwall"
 
 function unsetwalls() {
@@ -32,6 +33,8 @@ function setwalls() {
 
 function applywall() {
     echo applying wallpaper $1
+    rm $WALLLINK
+    ln -s $(pwd)/$1 $WALLLINK
     feh --bg-fill $1
 }
 
