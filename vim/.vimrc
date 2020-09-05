@@ -59,7 +59,7 @@ set shellslash
 
     let g:UltiSnipsExpandTrigger = '<C-s>'
     let g:mucomplete#chains = {}
-    let g:mucomplete#chains.default = [ 'ulti', 'path', 'omni', 'keyn' ]
+    let g:mucomplete#chains.default = [ 'omni', 'ulti', 'path', 'keyn' ]
 
     if has('nvim')
         let g:echodoc#enable_at_startup = 1
@@ -96,6 +96,13 @@ set shellslash
         			\ 'cmd': {server_info->['gopls']},
         			\ 'whitelist': ['go'],
         			\ })
+    endif
+    if executable('rls')
+        au User lsp_setup call lsp#register_server({
+            \ 'name': 'rust',
+            \ 'cmd': {server_info->['rls']},
+            \ 'whitelist': ['rust', 'rs'],
+            \ })
     endif
     if executable('solargraph')
         au User lsp_setup call lsp#register_server({
