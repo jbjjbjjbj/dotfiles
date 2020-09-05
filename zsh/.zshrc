@@ -19,10 +19,7 @@ SAVEHIST=1000000
 unsetopt beep
 # End of lines configured by zsh-newuser-install
 
-autoload -Uz vcs_info
 autoload -U colors && colors
-zstyle ':vcs_info:*' formats '%F{075}(%F{078}%b%u%c%F{075})'
-precmd() {vcs_info}
 
 function git_info {
     local bname="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
