@@ -59,7 +59,7 @@ handle_stuff() {
 		vboxmanage startvm "Windows xp"
 	fi
 	if [ "$1" = "wall" ]; then
-		~/Scripts/setwall
+		$HOME/Scripts/setwall -A
 	fi
 	if [ "$1" = "mic" ]; then
 		amixer set Capture toggle

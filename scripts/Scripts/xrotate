@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+set -e
+
+function help() {
+    echo "Rotate the screen and mouse input"
+    echo
+    echo "Syntax: ${BINNAME} [<options>] <orientation>"
+    echo "Orientation: normal,inverted,left,right"
+    echo "Options:"
+    echo "  -d, --disp <DISPLAY>    set for xrandr DISPLAY"
+    echo "  -h, --help              this help message"
+}
+
+# Fix hardcode
+DISP=LVDS1
+
+BINNAME="xrotate"
+
+# Parse some args
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -d|--disp)
+            shift
+            DISP=$1
+            shift
+            ;;
+        -h|--help)
+            help
+            exit 0
+            ;;
+        *)
+            if [[ $1 == '-'* ]]; then
+                echo unknown option $1
+                help
+                exit 1
+            fi
+            break
+            ;;
+    esac
+done
+
+O=$1
+
+MOUSE=$(xinput list | grep "slave  pointer" | awk '{print $6}' | awk -F '=' '{print $2}')
+
+case $O in
+    normal)
+        echo "Normal"
+        MATRIX="1 0 0 0 1 0 0 0 1"
+        ;;
+    inverted)
+        echo "Inverted"
+        MATRIX="-1 0 0 0 -1 0 0 0 1"
+        ;;
+    left)
+        echo "Left"
+        MATRIX="0 -1 0 1 0 0 0 0 1"
+        ;;
+    right)
+        echo "Right"
+        MATRIX="0 1 0 -1 0 0 0 0 1"
+        ;;
+    *)
+        echo "Not an supported orientation"
+        help
+        exit 1;
+        ;;
+esac
+
+
+set -x
+
+xrandr --output $DISP --rotate $O
+for M in $MOUSE; do
+    xinput set-prop $M "Coordinate Transformation Matrix" $MATRIX
+done
