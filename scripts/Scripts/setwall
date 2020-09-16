@@ -32,10 +32,16 @@ function setwalls() {
 }
 
 function applywall() {
+    set -x
     echo applying wallpaper $1
     rm $WALLLINK
     ln -s $(pwd)/$1 $WALLLINK
-    feh --bg-fill $1
+    if [ -z "${WAYLAND_DISPLAY}" ]; then
+        feh --bg-fill $1
+    else
+        killall swaybg
+        swaybg -m fill -i $1 &
+    fi
 }
 
 function help() {

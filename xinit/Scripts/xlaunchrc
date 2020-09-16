@@ -2,24 +2,14 @@
 
 set -e
 
+source $HOME/Scripts/gpre
+
 setxkbmap -layout us -variant altgr-intl
-
-export _JAVA_AWT_WM_NONREPARENTING=1
-export TERM=termite
-export TERMINAL=termite
-
-export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
 
 xmodmap .Xmodmap
 #xcape -e "Control_R=Escape"
 
-nm-applet &
-
-# set wallpaper
-~/Scripts/setwall -A
-
 dunst &
-play ~/Winsounds/login.wav -q &
 
 # Set dbus display variable
 dbus-update-activation-environment --systemd DISPLAY

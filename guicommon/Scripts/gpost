@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+play ~/Winsounds/login.wav -q &
+
+nm-applet &
+
+~/Scripts/setwall -A
+

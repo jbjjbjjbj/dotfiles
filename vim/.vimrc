@@ -38,13 +38,15 @@ set shellslash
 
     " Git
     Plugin 'tpope/vim-fugitive'
-    
+
     " File support
     " Plugin 'cespare/vim-toml'
     "Plugin 'lervag/vimtex'
-    
+    Plugin 'aklt/plantuml-syntax'
+    Plugin 'LnL7/vim-nix'
+
     " Plugin 'vimwiki/vimwiki'
-    
+
 
     " Snippits
     Plugin 'SirVer/ultisnips'
@@ -80,7 +82,7 @@ set shellslash
         au User lsp_setup call lsp#register_server({
         			\ 'name': 'python',
         			\ 'cmd': {server_info->['pyls']},
-        			\ 'whitelist': ['python'],
+        			\ 'whitelist': ['python', 'py'],
         			\ })
     endif
     if executable('clangd')

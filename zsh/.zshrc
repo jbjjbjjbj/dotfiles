@@ -67,6 +67,9 @@ bindkey "^P" up-line-or-search
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
 #
 # Env
 #
