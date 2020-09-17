@@ -36,8 +36,14 @@ function git_info {
     fi
 }
 
+if [ -z "$INNIXENV" ]; then
+    MAINCOL="%F{032}"
+else
+    MAINCOL="%F{076}"
+fi
+
 setopt PROMPT_SUBST
-PROMPT='%F{032}%~$(git_info)%F{032} %(!.#.>) %F{255}'
+PROMPT='$MAINCOL%~$(git_info)$MAINCOL %(!.#.>) %F{255}'
 
 #
 # General setting
@@ -66,6 +72,8 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 bindkey "^P" up-line-or-search
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 #
 # Env
@@ -81,3 +89,12 @@ export LSCOLORS="Gxfxcxdxbxegedabagacad"
 #
 alias vim="nvim"
 alias ls='ls --color=auto'
+
+#
+# Functions
+#
+
+function nixenv {
+    export INNIXENV="true"
+    nix-shell $HOME/.shells/$1 --run zsh
+}
