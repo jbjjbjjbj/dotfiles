@@ -15,7 +15,7 @@ set shellslash
     " Completion
     Plugin 'prabirshrestha/async.vim'
     Plugin 'prabirshrestha/vim-lsp'
-    Plugin 'lifepillar/vim-mucomplete'
+    Plugin 'ajh17/VimCompletesMe'
     Plugin 'Shougo/echodoc.vim'
 
     Plugin 'tpope/vim-surround'
@@ -38,17 +38,19 @@ set shellslash
 
     " Git
     Plugin 'tpope/vim-fugitive'
-    
+
     " File support
     " Plugin 'cespare/vim-toml'
     "Plugin 'lervag/vimtex'
-    
+    Plugin 'aklt/plantuml-syntax'
+    Plugin 'LnL7/vim-nix'
+
     " Plugin 'vimwiki/vimwiki'
-    
+
 
     " Snippits
-    Plugin 'SirVer/ultisnips'
-    Plugin 'honza/vim-snippets'
+    " Plugin 'SirVer/ultisnips'
+    " Plugin 'honza/vim-snippets'
 
     call vundle#end()            " required
     filetype plugin indent on    " required
@@ -56,10 +58,6 @@ set shellslash
 " Completion
     set completeopt+=menuone
     set completeopt+=noselect
-
-    let g:UltiSnipsExpandTrigger = '<C-s>'
-    let g:mucomplete#chains = {}
-    let g:mucomplete#chains.default = [ 'omni', 'ulti', 'path', 'keyn' ]
 
     if has('nvim')
         let g:echodoc#enable_at_startup = 1
@@ -80,7 +78,7 @@ set shellslash
         au User lsp_setup call lsp#register_server({
         			\ 'name': 'python',
         			\ 'cmd': {server_info->['pyls']},
-        			\ 'whitelist': ['python'],
+        			\ 'whitelist': ['python', 'py'],
         			\ })
     endif
     if executable('clangd')
@@ -116,6 +114,7 @@ set shellslash
     function! s:on_lsp_buffer_enabled() abort
         echo "Enabling lsp"
         set omnifunc=lsp#complete
+        let b:vcm_tab_complete = 'omni'
         set signcolumn=yes
         nmap <buffer> gd <plug>(lsp-definition)
         nmap <buffer> <f2> <plug>(lsp-rename)
@@ -215,6 +214,7 @@ set shellslash
 " Enforcing filetypes
     autocmd BufRead,BufNewFile *.ino set filetype=c
     autocmd BufRead,BufNewFile *.asc set filetype=asciidoc
+    autocmd BufRead,BufNewFile *.nix set filetype=nix
 
 " Highlightning And colors
     set termguicolors
