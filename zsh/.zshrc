@@ -82,7 +82,7 @@ export EDITOR=nvim
 export SUDO_EDITOR=$EDITOR
 export LANG=en_US.UTF-8
 export TERM="xterm-256color"
-export LSCOLORS="Gxfxcxdxbxegedabagacad"
+
 
 #
 # Alias
@@ -93,8 +93,24 @@ alias ls='ls --color=auto'
 #
 # Functions
 #
-
 function nixenv {
     export INNIXENV="true"
-    nix-shell $HOME/.shells/$1 --run zsh
+    SHELL=""
+    if [ "$#" -gt 0 ]; then
+        SHELL=$HOME/.nix-shells/$1
+    fi
+    RUN=zsh
+    if [ "$#" -gt 1 ]; then
+        RUN=$2
+    fi
+    nix-shell $SHELL --run $RUN
 }
+function gittr {
+	if [ $# -eq 0 ]
+	then
+		git push -u origin HEAD
+		return
+	fi
+	git push -u $1 HEAD
+}
+
