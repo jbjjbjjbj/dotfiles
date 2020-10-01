@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+
+import argparse
+import os
+import sys
+import os.path as path
+
+class Bookmarks():
+    def __init__(self, storepath=None):
+        # Yeah XDG stuff does not really matter here
+        self.storepath = storepath or path.join(os.getenv("HOME"), ".bookmarks")
+        self.store = {}
+
+        if not path.exists(self.storepath):
+            return
+
+        with open(self.storepath, "r") as f:
+            for line in f:
+                # This breaks support for spaces in name and path
+                line = line.split(" ")
+                self.store[line[0]] = line[1][:-1]
+
+    def save(self, name, path):
+        if not name in self.store:
+            # Easy just append
+            with open(self.storepath, "a") as f:
+                f.write(f"{name} {path}\n")
+            return
+
+        # Truncate it
+        with open(self.storepath, "w") as f:
+            for (k, v) in self.store.items():
+                # self.store should contain it's old values to we can jump to something we are saving to
+                if k is name:
+                    v = path
+                f.write(f"{name} {path}\n")
+
+    def load(self, name):
+        return self.store[name]
+
+    def list(self):
+        for (k, v) in self.store.items():
+            print(f"{k} => {v}")
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--save", "-s", help="Save current location with name, if '.' pwd is used as name")
+parser.add_argument("--path", "-p", help="Specifies if `dest` is a real path and not a bookmark", action="store_true")
+parser.add_argument("--list", "-l", help="List bookmarks", action="store_true")
+parser.add_argument("dest", nargs="?", help="Where to go")
+
+args = parser.parse_args()
+
+bm = Bookmarks()
+
+if args.list:
+    bm.list()
+
+# Whether to save
+if args.save:
+    name = args.save if args.save is not "." else os.getcwd()
+    bm.save(name, os.getcwd())
+
+if args.dest:
+    where = bm.load(args.dest) if not args.path else args.dest
+    with open("/tmp/where", "w") as f:
+        f.write(where)
+    # This means zsh should go here
+    sys.exit(3)
+

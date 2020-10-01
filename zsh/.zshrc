@@ -82,7 +82,7 @@ export EDITOR=nvim
 export SUDO_EDITOR=$EDITOR
 export LANG=en_US.UTF-8
 export TERM="xterm-256color"
-
+export PATH=$PATH:$HOME/Scripts/bin
 
 #
 # Alias
@@ -112,5 +112,12 @@ function gittr {
 		return
 	fi
 	git push -u $1 HEAD
+}
+
+function goto {
+    $HOME/Scripts/goto $@
+    if [ $? -eq 3 ]; then
+        cd $(</tmp/where)
+    fi
 }
 
