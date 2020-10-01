@@ -3,7 +3,7 @@
 LOGFILE=.lc.log
 DMENU="rofi -dmenu"
 
-Commands="sync lock common update poweroff suspend set-keyboard caps-lock battery cups-website vim emacs htop scrot overleaf-render overleaf win pass wall stat mic mail region"
+Commands="s sync lock common update poweroff suspend set-keyboard caps-lock battery cups-website scrot overleaf-render overleaf win pass wall stat mic mail region"
 statScripts="ram.sh status.sh net.sh mic.sh"
 
 handle_stuff() {
@@ -29,7 +29,7 @@ handle_stuff() {
 	fi
 
 # POWER COMMANDS
-	if [ "$1" = "s" ] || [ "$1" = "suspend" ]; then
+	if [ "$1" = "suspend" ]; then
 		systemctl suspend
 	fi
 	if [ "$1" = "poweroff" ]; then
@@ -66,15 +66,9 @@ handle_stuff() {
 	fi
 
 # Launch
-	if [ "$1" = "vi" ] || [ "$1" = "vim" ]; then
-		st -e nvim
-	fi
-	if [ "$1" = "emacs" ]; then
-		st -e emacs
-	fi
-	if [ "$1" = "ht" ] || [ "$1" = "htop" ]; then
-		st -e htop
-	fi
+    if [ "$1" = "s" ]; then
+        $HOME/Scripts/guiworkspace.sh
+    fi
 	if [ "$1" = "cups" ] || [ "$1" = "cups-website" ]; then
 		firefox "http://localhost:631/"
 	fi
