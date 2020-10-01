@@ -13,7 +13,6 @@ set shellslash
     Plugin 'VundleVim/Vundle.vim'
 
     " Completion
-    Plugin 'prabirshrestha/async.vim'
     Plugin 'prabirshrestha/vim-lsp'
     Plugin 'ajh17/VimCompletesMe'
     Plugin 'Shougo/echodoc.vim'
@@ -118,6 +117,7 @@ set shellslash
         set signcolumn=yes
         nmap <buffer> gd <plug>(lsp-definition)
         nmap <buffer> <f2> <plug>(lsp-rename)
+        nmap <buffer> zF <plug>(lsp-code-action)
         " refer to doc to add more commands
     endfunction
 
@@ -136,7 +136,6 @@ set shellslash
     set splitbelow splitright
 
     set tabstop=4
-    set softtabstop=4
     set shiftwidth=4
     set expandtab
     set colorcolumn=80
@@ -144,6 +143,7 @@ set shellslash
     " Show 5 lines above and below cursor
     set scrolloff=3
     set list
+    set listchars=tab:>\ ,trail:-,nbsp:+
 
     " Configure statusline
     set laststatus=1
@@ -226,3 +226,4 @@ set shellslash
 " Spell check
     set spelllang=en
     autocmd FileType tex,markdown,rst set spell
+
