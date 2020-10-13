@@ -4,11 +4,14 @@ import argparse
 import os
 import sys
 import os.path as path
+from subprocess import call
+
+# Yeah XDG stuff does not really matter here
+defaultstore = path.join(os.getenv("HOME"), ".bookmarks")
 
 class Bookmarks():
     def __init__(self, storepath=None):
-        # Yeah XDG stuff does not really matter here
-        self.storepath = storepath or path.join(os.getenv("HOME"), ".bookmarks")
+        self.storepath = storepath or defaultstore
         self.store = {}
 
         if not path.exists(self.storepath):
@@ -30,13 +33,19 @@ class Bookmarks():
         # Truncate it
         with open(self.storepath, "w") as f:
             for (k, v) in self.store.items():
-                # self.store should contain it's old values to we can jump to something we are saving to
-                if k is name:
+                # self.store should contain it's old values to we can jump to
+                # something we are saving to
+                if k == name:
                     v = path
-                f.write(f"{name} {path}\n")
+                f.write(f"{k} {v}\n")
 
     def load(self, name):
-        return self.store[name]
+        parts = name.split(":")
+        name = parts[0]
+        p = self.store[name]
+        if len(parts) > 1:
+            p = path.join(p, parts[1])
+        return p
 
     def list(self):
         for (k, v) in self.store.items():
@@ -46,9 +55,15 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--save", "-s", help="Save current location with name, if '.' pwd is used as name")
 parser.add_argument("--path", "-p", help="Specifies if `dest` is a real path and not a bookmark", action="store_true")
 parser.add_argument("--list", "-l", help="List bookmarks", action="store_true")
+parser.add_argument("--edit", "-e", help="Edit bookmark file with $EDITRO", action="store_true")
 parser.add_argument("dest", nargs="?", help="Where to go")
 
 args = parser.parse_args()
+
+if args.edit:
+    editor = os.environ.get("EDITOR", "vi")
+    ret = call([editor, defaultstore])
+    sys.exit(ret)
 
 bm = Bookmarks()
 
@@ -57,7 +72,7 @@ if args.list:
 
 # Whether to save
 if args.save:
-    name = args.save if args.save is not "." else os.getcwd()
+    name = args.save if args.save != "." else os.getcwd()
     bm.save(name, os.getcwd())
 
 if args.dest:
