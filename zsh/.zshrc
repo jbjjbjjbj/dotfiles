@@ -80,15 +80,17 @@ bindkey "^[[1;5D" backward-word
 #
 export EDITOR=nvim
 export SUDO_EDITOR=$EDITOR
-export LANG=en_US.UTF-8
+# export LANG=en_US.UTF-8
 export TERM="xterm-256color"
 export PATH=$PATH:$HOME/Scripts/bin
+export PATH=$PATH:$HOME/go/bin
 
 #
 # Alias
 #
 alias vim="nvim"
 alias ls='ls --color=auto'
+alias etckeep="/usr/bin/git --git-dir=/etc/.git --work-tree=/etc/"
 
 #
 # Functions
@@ -118,6 +120,7 @@ function goto {
     $HOME/Scripts/goto $@
     if [ $? -eq 3 ]; then
         cd $(</tmp/where)
+        echo cd $(</tmp/where)
     fi
 }
 

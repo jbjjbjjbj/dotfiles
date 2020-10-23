@@ -25,7 +25,7 @@ set shellslash
     Plugin 'godlygeek/tabular'
 
     " Editor config
-    " Plugin 'editorconfig/editorconfig-vim'
+    Plugin 'sgur/vim-editorconfig'
 
     " Color theme
     " Plugin 'agude/vim-eldar'
@@ -56,7 +56,7 @@ set shellslash
 
 " Completion
     set completeopt+=menuone
-    set completeopt+=noselect
+    " set completeopt+=noselect
 
     if has('nvim')
         let g:echodoc#enable_at_startup = 1
@@ -71,6 +71,9 @@ set shellslash
     let g:lsp_highlights_enabled = 0
     let g:lsp_textprop_enabled = 0
     let g:lsp_signs_enabled = 1
+
+    " Close completion window
+    autocmd CompleteDone * pclose
 
     " Setup lsp servers
     if executable('pyls')
@@ -140,6 +143,9 @@ set shellslash
     set expandtab
     set colorcolumn=80
 
+    set autoindent
+    set smartindent
+
     " Show 5 lines above and below cursor
     set scrolloff=3
     set list
@@ -153,7 +159,7 @@ set shellslash
         set inccommand=split
     endif
 
-    set background=dark
+    set background=light
 
     set hidden
 
@@ -168,6 +174,9 @@ set shellslash
 
     " Exit insert mode on inactivity
     " au CursorHoldI * stopinsert
+
+" Formatting
+    autocmd FileType go Har vi ikke set noet
 
 " Vimwiki stuff
     let g:vimwiki_list = [{'path': '~/Documents/vimwiki', 'path_html': '~/Documents/vimwiki/export'}]
@@ -197,7 +206,6 @@ set shellslash
     set wildmenu
 
     let g:netrw_liststyle=2
-    let g:netrw_banner = 0
 
 " Keymapping
     " When moving more lines make it a jump. If couns i 2 it will run m'2j,
