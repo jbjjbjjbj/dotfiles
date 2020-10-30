@@ -1,7 +1,3 @@
-set nocompatible              " be iMproved, required
-filetype plugin on
-set shellslash
-
 " Plugins
     " set the runtime path to include Vundle and initialize
     set rtp+=~/.vim/bundle/Vundle.vim
@@ -17,6 +13,7 @@ set shellslash
     Plugin 'ajh17/VimCompletesMe'
     Plugin 'Shougo/echodoc.vim'
 
+    " Installed through vim-core
     Plugin 'tpope/vim-surround'
     Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-unimpaired'
@@ -41,8 +38,8 @@ set shellslash
     " File support
     " Plugin 'cespare/vim-toml'
     "Plugin 'lervag/vimtex'
-    Plugin 'aklt/plantuml-syntax'
-    Plugin 'LnL7/vim-nix'
+    " Plugin 'aklt/plantuml-syntax'
+    " Plugin 'LnL7/vim-nix'
 
     " Plugin 'vimwiki/vimwiki'
 
@@ -52,11 +49,10 @@ set shellslash
     " Plugin 'honza/vim-snippets'
 
     call vundle#end()            " required
-    filetype plugin indent on    " required
 
 " Completion
     set completeopt+=menuone
-    " set completeopt+=noselect
+    set completeopt+=noselect
 
     if has('nvim')
         let g:echodoc#enable_at_startup = 1
@@ -129,109 +125,4 @@ set shellslash
         " call s:on_lsp_buffer_enabled only for languages that has the server registered.
         autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
     augroup END
-
-" General vim settings
-    syntax enable
-    set number 
-    set relativenumber
-
-    " More sensible splitting
-    set splitbelow splitright
-
-    set tabstop=4
-    set shiftwidth=4
-    set expandtab
-    set colorcolumn=80
-
-    set autoindent
-    set smartindent
-
-    " Show 5 lines above and below cursor
-    set scrolloff=3
-    set list
-    set listchars=tab:>\ ,trail:-,nbsp:+
-
-    " Configure statusline
-    set laststatus=1
-
-    if has('nvim')
-        " Preview substitution
-        set inccommand=split
-    endif
-
-    set background=light
-
-    set hidden
-
-    " Case insensitive search if all letters are small
-    set smartcase
-    set ignorecase
-
-    " Persistent undo
-    set undofile
-
-    set autoread
-
-    " Exit insert mode on inactivity
-    " au CursorHoldI * stopinsert
-
-" Formatting
-    autocmd FileType go Har vi ikke set noet
-
-" Vimwiki stuff
-    let g:vimwiki_list = [{'path': '~/Documents/vimwiki', 'path_html': '~/Documents/vimwiki/export'}]
-
-" Latex stuff
-    let g:tex_flavor='latex'
-
-    let g:vimtex_quickfix_blgparser = {'disable': 1}
-    let g:vimtex_quickfix_open_on_warning = 0
-    let g:vimtex_compiler_latexmk = {
-        \ 'backend' : 'nvim',
-        \ 'background' : 0,
-        \ 'build_dir' : '',
-        \ 'callback' : 1,
-        \ 'continuous' : 0,
-        \ 'executable' : 'latexmk',
-        \ 'hooks' : [],
-        \ 'options' : [
-        \   '-file-line-error',
-        \   '-synctex=1',
-        \ ],
-        \}
-
-" File management
-    " Fuzzy like menu
-    set path+=**
-    set wildmenu
-
-    let g:netrw_liststyle=2
-
-" Keymapping
-    " When moving more lines make it a jump. If couns i 2 it will run m'2j,
-    " thus storing it on the jumplist and then jumping
-    nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '' ) . 'j'
-    nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '' ) . 'k'
-
-    " Leader stuff
-        let mapleader=" "
-
-        map <leader>mm :make V=1<CR>
-        map <leader>mf :make flash V=1<CR>
-
-" Enforcing filetypes
-    autocmd BufRead,BufNewFile *.ino set filetype=c
-    autocmd BufRead,BufNewFile *.asc set filetype=asciidoc
-    autocmd BufRead,BufNewFile *.nix set filetype=nix
-
-" Highlightning And colors
-    set termguicolors
-    " let g:one_allow_italics = 1
-    let g:gruvbox_italic = 1
-    colorscheme gruvbox
-
-
-" Spell check
-    set spelllang=en
-    autocmd FileType tex,markdown,rst set spell
 
