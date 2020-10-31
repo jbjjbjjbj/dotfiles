@@ -13,9 +13,14 @@ compinit
 #
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=1000000
+export HISTFILE=~/.zsh_history
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+export HISTTIMEFORMAT="%F %T "
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_FIND_NO_DUPS
 unsetopt beep
 # End of lines configured by zsh-newuser-install
 
@@ -78,17 +83,19 @@ bindkey "^[[1;5D" backward-word
 #
 # Env
 #
-export EDITOR=nvim
+# export EDITOR=nvim
+export EDITOR=vim
 export SUDO_EDITOR=$EDITOR
 # export LANG=en_US.UTF-8
 export TERM="xterm-256color"
 export PATH=$PATH:$HOME/Scripts/bin
 export PATH=$PATH:$HOME/go/bin
+export WORDCHARS='*?.[]~=&;!#$%^(){}<>'
 
 #
 # Alias
 #
-alias vim="nvim"
+alias vim="$EDITOR"
 alias ls='ls --color=auto'
 alias etckeep="/usr/bin/git --git-dir=/etc/.git --work-tree=/etc/"
 
