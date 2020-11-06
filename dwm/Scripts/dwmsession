@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+PIDFILE=/var/run/user/$UID/dwm.pid
+
+kill $(<$PIDFILE)
+
+if [ "$1" = "-e" ]; then
+    exit
+fi
+
+echo $$ > $PIDFILE
+
+slstatus &
+
+while true; do
+    dwm >> /tmp/dwmsession.log
+    sleep 1
+done
