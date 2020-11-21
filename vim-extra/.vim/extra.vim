@@ -72,18 +72,18 @@
     autocmd CompleteDone * pclose
 
     " Setup lsp servers
-    if executable('pyls')
-        au User lsp_setup call lsp#register_server({
-        			\ 'name': 'python',
-        			\ 'cmd': {server_info->['pyls']},
-        			\ 'whitelist': ['python', 'py'],
-        			\ })
-    endif
     if executable('clangd')
         au User lsp_setup call lsp#register_server({
         			\ 'name': 'clangd',
         			\ 'cmd': {server_info->['clangd']},
         			\ 'whitelist': ['c', 'cpp'],
+        			\ })
+    endif
+    if executable('pyls')
+        au User lsp_setup call lsp#register_server({
+        			\ 'name': 'pyls',
+        			\ 'cmd': {server_info->['pyls']},
+        			\ 'whitelist': ['py', 'python'],
         			\ })
     endif
     if executable('gopls')
