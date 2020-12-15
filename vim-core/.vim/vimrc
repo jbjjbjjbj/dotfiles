@@ -3,7 +3,6 @@ filetype plugin on
 set shellslash
 
 runtime extra.vim
-
 filetype plugin indent on    " required
 
 " General vim settings
@@ -18,6 +17,8 @@ filetype plugin indent on    " required
     set shiftwidth=4
     set expandtab
     set colorcolumn=80
+
+    set softtabstop=4
 
     set autoindent
     set smartindent
@@ -53,8 +54,8 @@ filetype plugin indent on    " required
     " Exit insert mode on inactivity
     " au CursorHoldI * stopinsert
 
-" Formatting
-    autocmd FileType go set noet
+" Language specific
+    autocmd FileType python set et
 
 " Latex stuff
     let g:tex_flavor='latex'
@@ -83,6 +84,9 @@ filetype plugin indent on    " required
     let g:netrw_liststyle=2
 
 " Keymapping
+    " Tab for cycling the completion meny, in insert mode
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
     " When moving more lines make it a jump. If couns i 2 it will run m'2j,
     " thus storing it on the jumplist and then jumping
     nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '' ) . 'j'
@@ -108,5 +112,5 @@ filetype plugin indent on    " required
 
 " Spell check
     set spelllang=en
-    autocmd FileType tex,markdown,rst set spell
+    " autocmd FileType mail,tex,markdown,rst set spell
 
