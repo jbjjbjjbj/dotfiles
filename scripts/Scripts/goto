@@ -56,6 +56,7 @@ parser.add_argument("--save", "-s", help="Save current location with name, if '.
 parser.add_argument("--path", "-p", help="Specifies if `dest` is a real path and not a bookmark", action="store_true")
 parser.add_argument("--list", "-l", help="List bookmarks", action="store_true")
 parser.add_argument("--edit", "-e", help="Edit bookmark file with $EDITRO", action="store_true")
+parser.add_argument("--print", "-d", help="Just print the resulting path", action="store_true")
 parser.add_argument("dest", nargs="?", help="Where to go")
 
 args = parser.parse_args()
@@ -77,8 +78,11 @@ if args.save:
 
 if args.dest:
     where = bm.load(args.dest) if not args.path else args.dest
-    with open("/tmp/where", "w") as f:
-        f.write(where)
-    # This means zsh should go here
-    sys.exit(3)
+    if args.print:
+        print(where)
+    else:
+        with open("/tmp/where", "w") as f:
+            f.write(where)
+        # This means zsh should go here
+        sys.exit(3)
 
