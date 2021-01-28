@@ -90,6 +90,7 @@ export SUDO_EDITOR=$EDITOR
 export TERM="xterm-256color"
 export PATH=$PATH:$HOME/Scripts/bin
 export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/.local/bin
 export WORDCHARS='*?.[]~=&;!#$%^(){}<>'
 
 #
@@ -98,6 +99,7 @@ export WORDCHARS='*?.[]~=&;!#$%^(){}<>'
 alias vim="$EDITOR"
 alias ls='ls --color=auto'
 alias etckeep="/usr/bin/git --git-dir=/etc/.git --work-tree=/etc/"
+alias vim="echo no"
 
 #
 # Functions
@@ -130,4 +132,3 @@ function goto {
         echo cd $(</tmp/where)
     fi
 }
-

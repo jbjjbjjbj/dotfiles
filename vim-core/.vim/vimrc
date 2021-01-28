@@ -98,16 +98,18 @@ filetype plugin indent on    " required
         map <leader>mm :make V=1<CR>
         map <leader>mf :make flash V=1<CR>
 
+" Style enforcement
+    autocmd FileType go setlocal noet
+
 " Enforcing filetypes
     autocmd BufRead,BufNewFile *.ino set filetype=c
     autocmd BufRead,BufNewFile *.asc set filetype=asciidoc
     autocmd BufRead,BufNewFile *.nix set filetype=nix
 
+    autocmd BufRead,BufNewFile *.tsx set filetype=typescript
+
 " Highlightning And colors
     set termguicolors
-    " let g:one_allow_italics = 1
-    let g:gruvbox_italic = 1
-    colorscheme gruvbox
 
 
 " Spell check
