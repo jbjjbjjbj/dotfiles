@@ -181,6 +181,7 @@ assign [class="firefox"] $ws9
 assign [class="Evolution"] $ws8
 assign [class="Fractal"] $ws7
 assign [class="quassel"] $ws7
+assign [class="liferea"] $ws7
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

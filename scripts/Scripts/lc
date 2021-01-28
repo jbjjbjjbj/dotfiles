@@ -3,22 +3,11 @@
 LOGFILE=.lc.log
 DMENU="rofi -dmenu"
 
-Commands="s sync lock common update poweroff suspend set-keyboard caps-lock battery cups-website scrot overleaf-render overleaf win pass wall stat mic mail region"
-statScripts="ram.sh status.sh net.sh mic.sh"
+Commands="s suspend goto common pass set-keyboard poweroff lock scrot region overleaf-render caps-lock win wall cups pass sync"
 
 handle_stuff() {
 	if [ "$1" = "--dmenu" ]; then
 		$0 $(echo $Commands | tr " " "\n" | $DMENU -i -p "lc")
-	fi
-
-	if [ "$1" = "edit" ] || [ "$1" = "e" ]; then
-		notify-send "$*"
-		st -e nvim $(echo $* | cut -d" " -f2-)
-	fi
-
-# System info
-	if [ "$1" = "b" ] || [ "$1" = "battery" ]; then
-		notify-send "Battery information" "$(acpi | grep 1:)"
 	fi
 
 # System maintenance
@@ -40,7 +29,7 @@ handle_stuff() {
 	fi
 
 # Mics
-	if [ "$1" = "p" ] || [ "$1" = "scrot" ]; then
+	if [ "$1" = "scrot" ]; then
 		scrot /tmp/%Y-%m-%d-%T-screenshot.png
 	fi
 	if [ "$1" = "region" ]; then
@@ -51,37 +40,31 @@ handle_stuff() {
 		st sh ~/Documents/overleafRenderer/compile.sh
 	fi
 
-	if [ "$1" = "caps-lock" ] || [ "$1" = "cl" ]; then
+	if [ "$1" = "caps-lock" ]; then
 		xdotool key Caps_Lock
 	fi
 
 	if [ "$1" = "win" ]; then
 		vboxmanage startvm "Windows xp"
 	fi
+
 	if [ "$1" = "wall" ]; then
 		$HOME/Scripts/setwall -A
-	fi
-	if [ "$1" = "mic" ]; then
-		amixer set Capture toggle
 	fi
 
 # Launch
     if [ "$1" = "s" ]; then
         $HOME/Scripts/guiworkspace.sh
     fi
+
 	if [ "$1" = "cups" ] || [ "$1" = "cups-website" ]; then
 		firefox "http://localhost:631/"
 	fi
-	if [ "$1" = "overleaf" ]; then
-		firefox -p Sharelatex --no-remote
-	fi
+
 	if [ "$1" = "pass" ]; then
 		bash $HOME/Scripts/passmenu --type
 	fi
 
-	if [ "$1" = "stat" ]; then
-		sh /home/julian/Scripts/$(echo $statScripts | tr " " "\n" | $DMENU -i -p "stat")
-	fi
 	if [ "$1" = "common" ]; then
 		python3 Scripts/commondocs.py ~/commondocs.json $(python3 Scripts/commondocs.py ~/commondocs.json | $DMENU)
 	fi
@@ -89,6 +72,10 @@ handle_stuff() {
     if [ "$1" = "sync" ]; then
         ./Scripts/sync.sh
         dunstify "Sync complete" "Sync completed at $(date)"
+    fi
+
+    if [ "$1" = "goto" ]; then
+        caja $(./Scripts/goto -d $(cat .bookmarks | awk -F ' ' '{print $1}' | $DMENU))
     fi
 
 # Calc
