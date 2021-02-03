@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+case $1 in
+    softmute)
+        pacmd set-source-volume @DEFAULT_SOURCE@ 0
+        ;;
+    softunmute)
+        pacmd set-source-volume @DEFAULT_SOURCE@ 28000
+        ;;
+    volumedown)
+        pactl set-sink-volume @DEFAULT_SINK@ -5%
+        ;;
+    volumeup)
+        pactl set-sink-volume @DEFAULT_SINK@ +5%
+        ;;
+    volumetoggle)
+        pactl set-sink-mute @DEFAULT_SINK@ toggle
+        ;;
+
+    playtoggle)
+        playerctl play-pause
+        ;;
+    forward)
+        playerctl next
+        ;;
+    backward)
+        playerctl previous
+        ;;
+esac
