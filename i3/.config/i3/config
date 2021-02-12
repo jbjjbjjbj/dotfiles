@@ -165,9 +165,12 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 
 # volume settings
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec ~/Scripts/volume volumeup
+bindsym XF86AudioLowerVolume exec ~/Scripts/volume volumedown
+bindsym XF86AudioMute exec ~/Scripts/volume volumetoggle
+bindsym XF86AudioPlay exec ~/Scripts/volume playtoggle
+bindsym XF86AudioPrev exec ~/Scripts/volume backward
+bindsym XF86AudioNext exec ~/Scripts/volume forward
 
 # launch script thingy
 bindsym $mod+semicolon exec --no-startup-id Scripts/lc --dmenu
