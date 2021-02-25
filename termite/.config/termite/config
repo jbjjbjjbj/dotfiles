@@ -52,7 +52,7 @@ foreground = #FFFFFF
 background = #000000
 
 # 20% background transparency (requires a compositor)
-background = rgba(0, 0, 0, 0.8)
+background = rgba(0, 0, 0, 1)
 
 # If unset, will reverse foreground and background
 highlight = #2f2f2f

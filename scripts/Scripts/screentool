@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+DMENU="rofi -dmenu -i"
+XRANDR="xrandr"
+
+set -e
+
+displays=$(xrandr | awk -F ' ' '/ connected/ {print $1}')
+
+echo "Found displays ${displays}"
+
+# Prompt for display
+chosen=$(echo ${displays} | tr " " "\n" | $DMENU -p "output")
+
+# get action
+action=$(printf "auto\noff" | $DMENU -p "action")
+
+if [ "$action" = "off" ]; then
+    set -x
+    $XRANDR --output $chosen --off
+    exit 0
+fi
+
+# Get position
+where=$(printf "left-of\nright-of\nbelow\nabove\nnone" | $DMENU -p "position")
+
+if [ "$where" = "none" ]; then
+    set -x
+    $XRANDR --output $chosen --auto
+    exit 0
+fi
+
+other=$(echo ${displays} | tr " " "\n" | $DMENU -p "other")
+
+set -x
+$XRANDR --output $chosen --auto --${where} $other

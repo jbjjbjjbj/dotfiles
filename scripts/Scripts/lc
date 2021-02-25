@@ -3,7 +3,7 @@
 LOGFILE=.lc.log
 DMENU="rofi -dmenu"
 
-Commands="s suspend goto common pass set-keyboard poweroff lock scrot region overleaf-render caps-lock win wall cups pass sync"
+Commands="s suspend screen goto common pass set-keyboard poweroff lock scrot region overleaf-render caps-lock win wall cups pass sync random"
 
 handle_stuff() {
 	if [ "$1" = "--dmenu" ]; then
@@ -52,6 +52,11 @@ handle_stuff() {
 		$HOME/Scripts/setwall -A
 	fi
 
+    if [ "$1" = "random" ]; then
+        stuff=$(python -c "print('\n'.join((str(i) for i in $(rofi -dmenu))))")
+        echo $stuff | tr " " "\n" | rofi -dmenu
+    fi
+
 # Launch
     if [ "$1" = "s" ]; then
         $HOME/Scripts/guiworkspace.sh
@@ -76,6 +81,10 @@ handle_stuff() {
 
     if [ "$1" = "goto" ]; then
         caja $(./Scripts/goto -d $(cat .bookmarks | awk -F ' ' '{print $1}' | $DMENU))
+    fi
+
+    if [ "$1" = "screen" ]; then
+        ~/Scripts/screentool
     fi
 
 # Calc
