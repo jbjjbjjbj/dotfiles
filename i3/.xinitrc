@@ -1,6 +1,6 @@
 
 export LOPTS="screensaver composer"
 # Launch other stuff
-source ~/Scripts/xlaunchrc >> $HOME/.xlaunch.log
+source ~/.xprofile
 
 exec i3
