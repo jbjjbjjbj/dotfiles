@@ -48,7 +48,7 @@ else
 fi
 
 setopt PROMPT_SUBST
-PROMPT='$MAINCOL%~$(git_info)$MAINCOL %(!.#.>) %F{255}'
+PROMPT='$MAINCOL%~$(git_info)$MAINCOL %(!.#.$) %F{255}'
 
 #
 # General setting
@@ -90,16 +90,20 @@ export SUDO_EDITOR=$EDITOR
 export TERM="xterm-256color"
 export PATH=$PATH:$HOME/Scripts/bin
 export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:$HOME/.local/bin
 export WORDCHARS='*?.[]~=&;!#$%^(){}<>'
+
+function extra_env {
+    export PATH=$PATH:$HOME/Software/litex/riscv64/bin/
+    export PATH=$PATH:$HOME/.local/bin
+    export PATH=$PATH:$HOME/go/bin
+}
 
 #
 # Alias
 #
 alias vim="$EDITOR"
 alias ls='ls --color=auto'
-alias etckeep="/usr/bin/git --git-dir=/etc/.git --work-tree=/etc/"
-alias vim="echo no"
+alias python="python3"
 
 #
 # Functions
@@ -132,3 +136,6 @@ function goto {
         echo cd $(</tmp/where)
     fi
 }
+
+source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+

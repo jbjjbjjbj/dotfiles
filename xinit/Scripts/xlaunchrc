@@ -19,7 +19,7 @@ dunst &
 play ~/Winsounds/login.wav -q &
 
 # Set dbus display variable
-dbus-update-activation-environment --systemd DISPLAY
+# dbus-update-activation-environment --systemd DISPLAY
 
 args="$LOPTS"
 for arg in $args
