@@ -21,9 +21,9 @@ if [ "$action" = "off" ]; then
 fi
 
 # Get position
-where=$(printf "left-of\nright-of\nbelow\nabove\nnone" | $DMENU -p "position")
+where=$(printf "left-of\nright-of\nbelow\nabove\nsame" | $DMENU -p "position")
 
-if [ "$where" = "none" ]; then
+if [ "$where" = "same" ]; then
     set -x
     $XRANDR --output $chosen --auto
     exit 0
