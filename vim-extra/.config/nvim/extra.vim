@@ -1,7 +1,7 @@
 " Plugins
     " set the runtime path to include Vundle and initialize
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
+    set rtp+=~/.config/nvim/bundle/Vundle.vim
+    call vundle#begin("~/.config/nvim/bundle")
     " alternatively, pass a path where Vundle should install plugins
     "call vundle#begin('~/some/path/here')
 
@@ -41,10 +41,12 @@
     " Plugin 'cespare/vim-toml'
     Plugin 'lervag/vimtex'
     " Plugin 'aklt/plantuml-syntax'
-    " Plugin 'LnL7/vim-nix'
+    Plugin 'LnL7/vim-nix'
     Plugin 'dart-lang/dart-vim-plugin'
 
     " Plugin 'vimwiki/vimwiki'
+
+    " Plugin 'glacambre/firenvim'
 
 
     " Snippits
@@ -95,3 +97,11 @@
     " Tab is already in use by completion
     let g:UltiSnipsExpandTrigger="<c-s>"
     let g:UltiSnipsJumpForwardTrigger="<c-space>"
+
+    " let g:firenvim_config = { 
+    "     \ 'localSettings': {
+    "         \ '.*': {
+    "             \ 'takeover': 'never',
+    "         \ },
+    "     \ }
+    " \ }
