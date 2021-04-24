@@ -2,6 +2,7 @@ import argparse
 import yaml
 
 from . import apply as apply_cmd
+from . import status
 
 
 def parse_config(path):
@@ -12,7 +13,7 @@ def parse_config(path):
     return config
 
 
-sub_cmds = {"apply": apply_cmd}
+sub_cmds = {"apply": apply_cmd, "status": status}
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--apply-dir", "-a", default=None,

@@ -2,6 +2,6 @@
 
 pkgs.mkShell {
     buildInputs = with pythonPackages; [
-        pyyaml
+        pyyaml tabulate
     ];
 }

@@ -1,7 +1,6 @@
 from pathlib import Path
 from .writer import Writer
 from .state import StateFile, FileState
-import os
 
 
 class Resolver:
@@ -15,17 +14,6 @@ class Resolver:
         self.writer = writer
         self.override = override
         self.state = state
-
-    def check_location(self, path: Path) -> FileState:
-        if not path.exists():
-            return FileState.Unused
-
-        if path.is_symlink():
-            dest = Path(os.path.realpath(str(path)))
-            if Path.cwd() in dest.parents:
-                return FileState.create_owned(dest)
-
-        return FileState.Used
 
     def check_parent(self, path: Path, packagename):
         """
@@ -46,7 +34,7 @@ class Resolver:
 
     def do_link(self, package, ppath: Path):
         dest = Path(self.applydir, ppath)
-        dest_state = self.check_location(dest)
+        dest_state = FileState.check_location(dest)
 
         if not self.override and not dest_state.can_write():
             # Check if it's a pointer to the correct location
@@ -58,7 +46,7 @@ class Resolver:
         self.check_parent(dest, package)
 
         target_abs = Path.cwd().joinpath(Path(package, ppath))
-        if dest_state == FileState.Owned \
+        if dest_state == FileState.Owned and dest_state.link_intact()\
                 and dest_state.links_to() == target_abs:
             return
 

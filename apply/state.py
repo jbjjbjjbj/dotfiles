@@ -2,6 +2,7 @@ from pathlib import Path
 import json
 from enum import Enum
 import hashlib
+import os
 
 
 def add_or_create(dictio, key, value):
@@ -27,11 +28,39 @@ class FileState(Enum):
 
         return self.links_to_path
 
+    def link_intact(self) -> bool:
+        return Path(self.links_to()).exists()
+
+    def check_string(self, dotdir: Path) -> str:
+        if self == FileState.Unused:
+            return "Free"
+        elif self == FileState.Owned:
+            status = "Intact" if self.link_intact() else "Broken"
+            return f"Owned by {self.owner(dotdir)} ({status})"
+        else:
+            return "Occupied"
+
+    def owner(self, dotdir: Path) -> str:
+        to = Path(self.links_to())
+        return to.relative_to(dotdir).parts[0]
+
     @staticmethod
     def create_owned(links_to: Path) -> "FileState":
         s = FileState.Owned
         s.links_to_path = links_to
         return s
+
+    @staticmethod
+    def check_location(path: Path) -> "FileState":
+        if path.is_symlink():
+            dest = Path(os.path.realpath(str(path)))
+            if Path.cwd() in dest.parents:
+                return FileState.create_owned(dest)
+
+        if not path.exists():
+            return FileState.Unused
+
+        return FileState.Used
 
 
 class StateFile:
