@@ -1,0 +1,6 @@
+do_not_link:
+    - .config
+    - .
+    # This is shared by the two vim packages
+    - .config/nvim
+    - Scripts

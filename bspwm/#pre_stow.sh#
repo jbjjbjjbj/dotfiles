@@ -1,3 +1,0 @@
-#!/bin/sh
-mkdir -p ~/.config/bspwm
-mkdir -p ~/.config/sxhkd
