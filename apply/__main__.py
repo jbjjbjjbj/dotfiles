@@ -1,8 +1,9 @@
 import argparse
 import yaml
 
-from . import apply as apply_cmd
-from . import status
+from . import apply_cmd
+from . import status_cmd
+from . import remove_cmd
 
 
 def parse_config(path):
@@ -13,7 +14,7 @@ def parse_config(path):
     return config
 
 
-sub_cmds = {"apply": apply_cmd, "status": status}
+sub_cmds = {"apply": apply_cmd, "status": status_cmd, "remove": remove_cmd}
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--apply-dir", "-a", default=None,

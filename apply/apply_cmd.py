@@ -14,12 +14,12 @@ class DirReader:
         self.resolv = resolv
         self.config = config
 
-    def read_package(self, name):
-        package_root = name
+    def read_module(self, name):
+        module_root = name
 
         # Walk down and link dir og file
-        for root, dirs, files in os.walk(package_root):
-            rootrel = os.path.relpath(root, start=package_root)
+        for root, dirs, files in os.walk(module_root):
+            rootrel = os.path.relpath(root, start=module_root)
 
             # Check if we can just link this folder
             if rootrel not in self.config["do_not_link"]:
@@ -36,7 +36,9 @@ class DirReader:
 
 
 def cmd_args(parser: argparse.ArgumentParser):
-    parser.add_argument("packages", nargs="*", help="Packages to apply")
+    parser.add_argument("modules", nargs="*", help="modules to apply")
+    parser.add_argument("-a", "--reapply", help="reapply modules",
+                        action="store_true")
 
 
 def cmd_func(args, config):
@@ -45,13 +47,17 @@ def cmd_func(args, config):
     resolv = Resolver(args.apply_dir, writer, state,
                       args.override_existing)
 
+    writer.attach_hook(state.dump_state)
+
+    if args.reapply:
+        args.modules = state.saved
+
     reader = DirReader(config, resolv)
-    for pack in args.packages:
-        reader.read_package(pack)
+    for module in args.modules:
+        reader.read_module(module)
+        state.add_saved_module(module)
 
     writer.apply(dry_run=args.dry_run)
-    if not args.dry_run:
-        state.dump_state()
 
 
 cmd_help = "Apply modules from current directory"

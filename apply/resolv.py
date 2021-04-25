@@ -15,24 +15,24 @@ class Resolver:
         self.override = override
         self.state = state
 
-    def check_parent(self, path: Path, packagename):
+    def check_parent(self, path: Path, modulename):
         """
         Check if parents exists, and if we created them mark them
-        with package name
+        with module name
         """
 
         parent = path.parent
         exists = parent.exists()
         if (not exists) or parent in self.state.dirs:
-            self.check_parent(parent, packagename)
+            self.check_parent(parent, modulename)
 
             # Add to state
-            self.state.add_dir(parent, packagename)
+            self.state.add_dir(parent, modulename)
 
             if not exists:
                 self.writer.create_dir(parent)
 
-    def do_link(self, package, ppath: Path):
+    def do_link(self, module, ppath: Path):
         dest = Path(self.applydir, ppath)
         dest_state = FileState.check_location(dest)
 
@@ -41,11 +41,11 @@ class Resolver:
             raise Exception(f"Destination {ppath} already exists")
 
         # Save the link in the statefile
-        self.state.add_link(dest, package)
+        self.state.add_link(dest, module)
 
-        self.check_parent(dest, package)
+        self.check_parent(dest, module)
 
-        target_abs = Path.cwd().joinpath(Path(package, ppath))
+        target_abs = Path.cwd().joinpath(Path(module, ppath))
         if dest_state == FileState.Owned and dest_state.link_intact()\
                 and dest_state.links_to() == target_abs:
             return
@@ -54,6 +54,6 @@ class Resolver:
             self.writer.delete(dest)
         self.writer.create_link(target_abs, dest)
 
-    def do_folder_link(self, package, ppath: Path) -> bool:
-        self.do_link(package, ppath)
+    def do_folder_link(self, module, ppath: Path) -> bool:
+        self.do_link(module, ppath)
         return True
