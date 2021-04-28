@@ -57,6 +57,15 @@ PROMPT='$MAINCOL%~$(git_info)$MAINCOL %(!.#.$) %F{255}'
 eval "$(dircolors)"
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
+#
+# Terminal specific settings
+#
+case $TERM in
+    xterm*)
+        precmd () {print -Pn "\e]0;%~\a"}
+        ;;
+esac
+
 # Expand with dots
 # https://michael.thegrebs.com/2012/09/04/zsh-completion-waiting-dots/
 expand-or-complete-with-dots() {
@@ -104,6 +113,7 @@ function extra_env {
 alias vim="$EDITOR"
 alias ls='ls --color=auto'
 alias python="python3"
+alias ipy="ipython"
 
 #
 # Functions
@@ -134,6 +144,16 @@ function goto {
     if [ $? -eq 3 ]; then
         cd $(</tmp/where)
         echo cd $(</tmp/where)
+    fi
+}
+
+function gotos {
+    goto $@
+    if [ -f "shell.drv" ]; then
+        echo Loading shell.drv
+        nix-shell shell.drv
+    else
+        nix-shell
     fi
 }
 

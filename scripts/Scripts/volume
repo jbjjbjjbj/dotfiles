@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+plctl_flags="-i chromium,firefox"
+
 case $1 in
     micmutetoggle)
         pacmd set-source-mute @DEFAULT_SOURCE@ toggle
@@ -21,12 +23,12 @@ case $1 in
         ;;
 
     playtoggle)
-        playerctl play-pause
+        playerctl $plctl_flags play-pause
         ;;
     forward)
-        playerctl next
+        playerctl $plctl_flags next
         ;;
     backward)
-        playerctl previous
+        playerctl $plctl_flags previous
         ;;
 esac

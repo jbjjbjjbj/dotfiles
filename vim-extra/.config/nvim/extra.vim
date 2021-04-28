@@ -27,15 +27,15 @@
     Plugin 'sgur/vim-editorconfig'
 
     " Color theme
-    " Plugin 'agude/vim-eldar'
+    Plugin 'agude/vim-eldar'
     " Plugin 'ntk148v/vim-horizon'
-    " Plugin 'rakr/vim-colors-rakr'
+    Plugin 'rakr/vim-colors-rakr'
     " Plugin 'rakr/vim-one'
     Plugin 'morhetz/gruvbox'
     " Plugin 'ntk148v/vim-horizon'
 
     " Git
-    " Plugin 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-fugitive'
 
     " File support
     " Plugin 'cespare/vim-toml'
@@ -78,6 +78,7 @@
     let g:LanguageClient_useVirtualText = "No"
     let g:LanguageClient_loggingFile = "/tmp/lsp.log"
     let g:LanguageClient_loggingLevel = "DEBUG"
+    let g:LanguageClient_diagnosticsList = "Disabled"
 
 
     " Setup lsp servers
