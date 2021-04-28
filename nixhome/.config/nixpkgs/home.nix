@@ -14,7 +14,7 @@
 
         # Developing
         rustup gcc go clang-tools
-        gdb php python-language-server
+        gdb php ghc stack
 
         # Gui applications
         firefox pavucontrol evince leafpad inkscape gimp 
@@ -25,7 +25,7 @@
         gnome3.evolution evolution-data-server vimHugeX
         (mumble.override { pulseSupport = true; })
         libreoffice-fresh liferea qutebrowser mate.caja
-        audacity gnome3.eog veracrypt xournal
+        audacity gnome3.eog veracrypt xournal remmina
 
         # Other stuff
         texlive.combined.scheme-medium biber
