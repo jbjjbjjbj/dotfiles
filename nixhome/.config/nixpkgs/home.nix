@@ -16,13 +16,15 @@
         rustup gcc go clang-tools
         gdb php ghc stack
 
+        # Email and calendar
+        gnome3.evolution gnome3.gnome-calendar evolution-data-server
+
         # Gui applications
         firefox pavucontrol evince leafpad inkscape gimp 
         meld pinentry gnome3.gnome-system-monitor
         termite quasselClient wireshark spotify
         gnome3.file-roller gnome3.gnome-calculator 
-        gnome3.simple-scan vlc mpv xorg.xev
-        gnome3.evolution evolution-data-server vimHugeX
+        gnome3.simple-scan vlc mpv xorg.xev vimHugeX
         (mumble.override { pulseSupport = true; })
         libreoffice-fresh liferea qutebrowser mate.caja
         audacity gnome3.eog veracrypt xournal remmina
