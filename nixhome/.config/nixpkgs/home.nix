@@ -28,9 +28,17 @@
         (mumble.override { pulseSupport = true; })
         libreoffice-fresh liferea qutebrowser mate.caja
         audacity gnome3.eog veracrypt xournal remmina
+        musescore fractal gnome3.gnome-disk-utility ipcalc playerctl
+        xarchive gtkwave
 
         # Other stuff
-        texlive.combined.scheme-medium biber
+        ( texlive.combine { inherit (texlive)
+            scheme-medium minted fvextra upquote catchfile xstring framed
+            multirow makecell ntheorem cleveref enumitem todonotes
+            lastpage biblatex glossaries pgfplots csquotes soul
+            mfirstuc xfor datatool mdframed zref needspace;
+        })
+        biber
         youtube-dl sshpass python38Packages.pynvim
         aspell aspellDicts.da aspellDicts.en
         ffmpegthumbnailer tio imagemagick sox poppler_utils
