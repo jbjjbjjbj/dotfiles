@@ -3,7 +3,7 @@
 LOGFILE=.lc.log
 DMENU="rofi -dmenu"
 
-Commands="s suspend screen goto common pass set-keyboard poweroff lock scrot region overleaf-render caps-lock win wall cups pass sync random"
+Commands="s suspend screen goto common pass remember set-keyboard poweroff lock scrot region overleaf-render caps-lock win wall cups pass sync random"
 
 handle_stuff() {
 	if [ "$1" = "--dmenu" ]; then
@@ -29,11 +29,13 @@ handle_stuff() {
 	fi
 
 # Mics
+    imagename=$HOME/Screenshots/$(date -Iseconds)-screenshot.png
 	if [ "$1" = "scrot" ]; then
-		scrot /tmp/%Y-%m-%d-%T-screenshot.png
+		scrot $imagename
 	fi
 	if [ "$1" = "region" ]; then
-        import /tmp/$(date -Iseconds)-screenshot.png
+        import $imagename
+        xclip -selection clipboard -t image/png -i $imagename
 	fi
 
 	if [ "$1" = "overleaf-render" ]; then
@@ -55,6 +57,11 @@ handle_stuff() {
     if [ "$1" = "random" ]; then
         stuff=$(python -c "print('\n'.join((str(i) for i in $(rofi -dmenu))))")
         echo $stuff | tr " " "\n" | rofi -dmenu
+    fi
+
+    if [ "$1" = "remember" ]; then
+        import /tmp/rem.png
+        feh /tmp/rem.png
     fi
 
 # Launch
