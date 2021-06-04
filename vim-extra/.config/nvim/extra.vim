@@ -43,6 +43,7 @@
     " Plugin 'aklt/plantuml-syntax'
     Plugin 'LnL7/vim-nix'
     Plugin 'dart-lang/dart-vim-plugin'
+    Plugin 'fatih/vim-go'
 
     " Plugin 'vimwiki/vimwiki'
 
@@ -50,7 +51,7 @@
 
 
     " Snippits
-    Plugin 'SirVer/ultisnips'
+    " Plugin 'SirVer/ultisnips'
     " Plugin 'honza/vim-snippets'
 
     call vundle#end()            " required
@@ -96,8 +97,8 @@
     colorscheme gruvbox
 
     " Tab is already in use by completion
-    let g:UltiSnipsExpandTrigger="<c-s>"
-    let g:UltiSnipsJumpForwardTrigger="<c-space>"
+    "let g:UltiSnipsExpandTrigger="<c-s>"
+    "let g:UltiSnipsJumpForwardTrigger="<c-space>"
 
     " let g:firenvim_config = { 
     "     \ 'localSettings': {

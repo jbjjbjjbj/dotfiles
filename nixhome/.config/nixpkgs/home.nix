@@ -17,7 +17,7 @@
         gdb php ghc stack
 
         # Email and calendar
-        gnome3.evolution gnome3.gnome-calendar evolution-data-server
+        evolution gnome3.gnome-calendar evolution-data-server
 
         # Gui applications
         firefox pavucontrol evince leafpad inkscape gimp 
