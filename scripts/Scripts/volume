@@ -10,7 +10,7 @@ case $1 in
         pacmd set-source-volume @DEFAULT_SOURCE@ 0
         ;;
     softunmute)
-        pacmd set-source-volume @DEFAULT_SOURCE@ 50000
+        pacmd set-source-volume @DEFAULT_SOURCE@ 69000
         ;;
     volumedown)
         pactl set-sink-volume @DEFAULT_SINK@ -5%

@@ -13,7 +13,7 @@
         xbindkeys
 
         # Developing
-        rustup gcc go clang-tools
+        gcc go clang-tools
         gdb php ghc stack
 
         # Email and calendar
@@ -29,7 +29,7 @@
         libreoffice-fresh liferea qutebrowser mate.caja
         audacity gnome3.eog veracrypt xournal remmina
         musescore fractal gnome3.gnome-disk-utility ipcalc playerctl
-        xarchive gtkwave
+        xarchive gtkwave gnome3.cheese pandoc
 
         # Other stuff
         ( texlive.combine { inherit (texlive)
