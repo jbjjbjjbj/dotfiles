@@ -29,7 +29,7 @@
         libreoffice-fresh liferea qutebrowser mate.caja
         audacity gnome3.eog veracrypt xournal remmina
         musescore fractal gnome3.gnome-disk-utility ipcalc playerctl
-        xarchive gtkwave gnome3.cheese pandoc
+        xarchive gtkwave gnome3.cheese pandoc filelight
 
         # Other stuff
         ( texlive.combine { inherit (texlive)
@@ -42,6 +42,7 @@
         youtube-dl sshpass python38Packages.pynvim
         aspell aspellDicts.da aspellDicts.en
         ffmpegthumbnailer tio imagemagick sox poppler_utils
+        ffmpeg fortune
 
         # The python env created in overlay
         defaultPythonEnv

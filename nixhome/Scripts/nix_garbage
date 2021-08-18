@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -x
 
-nix-env --delete-generations +1
-home-manager expire-generations "-1 days"
-sudo nix-collect-garbage --delete-older-than 10d
+nix-env --delete-generations +2
+home-manager expire-generations "-10 days"
+sudo nix-collect-garbage --delete-older-than 10
 sudo nixos-rebuild boot
