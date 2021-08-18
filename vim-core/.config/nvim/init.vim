@@ -1,17 +1,24 @@
-set nocompatible              " be iMproved, required
+set nocompatible
 filetype plugin on
 set shellslash
 
 runtime extra.vim
 filetype plugin indent on    " required
 
-" General vim settings
+" General vim settings{{{
     syntax enable
     set number 
     set relativenumber
 
+    set cul
+
     " More sensible splitting
     set splitbelow splitright
+
+    set backspace=start,eol
+
+    " Do not create the tilde files
+    set nobackup
 
     set tabstop=4
     set shiftwidth=4
@@ -52,38 +59,28 @@ filetype plugin indent on    " required
     set autoread
 
     " Exit insert mode on inactivity
-    " au CursorHoldI * stopinsert
+    " au CursorHoldI * stopinsert}}}
 
-" Language specific
+" Cursor{{{
+    augroup cursorgroup
+        autocmd InsertEnter * set nocul
+        autocmd InsertLeave * set cul
+    augroup end"}}}
+
+" Language specific{{{
     autocmd FileType python set et
+    autocmd FileType go setlocal noet
+    autocmd FileType nix setlocal shiftwidth=4
+    autocmd FileType vim setlocal foldmethod=marker"}}}
 
-" Latex stuff
-    let g:tex_flavor='latex'
-
-    let g:vimtex_quickfix_blgparser = {'disable': 1}
-    let g:vimtex_quickfix_open_on_warning = 0
-    let g:vimtex_compiler_latexmk = {
-        \ 'backend' : 'nvim',
-        \ 'background' : 0,
-        \ 'build_dir' : '',
-        \ 'callback' : 1,
-        \ 'continuous' : 0,
-        \ 'executable' : 'latexmk',
-        \ 'hooks' : [],
-        \ 'options' : [
-        \   '-file-line-error',
-        \   '-synctex=1',
-        \ ],
-        \}
-
-" File management
+" File management{{{
     " Fuzzy like menu
     set path+=**
     set wildmenu
 
-    let g:netrw_liststyle=2
+    let g:netrw_liststyle=2"}}}
 
-" Keymapping
+" Keymapping{{{
     " Tab for cycling the completion meny, in insert mode
     inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -96,23 +93,19 @@ filetype plugin indent on    " required
         let mapleader=" "
 
         map <leader>mm :make V=1<CR>
-        map <leader>mf :make flash V=1<CR>
+        map <leader>mf :make flash V=1<CR>"}}}
 
-" Style enforcement
-    autocmd FileType go setlocal noet
-    autocmd FileType nix setlocal shiftwidth=4
-
-" Enforcing filetypes
+" Enforcing filetypes{{{
     autocmd BufRead,BufNewFile *.ino set filetype=c
     autocmd BufRead,BufNewFile *.asc set filetype=asciidoc
     autocmd BufRead,BufNewFile *.nix set filetype=nix
 
-    autocmd BufRead,BufNewFile *.tsx set filetype=typescript
+    autocmd BufRead,BufNewFile *.tsx set filetype=typescript"}}}
 
-" Highlightning And colors
+" Highlightning And colors{{{
     set termguicolors
 
 " Spell check
-    set spelllang=en
-    " autocmd FileType mail,tex,markdown,rst set spell
+    set spelllang=en,da
+    " autocmd FileType mail,tex,markdown,rst set spell}}}
 

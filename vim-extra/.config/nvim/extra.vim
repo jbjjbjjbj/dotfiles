@@ -1,4 +1,4 @@
-" Plugins
+" Plugins{{{
     " set the runtime path to include Vundle and initialize
     set rtp+=~/.config/nvim/bundle/Vundle.vim
     call vundle#begin("~/.config/nvim/bundle")
@@ -38,7 +38,7 @@
     Plugin 'tpope/vim-fugitive'
 
     " File support
-    " Plugin 'cespare/vim-toml'
+    Plugin 'cespare/vim-toml'
     Plugin 'lervag/vimtex'
     " Plugin 'aklt/plantuml-syntax'
     Plugin 'LnL7/vim-nix'
@@ -54,9 +54,9 @@
     " Plugin 'SirVer/ultisnips'
     " Plugin 'honza/vim-snippets'
 
-    call vundle#end()            " required
+    call vundle#end()            " required}}}
 
-" Completion
+" Completion{{{
     set completeopt+=menuone
     set completeopt+=noselect
 
@@ -106,4 +106,4 @@
     "             \ 'takeover': 'never',
     "         \ },
     "     \ }
-    " \ }
+    " \ }}}}
