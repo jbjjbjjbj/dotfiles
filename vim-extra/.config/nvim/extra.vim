@@ -1,7 +1,7 @@
 " Plugins{{{
     " set the runtime path to include Vundle and initialize
-    set rtp+=~/.config/nvim/bundle/Vundle.vim
-    call vundle#begin("~/.config/nvim/bundle")
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin("~/.vim/bundle")
     " alternatively, pass a path where Vundle should install plugins
     "call vundle#begin('~/some/path/here')
 

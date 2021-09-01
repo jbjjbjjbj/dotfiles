@@ -70,7 +70,7 @@ filetype plugin indent on    " required
 " Language specific{{{
     autocmd FileType python set et
     autocmd FileType go setlocal noet
-    autocmd FileType nix setlocal shiftwidth=4
+    autocmd FileType nix setlocal shiftwidth=4 softtabstop=4
     autocmd FileType vim setlocal foldmethod=marker"}}}
 
 " File management{{{
@@ -90,10 +90,7 @@ filetype plugin indent on    " required
     nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '' ) . 'k'
 
     " Leader stuff
-        let mapleader=" "
-
-        map <leader>mm :make V=1<CR>
-        map <leader>mf :make flash V=1<CR>"}}}
+        let mapleader="\<Space>"
 
 " Enforcing filetypes{{{
     autocmd BufRead,BufNewFile *.ino set filetype=c
