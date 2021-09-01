@@ -22,6 +22,8 @@ setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
 setopt HIST_FIND_NO_DUPS
 unsetopt beep
+
+setopt interactivecomments
 # End of lines configured by zsh-newuser-install
 
 #
