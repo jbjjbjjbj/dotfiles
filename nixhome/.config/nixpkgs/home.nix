@@ -14,7 +14,7 @@
 
         # Developing
         gcc go clang-tools
-        gdb php ghc stack
+        gdb php ghc stack racket chez
 
         # Email and calendar
         evolution gnome3.gnome-calendar evolution-data-server

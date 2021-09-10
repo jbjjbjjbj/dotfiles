@@ -7,9 +7,11 @@
 (defvar packages (list
                    'use-package
                    'geiser-chez
+		   'geiser-racket
                    'company
                    'nix-mode
 		   'lsp-mode
+		   'magit
                    ))
 
 (mapc (lambda (pack)
@@ -40,6 +42,9 @@
 (global-display-line-numbers-mode)
 (setq display-line-numbers-type 'relative)
 
+(tool-bar-mode -1)
+(toggle-scroll-bar -1)
+
 ;; Completion
 ;; (add-hook 'after-init-hook 'global-company-mode)
 
@@ -60,7 +65,7 @@
  '(ansi-color-names-vector
    ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
  '(custom-enabled-themes '(deeper-blue))
- '(package-selected-packages '(use-package evil-surround evil-collection)))
+ '(package-selected-packages '(magit use-package evil-surround evil-collection)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
