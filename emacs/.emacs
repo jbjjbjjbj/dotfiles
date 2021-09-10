@@ -29,11 +29,13 @@
              (setq evil-want-keybinding nil)
 	     (setq evil-want-C-u-scroll t)
              :config
+
              (evil-mode 1))
 
 (use-package evil-collection
              :after evil
              :ensure t
+
              :config
              (evil-collection-init))
 
@@ -46,7 +48,6 @@
 (toggle-scroll-bar -1)
 
 ;; Completion
-;; (add-hook 'after-init-hook 'global-company-mode)
 
 (require 'lsp-mode)
 (mapc (lambda (mode) (add-hook mode #'lsp)) (list
@@ -54,6 +55,12 @@
 					     'python-mode-hook
 					     ))
 
+(mapc (lambda (mode) (add-hook mode 'company-mode)) (list
+						   'emacs-lisp-mode-hook
+						   ))
+
+;; Custom keybinding
+(define-key (current-global-map) [remap list-buffers] 'ibuffer)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
