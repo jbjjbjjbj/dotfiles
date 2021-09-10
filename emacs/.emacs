@@ -10,8 +10,8 @@
 		   'geiser-racket
                    'company
                    'nix-mode
-		   'lsp-mode
-		   'magit
+                   'lsp-mode
+                   'magit
                    ))
 
 (mapc (lambda (pack)
@@ -21,6 +21,7 @@
 
 (require 'use-package)
 (require 'nix-mode)
+(require 'magit)
 
 (use-package evil
              :ensure t
@@ -43,9 +44,25 @@
 (global-hl-line-mode)
 (global-display-line-numbers-mode)
 (setq display-line-numbers-type 'relative)
-
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
+
+;; Keyboard bindings
+(defun split-and-follow-horizontal ()
+  (interactive)
+  (split-window-below)
+  (balance-windows)
+  (other-window 1))
+(global-set-key(kbd "C-x 2") 'split-and-follow-horizontal)
+(defun split-and-follow-vertical ()
+  (interactive)
+  (split-window-right)
+  (balance-windows)
+  (other-window 1))
+(global-set-key(kbd "C-x 3") 'split-and-follow-vertical)
+
+(keyboard-translate ?\C-h ?\C-x)
+(keyboard-translate ?\C-x ?\C-h)
 
 ;; Completion
 
