@@ -11,9 +11,6 @@ function help() {
     echo "  -h, --help              this help message"
 }
 
-# Fix hardcode
-DISP=LVDS1
-
 BINNAME="xrotate"
 
 # Parse some args
@@ -38,6 +35,12 @@ while [[ $# -gt 0 ]]; do
             ;;
     esac
 done
+
+if [ -z "${DISP}" ]; then
+    # TODO, this will break with more displays
+    DISP=$(xrandr | awk -F ' ' '/ connected/ {print $1}')
+fi
+
 
 O=$1
 

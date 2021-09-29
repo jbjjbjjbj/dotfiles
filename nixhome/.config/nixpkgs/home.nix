@@ -13,15 +13,15 @@
         xbindkeys
 
         # Developing
-        gcc go clang-tools
+        gcc go clang-tools # haskell-language-server
         gdb php ghc stack racket chez
 
         # Email and calendar
-        evolution gnome3.gnome-calendar evolution-data-server
+        evolution gnome3.gnome-calendar evolution-data-server evolution-ews
 
         # Gui applications
         firefox pavucontrol evince leafpad inkscape gimp 
-        meld pinentry gnome3.gnome-system-monitor
+        meld pinentry gnome3.gnome-system-monitor guake
         termite quasselClient wireshark spotify
         gnome3.file-roller gnome3.gnome-calculator 
         gnome3.simple-scan vlc mpv xorg.xev vimHugeX

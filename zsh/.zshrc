@@ -116,7 +116,6 @@ alias vim="$EDITOR"
 alias ls='ls --color=auto'
 alias python="python3"
 alias ipy="ipython"
-alias nvim="echo no"
 
 #
 # Functions
