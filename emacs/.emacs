@@ -12,6 +12,7 @@
 		  'nix-mode
 		  'lsp-mode
 		  'magit
+		  'auctex
 		  ))
 (defun install-stuff () (interactive)
        (mapc (lambda (pack)
@@ -47,6 +48,8 @@
 (setq display-line-numbers-type 'relative)
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
+
+(setq indent-tabs-mode nil)
 
 (show-paren-mode 1)
 (setq show-paren-when-point-inside-paren 1)
@@ -88,6 +91,8 @@
 
 (global-set-key (kbd "C-x C-d") 'toggle-dark-mode)
 
+(add-hook 'direc-mode-hook 'auto-revert-mode)
+
 ;; Completion
 
 (require 'lsp-mode)
@@ -112,7 +117,8 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
- '(package-selected-packages '(magit use-package evil-surround evil-collection)))
+ '(package-selected-packages
+   '(auctex lsp-haskell haskell-mode geiser-racket magit use-package evil-surround evil-collection)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
