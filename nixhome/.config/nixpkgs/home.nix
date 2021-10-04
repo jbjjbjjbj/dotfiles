@@ -36,7 +36,8 @@
             scheme-medium minted fvextra upquote catchfile xstring framed
             multirow makecell ntheorem cleveref enumitem todonotes
             lastpage biblatex glossaries pgfplots csquotes soul
-            mfirstuc xfor datatool mdframed zref needspace;
+            mfirstuc xfor datatool mdframed zref needspace placeins
+            wrapfig tcolorbox environ listingsutf8 subfiles;
         })
         biber
         youtube-dl sshpass python38Packages.pynvim
