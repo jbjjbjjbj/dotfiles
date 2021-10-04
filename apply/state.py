@@ -55,7 +55,7 @@ class FileState(Enum):
     @staticmethod
     def check_location(path: Path) -> "FileState":
         if path.is_symlink():
-            dest = Path(os.path.realpath(str(path)))
+            dest = Path(os.readlink(str(path)))
             if Path.cwd() in dest.parents:
                 return FileState.create_owned(dest)
 
