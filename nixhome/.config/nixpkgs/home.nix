@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
-{
+let
+    unstable = import <unstable> {};
+in {
     # Yep makes sense
     programs.home-manager.enable = true;
 
@@ -13,8 +15,8 @@
         xbindkeys
 
         # Developing
-        gcc go clang-tools # haskell-language-server
-        gdb php ghc stack racket chez
+        gcc go clang-tools unstable.haskell-language-server
+        gdb php unstable.ghc stack racket chez rustc cargo
 
         # Email and calendar
         evolution gnome3.gnome-calendar evolution-data-server evolution-ews
@@ -40,6 +42,7 @@
             wrapfig tcolorbox environ listingsutf8 subfiles;
         })
         biber
+
         youtube-dl sshpass python38Packages.pynvim
         aspell aspellDicts.da aspellDicts.en
         ffmpegthumbnailer tio imagemagick sox poppler_utils

@@ -13,6 +13,8 @@
 		  'lsp-mode
 		  'magit
 		  'auctex
+		  'better-jumper
+		  'lsp-haskell
 		  ))
 (defun install-stuff () (interactive)
        (mapc (lambda (pack)
@@ -69,6 +71,26 @@
       (funcall switch 'adwaita 'dark))))
 (toggle-dark-mode)
 
+(setq-default TeX-master 'shared)
+
+(better-jumper-mode +1)
+(with-eval-after-load 'evil-maps
+                      (define-key evil-motion-state-map (kbd "C-o") 'better-jumper-jump-backward)
+                      (define-key evil-motion-state-map (kbd "<tab>") 'better-jumper-jump-forward))
+
+;; The following add mappings to 40j and 20k to add it to the jump list.
+;; It was stolen from [1]
+(defun my-jump-advice (oldfun &rest args)
+  (let ((old-pos (point)))
+    (apply oldfun args)
+    (when (> (abs (- (line-number-at-pos old-pos) (line-number-at-pos (point))))
+	     1)
+      (save-excursion
+	(goto-char old-pos)
+	(evil-set-jump)))))
+
+(advice-add 'evil-next-line :around #'my-jump-advice)
+(advice-add 'evil-previous-line :around #'my-jump-advice)
 
 ;; Keyboard bindings
 (defun split-and-follow-horizontal ()
@@ -96,9 +118,12 @@
 ;; Completion
 
 (require 'lsp-mode)
+(require 'lsp-haskell)
 (mapc (lambda (mode) (add-hook mode #'lsp)) (list
 					     'c-mode-hook
 					     'python-mode-hook
+					     'haskell-mode-hook
+					     'haskell-literate-mode-hook
 					     ))
 
 (mapc (lambda (mode) (add-hook mode 'company-mode)) (list
@@ -118,10 +143,12 @@
  '(ansi-color-names-vector
    ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
  '(package-selected-packages
-   '(auctex lsp-haskell haskell-mode geiser-racket magit use-package evil-surround evil-collection)))
+   '(better-jumper auctex lsp-haskell haskell-mode geiser-racket magit use-package evil-surround evil-collection)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; [1] https://www.reddit.com/r/emacs/comments/8flkrg/evil_add_numbered_movement_to_the_jump_list/dy6b8qq/
