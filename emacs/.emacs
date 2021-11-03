@@ -15,17 +15,23 @@
 		  'auctex
 		  'better-jumper
 		  'lsp-haskell
+		  'undo-tree
+		  'rust-mode
 		  ))
 (defun install-stuff () (interactive)
+       (package-refresh-contents)
        (mapc (lambda (pack)
 	       (unless (package-installed-p pack)
 		 (package-install pack))
 	       ) packages)
+       (message "Done with the stuff")
        )
 
+(require 'undo-tree)
 (require 'use-package)
 (require 'nix-mode)
 (require 'magit)
+(require 'rust-mode)
 
 (use-package evil
   :ensure t
@@ -34,7 +40,8 @@
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
   :config
-
+  (evil-set-undo-system 'undo-tree)
+  (global-undo-tree-mode 1)
   (evil-mode 1))
 
 (use-package evil-collection
@@ -119,11 +126,15 @@
 
 (require 'lsp-mode)
 (require 'lsp-haskell)
+
+(setq lsp-headerline-breadcrumb-enable nil)
+
 (mapc (lambda (mode) (add-hook mode #'lsp)) (list
 					     'c-mode-hook
 					     'python-mode-hook
 					     'haskell-mode-hook
 					     'haskell-literate-mode-hook
+					     'rust-mode-hook
 					     ))
 
 (mapc (lambda (mode) (add-hook mode 'company-mode)) (list
@@ -143,7 +154,7 @@
  '(ansi-color-names-vector
    ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
  '(package-selected-packages
-   '(better-jumper auctex lsp-haskell haskell-mode geiser-racket magit use-package evil-surround evil-collection)))
+   '(undo-tree better-jumper auctex lsp-haskell haskell-mode geiser-racket magit use-package evil-surround evil-collection)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
