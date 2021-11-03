@@ -15,7 +15,7 @@ filetype plugin indent on    " required
     " More sensible splitting
     set splitbelow splitright
 
-    set backspace=start,eol
+    set backspace=start,eol,indent
 
     " Do not create the tilde files
     set nobackup
@@ -72,6 +72,11 @@ filetype plugin indent on    " required
     autocmd FileType go setlocal noet
     autocmd FileType nix setlocal shiftwidth=4 softtabstop=4
     autocmd FileType vim setlocal foldmethod=marker"}}}
+    autocmd BufNewFile,BufRead *.tex
+        \ set nocursorline |
+        \ set nornu |
+        \ set number |
+        \ let g:loaded_matchparen=1 |
 
 " File management{{{
     " Fuzzy like menu
@@ -90,7 +95,8 @@ filetype plugin indent on    " required
     nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '' ) . 'k'
 
     " Leader stuff
-        let mapleader="\<Space>"
+    let mapleader=" "
+    nnoremap <SPACE> <Nop>
 
 " Enforcing filetypes{{{
     autocmd BufRead,BufNewFile *.ino set filetype=c
