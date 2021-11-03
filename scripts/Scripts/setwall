@@ -1,15 +1,22 @@
 #!/usr/bin/env bash
 
-DEFPATH="$HOME/Pictures/defaultWall"
 WALLFILE="$HOME/Pictures/wallconfig"
 WALLLINK="$HOME/Pictures/current_wall"
 BINNAME="setwall"
 
 function unsetwalls() {
-	echo unsetting $@
 	for wall in $@; do
-		sed -i.bak "/$wall/d" $WALLFILE
+        echo unsetting $wall
+		sed -i.bak ":$wall:d" $WALLFILE
 	done
+}
+function unsetcur() {
+    if [ -f "${WALLLINK}" ]; then
+        unsetwalls $(realpath --relative-to=$HOME $WALLLINK)
+    else
+        echo "could not resolve current wallpaper"
+        exit 1
+    fi
 }
 function delete() {
 	echo deleting wallfile
@@ -57,6 +64,7 @@ function help() {
 	echo "unset options:"
 	echo "  -a, --all                       clears wallconfig file"
 	echo "  -d, --delete                    deleted wallconfig file"
+	echo "  -c, --current                   unset currently applied wallpaper"
 	echo
 	echo "apply options:"
 	echo "  -r, --reapply                   reapply last applied wallpaper"
@@ -98,6 +106,10 @@ while [[ $# -gt 0 ]]; do
 						delete
 						exit 0
 						;;
+                    -c|--current)
+                        unsetcur
+                        exit 0
+                        ;;
 					'-'*|'--'*)
 						unknown $key
 						;;
