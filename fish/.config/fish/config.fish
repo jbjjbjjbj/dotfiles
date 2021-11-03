@@ -1,5 +1,3 @@
-# Todo list
-cat $HOME/todo.txt
 # Vim stuff
 alias vim "nvim"
 set -x EDITOR nvim
