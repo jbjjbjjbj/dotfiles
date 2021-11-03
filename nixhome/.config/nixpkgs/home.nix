@@ -6,7 +6,7 @@ in {
     # Yep makes sense
     programs.home-manager.enable = true;
 
-    home.packages = with pkgs; [
+    home.packages = with unstable; [
         stow pass gopass fzf
 
         # X stuff required by scripts
@@ -16,7 +16,7 @@ in {
 
         # Developing
         gcc go clang-tools unstable.haskell-language-server
-        gdb php unstable.ghc stack racket chez rustc cargo
+        gdb php unstable.ghc stack racket chez rustc cargo rls
 
         # Email and calendar
         evolution gnome3.gnome-calendar evolution-data-server evolution-ews
@@ -31,7 +31,7 @@ in {
         libreoffice-fresh liferea qutebrowser mate.caja
         audacity gnome3.eog veracrypt xournal remmina
         musescore fractal gnome3.gnome-disk-utility ipcalc playerctl
-        xarchive gtkwave gnome3.cheese pandoc filelight
+        xarchive gtkwave gnome3.cheese pandoc filelight zathura
 
         # Other stuff
         ( texlive.combine { inherit (texlive)
@@ -39,7 +39,8 @@ in {
             multirow makecell ntheorem cleveref enumitem todonotes
             lastpage biblatex glossaries pgfplots csquotes soul
             mfirstuc xfor datatool mdframed zref needspace placeins
-            wrapfig tcolorbox environ listingsutf8 subfiles;
+            wrapfig tcolorbox environ listingsutf8 subfiles acmart totpages
+            hyperxmp ifmtarg ncctools comment libertine inconsolata newtx;
         })
         biber
 
@@ -49,6 +50,6 @@ in {
         ffmpeg fortune
 
         # The python env created in overlay
-        defaultPythonEnv
+        pkgs.defaultPythonEnv
     ];
 }
