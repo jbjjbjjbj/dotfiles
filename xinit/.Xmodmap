@@ -2,3 +2,8 @@ clear lock
 clear control
 keycode 66 = Control_R
 add control = Control_R Control_L
+
+remove mod1 = Alt_L
+keycode 64 = Super_L
+
+keycode 94 = Alt_L
