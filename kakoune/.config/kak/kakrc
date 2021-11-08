@@ -1,0 +1,19 @@
+
+# Lsp stuff
+eval %sh{kak-lsp --kakoune -s %kak_session}
+lsp-enable
+map global user l %{: enter-user-mode lsp<ret>} -docstring "LSP mode"
+# lsp-auto-hover-enable
+
+# General stuff
+colorscheme gruvbox
+
+hook global InsertChar \t %{ exec -draft -itersel h@ }
+set global tabstop 4
+set global indentwidth 4
+
+map global insert <c-w> '<a-;>b<a-;>d'
+
+add-highlighter global/matching show-matching
+set-face global MatchingChar blue+b
+add-highlighter global/nums number-lines -relative

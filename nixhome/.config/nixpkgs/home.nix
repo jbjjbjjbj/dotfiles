@@ -16,7 +16,7 @@ in {
 
         # Developing
         gcc go clang-tools unstable.haskell-language-server
-        gdb php unstable.ghc stack racket chez rustc cargo rls
+        gdb php unstable.ghc stack racket chez rustc cargo rls kak-lsp
 
         # Email and calendar
         evolution gnome3.gnome-calendar evolution-data-server evolution-ews
