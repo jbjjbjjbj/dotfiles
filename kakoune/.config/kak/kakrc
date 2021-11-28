@@ -12,8 +12,11 @@ hook global InsertChar \t %{ exec -draft -itersel h@ }
 set global tabstop 4
 set global indentwidth 4
 
-map global insert <c-w> '<a-;>b<a-;>d'
+map global insert <c-w> '<a-;><a-/>\S+\s*<ret><a-;>d'
 
 add-highlighter global/matching show-matching
 set-face global MatchingChar blue+b
-add-highlighter global/nums number-lines -relative
+add-highlighter global/lines number-lines -relative
+add-highlighter global/tabs show-whitespaces -tab ">" -lf " " -nbsp " " -spc " "
+
+add-highlighter global/wrap wrap
