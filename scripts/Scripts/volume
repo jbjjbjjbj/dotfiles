@@ -13,10 +13,10 @@ case $1 in
         pacmd set-source-volume @DEFAULT_SOURCE@ 69000
         ;;
     volumedown)
-        pactl set-sink-volume @DEFAULT_SINK@ -5%
+        pactl set-sink-volume @DEFAULT_SINK@ -2%
         ;;
     volumeup)
-        pactl set-sink-volume @DEFAULT_SINK@ +5%
+        pactl set-sink-volume @DEFAULT_SINK@ +2%
         ;;
     volumetoggle)
         pactl set-sink-mute @DEFAULT_SINK@ toggle
