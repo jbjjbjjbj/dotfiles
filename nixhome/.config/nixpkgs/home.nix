@@ -7,22 +7,23 @@ in {
     programs.home-manager.enable = true;
 
     home.packages = with unstable; [
-        stow pass gopass fzf
+        stow pass gopass fzf entr
 
         # X stuff required by scripts
         feh rofi xorg.xmodmap xss-lock xclip xorg.xkill
         xdotool dunst xcompmgr scrot libnotify i3lock
-        xbindkeys
+        xbindkeys pywal
 
         # Developing
-        gcc go clang-tools unstable.haskell-language-server
+        gcc go clang-tools unstable.haskell-language-server shards crystal
         gdb php unstable.ghc stack racket chez rustc cargo rls kak-lsp
+        editorconfig-core-c
 
         # Email and calendar
         evolution gnome3.gnome-calendar evolution-data-server evolution-ews
 
         # Gui applications
-        firefox pavucontrol evince leafpad inkscape gimp 
+        pkgs.firefox pavucontrol evince leafpad inkscape gimp
         meld pinentry gnome3.gnome-system-monitor guake
         termite quasselClient wireshark spotify
         gnome3.file-roller gnome3.gnome-calculator 
