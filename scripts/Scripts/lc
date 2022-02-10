@@ -3,7 +3,7 @@
 LOGFILE=.lc.log
 DMENU="rofi -dmenu"
 
-Commands="s suspend screen goto common bwpass remember set-keyboard poweroff lock scrot region overleaf-render caps-lock win wall cups pass sync random"
+Commands="s suspend screen goto common bwpass remember set-keyboard rotate poweroff lock scrot region overleaf-render caps-lock win wall cups pass sync random"
 
 handle_stuff() {
 	if [ "$1" = "--dmenu" ]; then
@@ -62,6 +62,11 @@ handle_stuff() {
     if [ "$1" = "remember" ]; then
         import /tmp/rem.png
         feh /tmp/rem.png
+    fi
+
+    if [ "$1" = "rotate" ]; then
+        dir=$(echo -e "left\nright\ninvert\nnormal" | $DMENU -i -p "orientation")
+        $HOME/Scripts/xrotate $dir
     fi
 
 # Launch
