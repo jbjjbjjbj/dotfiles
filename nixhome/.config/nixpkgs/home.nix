@@ -15,9 +15,9 @@ in {
         xbindkeys pywal
 
         # Developing
-        gcc go clang-tools unstable.haskell-language-server shards crystal
+        gcc go clang-tools shards crystal
         gdb php unstable.ghc stack racket chez rustc cargo rls kak-lsp
-        editorconfig-core-c
+        editorconfig-core-c chez
 
         # Email and calendar
         evolution gnome3.gnome-calendar evolution-data-server evolution-ews
@@ -30,9 +30,9 @@ in {
         gnome3.simple-scan vlc mpv xorg.xev vimHugeX
         (mumble.override { pulseSupport = true; })
         libreoffice-fresh liferea qutebrowser mate.caja
-        audacity gnome3.eog veracrypt xournal remmina
+        audacity veracrypt xournal
         musescore fractal gnome3.gnome-disk-utility ipcalc playerctl
-        xarchive gtkwave gnome3.cheese pandoc filelight zathura
+        xarchive gnome3.cheese pandoc filelight zathura okular
 
         # Other stuff
         ( texlive.combine { inherit (texlive)
@@ -41,11 +41,13 @@ in {
             lastpage biblatex glossaries pgfplots csquotes soul
             mfirstuc xfor datatool mdframed zref needspace placeins
             wrapfig tcolorbox environ listingsutf8 subfiles acmart totpages
-            hyperxmp ifmtarg ncctools comment libertine inconsolata newtx;
+            hyperxmp ifmtarg ncctools comment libertine inconsolata newtx
+            filecontents pgf-pie
+            ;
         })
         biber
 
-        youtube-dl sshpass python38Packages.pynvim
+        youtube-dl sshpass
         aspell aspellDicts.da aspellDicts.en
         ffmpegthumbnailer tio imagemagick sox poppler_utils
         ffmpeg fortune
