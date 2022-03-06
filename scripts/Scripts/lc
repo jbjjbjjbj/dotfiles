@@ -3,7 +3,7 @@
 LOGFILE=.lc.log
 DMENU="rofi -dmenu"
 
-Commands="s suspend screen goto common bwpass remember set-keyboard rotate poweroff lock scrot region overleaf-render caps-lock win wall cups pass sync random"
+Commands="s suspend screen goto common bwpass remember set-keyboard sa-keyboard rotate poweroff lock scrot region overleaf-render caps-lock win wall cups pass sync random"
 
 handle_stuff() {
 	if [ "$1" = "--dmenu" ]; then
@@ -13,6 +13,12 @@ handle_stuff() {
 # System maintenance
 	if [ "$1" = "sk" ] || [ "$1" = "set-keyboard" ]; then
 		setxkbmap -layout us -variant altgr-intl
+		#xcape -e "Control_R=Escape"
+		xmodmap .Xmodmap
+	fi
+
+	if [ "$1" = "sa" ] || [ "$1" = "sa-keyboard" ]; then
+		setxkbmap -layout us -variant colemak_dh_iso
 		#xcape -e "Control_R=Escape"
 		xmodmap .Xmodmap
 	fi
