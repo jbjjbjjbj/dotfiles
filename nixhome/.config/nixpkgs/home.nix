@@ -6,7 +6,7 @@ in {
     # Yep makes sense
     programs.home-manager.enable = true;
 
-    home.packages = with unstable; [
+    home.packages = (with unstable; [
         stow pass gopass fzf entr
 
         # X stuff required by scripts
@@ -18,21 +18,18 @@ in {
         gcc go clang-tools shards crystal
         gdb php unstable.ghc stack racket chez rustc cargo rls kak-lsp
         editorconfig-core-c chez
-
-        # Email and calendar
-        evolution gnome3.gnome-calendar evolution-data-server evolution-ews
+        gh glab
 
         # Gui applications
         pkgs.firefox pavucontrol evince leafpad inkscape gimp
-        meld pinentry gnome3.gnome-system-monitor guake
-        termite quasselClient wireshark spotify
-        gnome3.file-roller gnome3.gnome-calculator 
-        gnome3.simple-scan vlc mpv xorg.xev vimHugeX
+        meld pinentry  guake
+        termite kitty quasselClient wireshark spotify
+        vlc mpv xorg.xev vimHugeX
         (mumble.override { pulseSupport = true; })
-        libreoffice-fresh liferea qutebrowser mate.caja
+        qutebrowser mate.caja
         audacity veracrypt xournal
-        musescore fractal gnome3.gnome-disk-utility ipcalc playerctl
-        xarchive gnome3.cheese pandoc filelight zathura okular
+        musescore fractal  ipcalc playerctl
+        xarchive pandoc filelight zathura okular
 
         # Other stuff
         ( texlive.combine { inherit (texlive)
@@ -42,7 +39,7 @@ in {
             mfirstuc xfor datatool mdframed zref needspace placeins
             wrapfig tcolorbox environ listingsutf8 subfiles acmart totpages
             hyperxmp ifmtarg ncctools comment libertine inconsolata newtx
-            filecontents pgf-pie
+            filecontents pgf-pie mwe
             ;
         })
         biber
@@ -54,5 +51,14 @@ in {
 
         # The python env created in overlay
         pkgs.defaultPythonEnv
-    ];
+    ]) ++ (with pkgs; [
+        gnome3.gnome-calendar
+        gnome3.gnome-disk-utility gnome3.gnome-system-monitor
+        gnome3.cheese gnome3.gnome-calculator liferea
+        gnome3.file-roller gnome3.simple-scan
+        # Email and calendar
+        evolution evolution-data-server evolution-ews
+
+        libreoffice-fresh 
+    ]);
 }
