@@ -7,7 +7,7 @@ xset b off
 
 setxkbmap -layout us -variant altgr-intl
 
-xmodmap .Xmodmap
+# xmodmap .Xmodmap
 #xcape -e "Control_R=Escape"
 
 nm-applet &

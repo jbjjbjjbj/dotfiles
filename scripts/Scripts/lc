@@ -14,13 +14,13 @@ handle_stuff() {
 	if [ "$1" = "sk" ] || [ "$1" = "set-keyboard" ]; then
 		setxkbmap -layout us -variant altgr-intl
 		#xcape -e "Control_R=Escape"
-		xmodmap .Xmodmap
+		# xmodmap .Xmodmap
 	fi
 
 	if [ "$1" = "sa" ] || [ "$1" = "sa-keyboard" ]; then
 		setxkbmap -layout us -variant colemak_dh_iso
 		#xcape -e "Control_R=Escape"
-		xmodmap .Xmodmap
+		# xmodmap .Xmodmap
 	fi
 
 # POWER COMMANDS
