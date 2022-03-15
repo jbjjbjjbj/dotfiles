@@ -7,29 +7,29 @@ in {
     programs.home-manager.enable = true;
 
     home.packages = (with unstable; [
-        stow pass gopass fzf entr
+        pass fzf entr
 
         # X stuff required by scripts
         feh rofi xorg.xmodmap xss-lock xclip xorg.xkill
         xdotool dunst xcompmgr scrot libnotify i3lock
-        xbindkeys pywal
+        xbindkeys
 
         # Developing
-        gcc go clang-tools shards crystal
+        gcc go clang-tools
         gdb php unstable.ghc stack racket chez rustc cargo rls kak-lsp
         editorconfig-core-c chez
         gh glab
 
         # Gui applications
         pkgs.firefox pavucontrol evince leafpad inkscape gimp
-        meld pinentry  guake
+        meld pinentry
         termite kitty quasselClient wireshark spotify
         vlc mpv xorg.xev vimHugeX
         (mumble.override { pulseSupport = true; })
         qutebrowser mate.caja
-        audacity veracrypt xournal
-        musescore fractal  ipcalc playerctl
-        xarchive pandoc filelight zathura okular
+        audacity xournal
+        ipcalc playerctl sxiv
+        xarchive pandoc filelight okular
 
         # Other stuff
         ( texlive.combine { inherit (texlive)
@@ -57,7 +57,7 @@ in {
         gnome3.cheese gnome3.gnome-calculator liferea
         gnome3.file-roller gnome3.simple-scan
         # Email and calendar
-        evolution evolution-data-server evolution-ews
+        # evolution evolution-data-server evolution-ews
 
         libreoffice-fresh 
     ]);
