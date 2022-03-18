@@ -45,7 +45,7 @@ in {
         biber
 
         youtube-dl sshpass
-        aspell aspellDicts.da aspellDicts.en
+        aspell aspellDicts.da aspellDicts.en aspellDicts.nl
         ffmpegthumbnailer tio imagemagick sox poppler_utils
         ffmpeg fortune
 
