@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+import re
+import subprocess as sp
+
+
+def get_window_title() -> str:
+    command = ["xdotool", "getactivewindow", "getwindowname"]
+    ret = sp.run(command, capture_output=True)
+
+    return ret.stdout.decode("utf-8")[:-1]
+
+
+def launch_term(command=None, directory=None):
+    run = ["i3-sensible-terminal"]
+    if command:
+        run.extend(["-e", command])
+    if directory:
+        run.extend(["-d", directory])
+
+    print("Running:", run)
+    sp.run(run)
+
+
+def decide_and_run(title: str):
+    print(title)
+    if title.startswith("fish "):
+        launch_term(directory=title[5:])
+    elif (m := re.search(".*client\d*@\[(\d*)\] - Kakoune", title)):
+        id = m.group(1)
+        launch_term(command=f"kak -c {id}")
+
+
+if __name__ == "__main__":
+    title = get_window_title()
+    decide_and_run(title)
