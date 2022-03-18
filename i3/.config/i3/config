@@ -178,6 +178,7 @@ bindsym XF86Display exec ~/Scripts/screentool
 
 # launch script thingy
 bindsym $mod+semicolon exec --no-startup-id Scripts/lc --dmenu
+bindsym $mod+Shift+o exec --no-startup-id Scripts/open_rel --shell
 bindsym $mod+o exec --no-startup-id Scripts/open_rel
 
 # Password manager

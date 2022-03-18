@@ -3,6 +3,8 @@
 import re
 import subprocess as sp
 
+import argparse
+
 
 def get_window_title() -> str:
     command = ["xdotool", "getactivewindow", "getwindowname"]
@@ -22,15 +24,31 @@ def launch_term(command=None, directory=None):
     sp.run(run)
 
 
-def decide_and_run(title: str):
-    print(title)
+def decide_and_run(title: str, do_shell=True):
     if title.startswith("fish "):
         launch_term(directory=title[5:])
     elif (m := re.search(".*client\d*@\[(\d*)\] - Kakoune", title)):
         id = m.group(1)
         launch_term(command=f"kak -c {id}")
+    elif (m := re.search("nix-shell ([^ ]*)( +([^ ]*))?", title)):
+        shell_file = m.group(1)
+        folder = m.group(3)
+        if folder is None:
+            folder = shell_file
+            shell_file = None
+        if do_shell:
+            command = "nix-shell" + (f" {shell_file}" if shell_file else "")
+        else:
+            command = None
+
+        launch_term(command=command,
+                    directory=folder)
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--shell", "-s", action="store_true")
+    args = parser.parse_args()
     title = get_window_title()
-    decide_and_run(title)
+
+    decide_and_run(title, args.shell)
