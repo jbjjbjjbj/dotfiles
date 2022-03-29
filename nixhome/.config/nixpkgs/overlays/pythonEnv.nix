@@ -12,7 +12,7 @@ self: super: {
                     # Math stuff
                     numpy scipy matplotlib
 
-                    pillow networkx
+                    pillow networkx pydot
                 ]
                 ))
             ];

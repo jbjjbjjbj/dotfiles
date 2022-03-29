@@ -18,7 +18,7 @@ in {
         gcc go clang-tools
         gdb php unstable.ghc stack racket chez rustc cargo rls kak-lsp
         editorconfig-core-c chez
-        gh glab
+        gh glab julia-bin
 
         # Gui applications
         pkgs.firefox pavucontrol evince leafpad inkscape gimp
@@ -39,7 +39,9 @@ in {
             mfirstuc xfor datatool mdframed zref needspace placeins
             wrapfig tcolorbox environ listingsutf8 subfiles acmart totpages
             hyperxmp ifmtarg ncctools comment libertine inconsolata newtx
-            filecontents pgf-pie mwe
+            filecontents pgf-pie mwe ieeetran background titlesec
+            everypage tocbibind ifoddpage relsize xpatch hyphenat
+            float adjustbox collectbox
             ;
         })
         biber
