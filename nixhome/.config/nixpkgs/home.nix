@@ -2,6 +2,7 @@
 
 let
     unstable = import <unstable> {};
+    osu-nixos = (import (builtins.fetchGit { url = "https://github.com/notgne2/osu-nixos.git"; rev = "2df43333e6ab7cd9d839607acd65645567d75536"; }));
 in {
     # Yep makes sense
     programs.home-manager.enable = true;
@@ -18,45 +19,30 @@ in {
         gcc go clang-tools
         gdb php unstable.ghc stack racket chez rustc cargo rls kak-lsp
         editorconfig-core-c chez
-        gh glab julia-bin
-
+        
         # Gui applications
-        pkgs.firefox pavucontrol evince leafpad inkscape gimp
-        meld pinentry
-        termite kitty quasselClient wireshark spotify
-        vlc mpv xorg.xev vimHugeX
+        pkgs.firefox pavucontrol evince leafpad inkscape gimp meld pinentry
+        termite wireshark spotify vlc mpv xorg.xev vimHugeX
         (mumble.override { pulseSupport = true; })
-        qutebrowser mate.caja
-        audacity xournal
-        ipcalc playerctl sxiv
-        xarchive pandoc filelight okular
+        qutebrowser mate.caja audacity xournal ipcalc playerctl sxiv
+        xarchive pandoc okular
 
         # Other stuff
-        ( texlive.combine { inherit (texlive)
-            scheme-medium minted fvextra upquote catchfile xstring framed
-            multirow makecell ntheorem cleveref enumitem todonotes
-            lastpage biblatex glossaries pgfplots csquotes soul
-            mfirstuc xfor datatool mdframed zref needspace placeins
-            wrapfig tcolorbox environ listingsutf8 subfiles acmart totpages
-            hyperxmp ifmtarg ncctools comment libertine inconsolata newtx
-            filecontents pgf-pie mwe ieeetran background titlesec
-            everypage tocbibind ifoddpage relsize xpatch hyphenat
-            float adjustbox collectbox
-            ;
-        })
-        biber
+        texlive.combined.scheme-full
 
-        youtube-dl sshpass
+        youtube-dl
         aspell aspellDicts.da aspellDicts.en aspellDicts.nl
         ffmpegthumbnailer tio imagemagick sox poppler_utils
         ffmpeg fortune
+
+        osu-nixos.packages.${pkgs.system}.osu-lazer
 
         # The python env created in overlay
         pkgs.defaultPythonEnv
     ]) ++ (with pkgs; [
         gnome3.gnome-calendar
         gnome3.gnome-disk-utility gnome3.gnome-system-monitor
-        gnome3.cheese gnome3.gnome-calculator liferea
+        gnome3.cheese gnome3.gnome-calculator
         gnome3.file-roller gnome3.simple-scan
         # Email and calendar
         # evolution evolution-data-server evolution-ews
