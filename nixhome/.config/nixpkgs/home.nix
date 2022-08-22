@@ -17,25 +17,24 @@ in {
 
         # Developing
         gcc go clang-tools
-        gdb php unstable.ghc stack racket chez rustc cargo rls kak-lsp
-        editorconfig-core-c chez
+        gdb php unstable.ghc rustc cargo rls kak-lsp
+        editorconfig-core-c
         
         # Gui applications
-        pkgs.firefox pavucontrol evince leafpad inkscape gimp meld pinentry
-        termite wireshark spotify vlc mpv xorg.xev vimHugeX
+        pkgs.firefox pavucontrol evince leafpad inkscape gimp
+        meld pinentry
+        termite wireshark spotify
+        vlc mpv xorg.xev vimHugeX
         (mumble.override { pulseSupport = true; })
-        qutebrowser mate.caja audacity xournal ipcalc playerctl sxiv
+        mate.caja
+        audacity
+        ipcalc playerctl sxiv
         xarchive pandoc okular
-
-        # Other stuff
-        texlive.combined.scheme-full
 
         youtube-dl
         aspell aspellDicts.da aspellDicts.en aspellDicts.nl
         ffmpegthumbnailer tio imagemagick sox poppler_utils
         ffmpeg fortune
-
-        osu-nixos.packages.${pkgs.system}.osu-lazer
 
         # The python env created in overlay
         pkgs.defaultPythonEnv
@@ -48,5 +47,7 @@ in {
         # evolution evolution-data-server evolution-ews
 
         libreoffice-fresh 
+        texlive.combined.scheme-full
+
     ]);
 }

@@ -7,7 +7,8 @@ BINNAME="setwall"
 function unsetwalls() {
 	for wall in $@; do
         echo unsetting $wall
-		sed -i.bak ":$wall:d" $WALLFILE
+        pat=$(echo $wall | sed 's/\//\\\//g')
+		sed -i.bak "/$pat/d" $WALLFILE
 	done
 }
 function unsetcur() {

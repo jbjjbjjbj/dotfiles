@@ -7,6 +7,7 @@
 #clickable_url = true
 #dynamic_title = true
 font = Comic Mono 14
+font = Ubuntu Mono 15
 # font = cozette 11
 #fullscreen = true
 #icon_name = terminal
