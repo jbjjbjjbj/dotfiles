@@ -1,0 +1,4 @@
+- JOB: "intercept -g $DEVNODE | /home/julian/intcp/intcp | uinput -d $DEVNODE"
+  DEVICE:
+    EVENTS:
+      EV_KEY: [ KEY_CAPSLOCK, KEY_LEFTALT, KEY_102ND ]
