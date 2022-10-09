@@ -20,12 +20,12 @@ filetype plugin indent on    " required
     " Do not create the tilde files
     set nobackup
 
-    set tabstop=4
-    set shiftwidth=4
+    set tabstop=2
+    set shiftwidth=2
     set expandtab
     set colorcolumn=80
 
-    set softtabstop=4
+    set softtabstop=2
 
     set autoindent
     set smartindent
@@ -68,15 +68,18 @@ filetype plugin indent on    " required
     augroup end"}}}
 
 " Language specific{{{
-    autocmd FileType python set et
-    autocmd FileType go setlocal noet
-    autocmd FileType nix setlocal shiftwidth=4 softtabstop=4
-    autocmd FileType vim setlocal foldmethod=marker"}}}
-    autocmd BufNewFile,BufRead *.tex
-        \ set nocursorline |
-        \ set nornu |
-        \ set number |
-        \ let g:loaded_matchparen=1 |
+  autocmd FileType python
+    \ set et |
+    \ set tabstop=2 |
+    \ set shiftwidth=2 |
+  autocmd FileType go setlocal noet
+  autocmd FileType vim setlocal foldmethod=marker
+  autocmd BufNewFile,BufRead *.tex
+    \ set nocursorline |
+    \ set nornu |
+    \ set number |
+    \ let g:loaded_matchparen=1 |
+"}}}
 
 " File management{{{
     " Fuzzy like menu

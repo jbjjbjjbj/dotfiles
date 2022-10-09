@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
 LOCKFILE=/tmp/lockscreen.png
+INFILE=$HOME/Pictures/current_wall
 
-scrot -o $LOCKFILE
-size=$(identify -format "%[fx:w]x%[fx:h]" "$LOCKFILE")
+convert $INFILE -blur 10x10 $LOCKFILE
 
-convert $LOCKFILE -scale 70 -sample $size\! -quality 11 $LOCKFILE
-
-# i3lock -i $LOCKFILE
+i3lock -i $LOCKFILE
 

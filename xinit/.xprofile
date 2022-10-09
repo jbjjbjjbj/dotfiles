@@ -3,11 +3,10 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.su
 export TERM=termite
 export TERMINAL=termite
 
-# export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
+export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
 
 export XKB_DEFAULT_LAYOUT=us
 export XKB_DEFAULT_VARIANT=altgr-intl
 
-export LOPTS="screensaver composer gnome-keyring"
 export MOZ_X11_EGL=1
 export MOZ_WEBRENDER=1

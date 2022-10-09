@@ -9,9 +9,9 @@ map global user l %{: enter-user-mode lsp<ret>} -docstring "LSP mode"
 # General stuff
 colorscheme gruvbox-dark
 
-# hook global InsertChar \t %{ exec -draft -itersel h@ }
-set global tabstop 4
-set global indentwidth 4
+hook global InsertChar \t %{ exec -draft -itersel h@ }
+set global tabstop 2
+set global indentwidth 2
 
 map global insert <c-w> '<a-;><a-/>\S+\s*<ret><a-;>d'
 map global insert <tab> '.<a-;>><backspace>'
