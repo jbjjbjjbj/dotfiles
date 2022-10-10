@@ -5,3 +5,4 @@ do_not_link:
     - .config/nvim
     - .vim
     - Scripts
+    - intcp
