@@ -16,12 +16,25 @@
 (global-set-key (kbd "C-c a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
 
-(setq display-line-numbers 'relative)
 (global-display-line-numbers-mode)
+(setq display-line-numbers-type 'relative)
+
+(show-paren-mode 1)
+(setq show-paren-when-point-inside-paren 1)
+
+(setq backup-directory-alist '(("." . "~/.emacs_savefiles")))
+(setq indent-tabs-mode nil)
+(tool-bar-mode -1)
+(toggle-scroll-bar -1)
+
+(setq org-agenda-files (list "~/Common/org/todo.org"))
 
 (add-hook 'org-mode-hook
-	  (lambda ()
-	    (evil-local-set-key 'normal (kbd "<SPC>") 'org-cycle)))
+  (lambda ()
+    (evil-local-set-key 'normal (kbd "<SPC>") 'org-cycle)))
+
+(setq evil-want-C-u-scroll t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
