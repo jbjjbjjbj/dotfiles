@@ -16,6 +16,9 @@
 ; (require 'evil-collection)
 ; (evil-collection-init)
 
+(winner-mode 1)
+(global-set-key (kbd "C-c u") #'winner-undo)
+
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
@@ -39,6 +42,14 @@
   (lambda ()
     (evil-local-set-key 'normal (kbd "<SPC>") 'org-cycle)))
 
+;; Capture
+(setq ord-default-notes-file "~/Common/org/todo.org")
+(setq org-capture-templates
+      '(("l" "Linked todo" entry (file+headline "~/Common/org/todo.org" "Captures")
+	 "* TODO %?\n %i \n %a")
+	("t" "Todo" entry (file+headline "~/Common/org/todo.org" "Captures"))
+	))
+
 ;; Contact book
 (setq bbdb-file "~/Common/bbdb")
 (require 'bbdb)
@@ -58,7 +69,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(tango-dark))
- '(package-selected-packages '(bbdb haskell-mode evil)))
+ '(package-selected-packages '(bbdb haskell-mode evil))
+ '(warning-suppress-types '((org))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
