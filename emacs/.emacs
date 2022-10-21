@@ -16,6 +16,26 @@
 ; (require 'evil-collection)
 ; (evil-collection-init)
 
+(evil-set-initial-state 'haskell-interactive-mode 'emacs)
+(evil-set-initial-state 'haskell-error-mode 'emacs)
+
+;; Windmove
+(defvar vim-move-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-w") nil)
+    (define-key map (kbd "C-w l") 'windmove-right)
+    (define-key map (kbd "C-w h") 'windmove-left)
+    (define-key map (kbd "C-w j") 'windmove-down)
+    (define-key map (kbd "C-w k") 'windmove-up)
+    (define-key map (kbd "C-w C-w") 'other-window)
+    map) "vim-move-mode keymap.")
+
+(define-minor-mode vim-move-mode
+  "A minor mode where C-w works somewhat like what im used to."
+  :init-value t
+  :lighter " vim-move")
+(vim-move-mode 1)
+
 (require 'magit)
 
 (require 'undo-tree)
@@ -83,7 +103,7 @@
  '(display-line-numbers-type 'relative)
  '(global-display-line-numbers-mode t)
  '(package-selected-packages
-   '(magit undo-tree 'flycheck 'flycheck bbdb haskell-mode evil))
+   '(go-mode magit undo-tree 'flycheck 'flycheck bbdb haskell-mode evil))
  '(tool-bar-mode nil)
  '(warning-suppress-types '((org))))
 (custom-set-faces
