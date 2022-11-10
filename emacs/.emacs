@@ -103,7 +103,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(canlock-password "8455a572e70665b512a068f64b19716b79a0ead6")
- '(custom-enabled-themes '(modus-vivendi))
+ '(custom-enabled-themes '(wheatgrass))
  '(display-line-numbers-type 'relative)
  '(global-display-line-numbers-mode t)
  '(package-selected-packages
