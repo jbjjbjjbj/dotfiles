@@ -6,3 +6,4 @@ do_not_link:
     - .vim
     - Scripts
     - intcp
+    - .config/mpd
