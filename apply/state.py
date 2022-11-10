@@ -58,6 +58,8 @@ class FileState(Enum):
             dest = Path(os.readlink(str(path)))
             if Path.cwd() in dest.parents:
                 return FileState.create_owned(dest)
+            else:
+                return FileState.Used
 
         if not path.exists():
             return FileState.Unused

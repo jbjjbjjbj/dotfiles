@@ -1,13 +1,13 @@
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages"))
+             '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 ; (package-refresh-contents)
 
 (mapcar (lambda (p)
        (unless (package-installed-p p)
 	 (package-install p))
-       ) (list 'magit 'undo-tree 'evil 'haskell-mode 'bbdb 'company))
+       ) (list 'magit 'undo-tree 'haskell-mode 'evil 'bbdb 'company))
 
 (setq evil-want-C-u-scroll t)
 (require 'evil)
