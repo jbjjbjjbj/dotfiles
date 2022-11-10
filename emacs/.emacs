@@ -7,7 +7,7 @@
 (mapcar (lambda (p)
        (unless (package-installed-p p)
 	 (package-install p))
-       ) (list 'magit 'undo-tree 'haskell-mode 'evil 'bbdb 'company))
+       ) (list 'auctex 'magit 'undo-tree 'haskell-mode 'evil 'bbdb 'company))
 
 (setq evil-want-C-u-scroll t)
 (require 'evil)
@@ -15,6 +15,8 @@
 
 ; (require 'evil-collection)
 ; (evil-collection-init)
+
+(require 'tex-site)
 
 (evil-set-initial-state 'haskell-interactive-mode 'emacs)
 (evil-set-initial-state 'haskell-error-mode 'emacs)
@@ -75,6 +77,7 @@
       '(("l" "Linked todo" entry (file+headline "~/Common/org/todo.org" "Captures")
 	 "* TODO %?\n %i \n %a")
 	("t" "Todo" entry (file+headline "~/Common/org/todo.org" "Captures"))
+	("k" "Kalender" entry (file+headline "~/Common/org/kalender.org" "Captures"))
 	))
 
 ;; Contact book
@@ -99,11 +102,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(canlock-password "8455a572e70665b512a068f64b19716b79a0ead6")
  '(custom-enabled-themes '(modus-vivendi))
  '(display-line-numbers-type 'relative)
  '(global-display-line-numbers-mode t)
  '(package-selected-packages
-   '(go-mode magit undo-tree 'flycheck 'flycheck bbdb haskell-mode evil))
+   '(auctex go-mode magit undo-tree 'flycheck 'flycheck bbdb haskell-mode evil))
  '(tool-bar-mode nil)
  '(warning-suppress-types '((org))))
 (custom-set-faces

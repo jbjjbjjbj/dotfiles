@@ -1,7 +1,7 @@
 # Vim stuff
 alias vim "nvim"
-set -x EDITOR kak
-set -x SUDO_EDITOR kak
+set -x EDITOR nvim
+set -x SUDO_EDITOR nvim
 
 # Other things
 set -x TERM xterm-256color
