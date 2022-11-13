@@ -110,6 +110,7 @@ filetype plugin indent on    " required
 
 " Highlightning And colors{{{
     set termguicolors
+    colorscheme PaperColor
 
 " Spell check
     set spelllang=en,da

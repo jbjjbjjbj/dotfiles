@@ -128,7 +128,7 @@ class StateFile:
         self.dirs[path].remove(module)
 
         if len(self.dirs[path]) == 0:
-            writer.remove(Path(path))
+            writer.delete(Path(path))
 
     def __delete_link(self, writer: Writer, path: str):
         del self.links[path]
