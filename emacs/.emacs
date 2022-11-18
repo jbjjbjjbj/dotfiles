@@ -16,6 +16,8 @@
 ; (require 'evil-collection)
 ; (evil-collection-init)
 
+(setq column-number-mode t)
+
 (require 'tex-site)
 
 (evil-set-initial-state 'haskell-interactive-mode 'emacs)
