@@ -7,7 +7,7 @@
 (mapcar (lambda (p)
        (unless (package-installed-p p)
 	 (package-install p))
-       ) (list 'auctex 'magit 'undo-tree 'haskell-mode 'evil 'bbdb 'company))
+       ) (list 'clojure-mode 'cider 'auctex 'magit 'undo-tree 'haskell-mode 'evil 'bbdb 'company))
 
 (setq evil-want-C-u-scroll t)
 (require 'evil)
@@ -20,8 +20,11 @@
 
 (require 'tex-site)
 
-(evil-set-initial-state 'haskell-interactive-mode 'emacs)
-(evil-set-initial-state 'haskell-error-mode 'emacs)
+(mapcar (lambda (m)
+	  (evil-set-initial-state m 'emacs))
+	'(haskell-interactive-mode
+	  haskell-error-mode
+	  cider-repl-mode cider-stacktrace-mode))
 
 ;; Windmove
 (defvar vim-move-mode-map
@@ -109,7 +112,7 @@
  '(display-line-numbers-type 'relative)
  '(global-display-line-numbers-mode t)
  '(package-selected-packages
-   '(auctex go-mode magit undo-tree 'flycheck 'flycheck bbdb haskell-mode evil))
+   '(cider clojure-mode auctex go-mode magit undo-tree 'flycheck 'flycheck bbdb haskell-mode evil))
  '(tool-bar-mode nil)
  '(warning-suppress-types '((org))))
 (custom-set-faces
