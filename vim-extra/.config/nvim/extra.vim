@@ -9,6 +9,7 @@
     Plug 'NLKNguyen/papercolor-theme'
     Plug 'LnL7/vim-nix'
     Plug 'fatih/vim-go'
+    Plug 'lervag/vimtex'
 
   call plug#end()
 
@@ -27,6 +28,11 @@
     autocmd CompleteDone * pclose
 
     colorscheme PaperColor
-    "
-" Latex
-    let g:vimtex_quickfix_open_on_warning = 0
+    "}}}
+
+" Latex {{{
+  let g:vimtex_view_method = 'zathura'
+  let g:vimtex_quickfix_open_on_warning = 0
+
+    "}}}
+
