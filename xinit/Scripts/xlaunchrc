@@ -28,7 +28,7 @@ do
     case $arg in
         panel)
             echo starting panel
-            xfce4-panel &
+            polybar main &
             ;;
         composer)
             echo starting comp
