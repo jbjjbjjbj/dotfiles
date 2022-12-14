@@ -2,6 +2,9 @@
 super + i
 	termite
 
+super + shift + i
+	termite --class float
+
 # program launcher
 super + d
 	rofi -show drun
