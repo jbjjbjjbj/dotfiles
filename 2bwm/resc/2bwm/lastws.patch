@@ -1,0 +1,40 @@
+diff '--color=auto' --unified --recursive --text --color 2bwm.orig/2bwm.c 2bwm.new/2bwm.c
+--- 2bwm.orig/2bwm.c	2022-12-15 15:59:21.739548339 +0100
++++ 2bwm.new/2bwm.c	2022-12-15 15:59:15.602734354 +0100
+@@ -42,6 +42,7 @@
+ xcb_screen_t     *screen = NULL;           // Our current screen.
+ int randrbase = 0;                      // Beginning of RANDR extension events.
+ static uint8_t curws = 0;                  // Current workspace.
++static uint8_t lstws = 0;                  // Last workspace
+ struct client *focuswin = NULL;            // Current focus window.
+ static xcb_drawable_t top_win=0;           // Window always on top.
+ static struct item *winlist = NULL;        // Global list of all client windows.
+@@ -86,6 +87,7 @@
+ static void arrangewindows(void);
+ static void prevworkspace();
+ static void nextworkspace();
++static void lastworkspace();
+ static void getrandr(void);
+ static void raise_current_window(void);
+ static void raiseorlower();
+@@ -214,6 +216,12 @@
+ 		: changeworkspace_helper(WORKSPACES-1);}
+ 
+ void
++lastworkspace()
++{
++	changeworkspace_helper(lstws);
++}
++
++void
+ twobwm_exit()
+ {
+ 	exit(EXIT_SUCCESS);
+@@ -503,6 +511,7 @@
+ 			xcb_map_window(conn, client->id);
+ 	}
+ 
++	lstws = curws;
+ 	curws = ws;
+ 	pointer = xcb_query_pointer_reply(conn, xcb_query_pointer(conn,
+ 				screen->root), 0);

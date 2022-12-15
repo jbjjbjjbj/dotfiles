@@ -9,14 +9,17 @@ license=('ISC')
 depends=('xcb-util-wm' 'xcb-util-keysyms' 'xcb-util-xrm')
 conflicts=('2bwm-git' 'mcwm' 'mcwm-git') # due to /usr/bin/hidden program
 makedepends=('git' 'xcb-util')
-source=("$pkgname::git+https://github.com/bbidulock/2bwm.git#tag=v${pkgver}" '2bwm.desktop' '2bwm.copying' 'config.h')
+source=("$pkgname::git+https://github.com/bbidulock/2bwm.git#tag=v${pkgver}" '2bwm.desktop' '2bwm.copying' 'config.h' 'lastws.patch')
 md5sums=('SKIP'
          '4342d9210effbe4bfb58722f4275aa5c'
          'adaee5c7e455ba15e0ca9a2692464253'
-         'SKIP')
+         'SKIP'
+         'e553c0ed17e19743305358ba50139b05')
 
 prepare() {
-  cp $srcdir/config.h $pkgname/config.h -v
+  cd "$pkgname"
+  patch < $srcdir/lastws.patch
+  cp $srcdir/config.h config.h -v
 }
 
 build() {

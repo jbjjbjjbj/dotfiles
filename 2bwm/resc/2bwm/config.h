@@ -149,6 +149,8 @@ static key keys[] = {
     // Next/Previous workspace
     {  MOD ,              XK_v,          nextworkspace,     {}},
     {  MOD ,              XK_c,          prevworkspace,     {}},
+    // Last visisted workspace
+    {  MOD ,              XK_space,      lastworkspace,     {}},
     // Move to Next/Previous workspace
     {  MOD |SHIFT ,       XK_v,          sendtonextworkspace,{}},
     {  MOD |SHIFT ,       XK_c,          sendtoprevworkspace,{}},
