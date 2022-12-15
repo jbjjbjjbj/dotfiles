@@ -1,4 +1,5 @@
 ///---User configurable stuff---///
+#include <X11/XF86keysym.h>
 ///---Modifiers---///
 #define MOD             XCB_MOD_MASK_4       /* Super/Windows key  or check xmodmap(1) with -pm  defined in /usr/include/xcb/xproto.h */
 ///--Speed---///
@@ -42,6 +43,16 @@ static const char *ignore_names[] = {"bar", "xclock"};
 ///--Menus and Programs---///
 static const char *menucmd[]   = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]   = { "termite", NULL };
+static const char *lccmd[]     = { "Scripts/lc", "--dmenu", NULL};
+static const char *voldown[]   = { "Scripts/volume", "volumedown", NULL};
+static const char *volup[]     = { "Scripts/volume", "volumeup", NULL};
+static const char *volmute[]   = { "Scripts/volume", "volumetoggle", NULL};
+static const char *volplay[]   = { "Scripts/volume", "playtoggle", NULL};
+static const char *volnext[]   = { "Scripts/volume", "forward", NULL};
+static const char *volprev[]   = { "Scripts/volume", "backward", NULL};
+static const char *lightup[]   = { "xbacklight", "-inc", "2", NULL};
+static const char *lightdown[]   = { "xbacklight", "-dec", "2", NULL};
+
 ///---Shortcuts---///
 /* Check /usr/include/X11/keysymdef.h for the list of all keys
  * 0x000000 is for no modkey
@@ -74,8 +85,7 @@ static const char *termcmd[]   = { "termite", NULL };
 static key keys[] = {
     /* modifier           key            function           argument */
     // Focus to next/previous window
-    {  MOD ,              XK_Tab,        focusnext,         {.i=TWOBWM_FOCUS_NEXT}},
-    {  MOD |SHIFT,        XK_Tab,        focusnext,         {.i=TWOBWM_FOCUS_PREVIOUS}},
+    {  MOD ,              XK_space,        focusnext,         {.i=TWOBWM_FOCUS_NEXT}},
     // Kill a window
     {  MOD ,              XK_q,          deletewin,         {}},
     // Resize a window
@@ -150,7 +160,7 @@ static key keys[] = {
     {  MOD ,              XK_v,          nextworkspace,     {}},
     {  MOD ,              XK_c,          prevworkspace,     {}},
     // Last visisted workspace
-    {  MOD ,              XK_space,      lastworkspace,     {}},
+    {  MOD ,              XK_Tab,      lastworkspace,     {}},
     // Move to Next/Previous workspace
     {  MOD |SHIFT ,       XK_v,          sendtonextworkspace,{}},
     {  MOD |SHIFT ,       XK_c,          sendtoprevworkspace,{}},
@@ -175,6 +185,16 @@ static key keys[] = {
     // Start programs
     {  MOD ,              XK_d,          start,             {.com = menucmd}},
     {  MOD ,              XK_i     ,     start,             {.com = termcmd}},
+    {  MOD ,              XK_semicolon,  start,             {.com = lccmd}},
+    // Media keys
+    {  NULL,XF86XK_AudioLowerVolume,start,{.com = voldown}},
+    {  NULL,XF86XK_AudioRaiseVolume,start,{.com = volup}},
+    {  NULL,XF86XK_AudioMute,start,{.com = volmute}},
+    {  NULL,XF86XK_AudioPlay,start,{.com = volplay}},
+    {  NULL,XF86XK_AudioNext,start,{.com = volnext}},
+    {  NULL,XF86XK_AudioPrev,start,{.com = volprev}},
+    {  NULL,XF86XK_MonBrightnessUp,start,{.com = lightup}},
+    {  NULL,XF86XK_MonBrightnessDown,start,{.com = lightdown}},
     // Exit or restart 2bwm
     {  MOD |SHIFT  ,      XK_e,          twobwm_exit,       {.i=0}},
     {  MOD |SHIFT  ,      XK_r,          twobwm_restart,    {.i=0}},
