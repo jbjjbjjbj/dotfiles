@@ -18,6 +18,9 @@ nm-applet &
 dunst &
 play ~/Winsounds/login.wav -q &
 
+# Cursor thing
+xsetroot -cursor_name left_ptr
+
 # Set dbus display variable
 # dbus-update-activation-environment --systemd DISPLAY
 

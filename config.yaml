@@ -7,3 +7,4 @@ do_not_link:
     - Scripts
     - intcp
     - .config/mpd
+    - resc
