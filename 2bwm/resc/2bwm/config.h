@@ -86,6 +86,7 @@ static key keys[] = {
     /* modifier           key            function           argument */
     // Focus to next/previous window
     {  MOD ,              XK_space,        focusnext,         {.i=TWOBWM_FOCUS_NEXT}},
+    {  MOD | SHIFT,       XK_space,        focusnext,         {.i=TWOBWM_FOCUS_PREVIOUS}},
     // Kill a window
     {  MOD ,              XK_q,          deletewin,         {}},
     // Resize a window
