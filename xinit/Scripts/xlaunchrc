@@ -7,6 +7,8 @@ xset b off
 
 setxkbmap -layout us -variant altgr-intl
 
+xrdb ~/.Xresources
+
 # xmodmap .Xmodmap
 #xcape -e "Control_R=Escape"
 

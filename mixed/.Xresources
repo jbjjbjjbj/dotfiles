@@ -1,0 +1,31 @@
+
+#define WHITE  #FBFAF6
+#define BLACK  #330036
+#define DARK   #393E41
+#define LRED   #FD2629
+#define LBLUE  #1AA2C9
+#define DBLUE  #3C6997
+#define PURPLE #791E94
+#define GREEN  #0A8754
+#define YELLO  #F9DB6D
+#define UNFOCUS #C6EBBE
+#define GRAY   #707880
+
+polybar.background: BLACK
+polybar.foreground: WHITE
+polybar.primary: LBLUE
+polybar.secondary: GREEN
+polybar.alert: LRED
+polybar.disabled: GRAY
+
+twobwm.border_width: 6
+twobwm.outer_border: 3
+twobwm.inverted_colors: false
+twobwm.enable_compton: true
+twobwm.focus_color: LBLUE
+twobwm.unfocus_color: DARK
+twobwm.fixed_color: LRED
+twobwm.unkill_color: YELLO
+twobwm.outer_border_color: DBLUE
+twobwm.fixed_unkill_color: PURPLE
+
