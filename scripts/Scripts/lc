@@ -3,7 +3,7 @@
 LOGFILE=.lc.log
 DMENU="rofi -dmenu"
 
-Commands="s suspend screen goto common bwpass remember set-keyboard sa-keyboard rotate poweroff lock scrot region overleaf-render caps-lock win wall cups pass sync random"
+Commands="s suspend screen goto common bwpass remember forever set-keyboard sa-keyboard rotate poweroff lock scrot region overleaf-render caps-lock win wall cups pass sync random"
 
 handle_stuff() {
 	if [ "$1" = "--dmenu" ]; then
@@ -66,8 +66,13 @@ handle_stuff() {
     fi
 
     if [ "$1" = "remember" ]; then
-        import /tmp/rem.png
-        feh /tmp/rem.png
+        import $imagename
+        feh $imagename
+    fi
+    if [ "$1" = "forever" ]; then
+        import $imagename
+        feh $imagename
+        echo "feh ${imagename} &" >> ~/remember_forever.sh
     fi
 
     if [ "$1" = "rotate" ]; then

@@ -20,6 +20,8 @@ nm-applet &
 dunst &
 play ~/Winsounds/login.wav -q &
 
+bash ~/remember_forever.sh
+
 # Cursor thing
 xsetroot -cursor_name left_ptr
 
