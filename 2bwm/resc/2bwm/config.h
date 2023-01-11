@@ -192,6 +192,7 @@ static key keys[] = {
     {  NULL,XF86XK_AudioRaiseVolume,start,{.com = volup}},
     {  NULL,XF86XK_AudioMute,start,{.com = volmute}},
     {  NULL,XF86XK_AudioPlay,start,{.com = volplay}},
+    {  NULL,XK_Pause,start,{.com = volplay}},
     {  NULL,XF86XK_AudioNext,start,{.com = volnext}},
     {  NULL,XF86XK_AudioPrev,start,{.com = volprev}},
     {  NULL,XF86XK_MonBrightnessUp,start,{.com = lightup}},
