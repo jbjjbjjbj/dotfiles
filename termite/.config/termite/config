@@ -8,7 +8,7 @@
 #dynamic_title = true
 font = Comic Mono 14
 font = Ubuntu Mono 13
-# font = cozette 11
+font = Terminus
 #fullscreen = true
 #icon_name = terminal
 #mouse_autohide = false
@@ -53,7 +53,7 @@ foreground = #FFFFFF
 background = #000000
 
 # 20% background transparency (requires a compositor)
-background = rgba(0, 0, 0, 1)
+background = rgba(0, 0, 0, 0.92)
 
 # If unset, will reverse foreground and background
 highlight = #2f2f2f

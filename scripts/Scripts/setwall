@@ -40,7 +40,7 @@ function setwalls() {
 }
 
 function runsetwall() {
-	feh --bg-fill $1
+	feh --bg-tile $1
     # wal --saturate 0.9 -i $1
 }
 
