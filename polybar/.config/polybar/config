@@ -18,12 +18,12 @@
 
 [colors]
 background = #000000
-background-alt = #201A23
+background-alt = #A0031D
 foreground = #FFFFFF
-primary = #3465a4
-secondary = 6DA34D
-alert = #F05D5E
-disabled = #888888
+primary = #FE6D73
+secondary = 348AA7
+alert = #F3B61F
+disabled = #5E6982
 
 [bar/main]
 width = 100%
@@ -46,7 +46,7 @@ padding-right = 1
 module-margin = 1
 
 separator = |
-separator-foreground = ${colors.disabled}
+separator-foreground = ${colors.background-alt}
 
 ; font-0 = Cozette;2
 font-0 = Terminus
@@ -132,17 +132,17 @@ type = internal/network
 interval = 5
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
-label-disconnected = %{F#1AA2C9}%ifname%%{F#707880} disconnected
+label-disconnected = %{F#FE6D73}%ifname%%{F#707880} disconnected
 
 [module/wlan]
 inherit = network-base
 interface-type = wireless
-label-connected = %{F#1AA2C9}%ifname%%{F-} %essid% %local_ip%
+label-connected = %{F#FE6D73}%ifname%%{F-} %essid% %local_ip%
 
 [module/eth]
 inherit = network-base
 interface-type = wired
-label-connected = %{F#1AA2C9}%ifname%%{F-} %local_ip%
+label-connected = %{F#FE6D73}%ifname%%{F-} %local_ip%
 
 [module/date]
 type = internal/date
