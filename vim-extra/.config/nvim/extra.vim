@@ -3,6 +3,8 @@
     Plug 'neovim/nvim-lspconfig'
     Plug 'Shougo/echodoc.vim'
 
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-repeat'
 
@@ -36,3 +38,21 @@
 
     "}}}
 
+" Tree sitter {{{
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "c", "lua", "vim", "rust", "help" },
+
+  auto_install = true,
+
+  highlight = {
+    enable = true,
+  },
+  incremental_selection = {
+    enable = true,
+  },
+}
+EOF
+
+" }}}

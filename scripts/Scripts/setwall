@@ -5,188 +5,192 @@ WALLLINK="$HOME/Pictures/current_wall"
 BINNAME="setwall"
 
 function unsetwalls() {
-	for wall in $@; do
-        echo unsetting $wall
-        pat=$(echo $wall | sed 's/\//\\\//g')
-		sed -i.bak "/$pat/d" $WALLFILE
-	done
+  for wall in $@; do
+    echo unsetting $wall
+    pat=$(echo $wall | sed 's/\//\\\//g')
+    sed -i.bak "/$pat/d" $WALLFILE
+  done
 }
 function unsetcur() {
-    if [ -f "${WALLLINK}" ]; then
-        unsetwalls $(realpath --relative-to=$HOME $WALLLINK)
-    else
-        echo "could not resolve current wallpaper"
-        exit 1
-    fi
+  if [ -f "${WALLLINK}" ]; then
+    unsetwalls $(realpath --relative-to=$HOME $WALLLINK)
+  else
+    echo "could not resolve current wallpaper"
+    exit 1
+  fi
 }
 function delete() {
-	echo deleting wallfile
-	rm $WALLFILE
+  echo deleting wallfile
+  rm $WALLFILE
 }
 function unsetall() {
-	echo clearing wallfile
-	echo -n > $WALLFILE
+  echo clearing wallfile
+  echo -n > $WALLFILE
 }
 
 function setwalls() {
-	for wall in $@; do
-		if grep -q $wall "$WALLFILE"; then
-			echo $wall already set
-		else
-			echo setting $wall
-			echo $wall >> $WALLFILE
-		fi
-	done
+  for wall in $@; do
+    if grep -q $wall "$WALLFILE"; then
+      echo $wall already set
+    else
+      echo setting $wall
+      echo $wall >> $WALLFILE
+    fi
+  done
 }
 
 function runsetwall() {
-	feh --bg-tile $1
-    # wal --saturate 0.9 -i $1
+  feh --bg-tile $1
+  # wal --saturate 0.9 -i $1
 }
 
 function applywall() {
-	echo applying wallpaper $1
-	rm $WALLLINK
-	ln -s $(pwd)/$1 $WALLLINK
-	runsetwall $1
+  echo applying wallpaper $1
+  rm $WALLLINK
+  ln -s $(pwd)/$1 $WALLLINK
+  runsetwall $1
 }
 
 function reapply() {
-	echo reapplying linked wallpaper
-	# feh --bg-fill $WALLLINK
-    runsetwall $WALLLINK
+  echo reapplying linked wallpaper
+  # feh --bg-fill $WALLLINK
+  runsetwall $WALLLINK
 }
 
 function help() {
-	echo "Wallpaper mangement script"
-	echo
-	echo "Syntax: ${BINNAME} OPTIONS"
-	echo "options:"
-	echo "  -A, --apply [OPTIONS]           applies a random wallpaper"
-	echo "  -S, --set FILES                 sets new wallpapers"
-	echo "  -U, --unset [OPTIONS] [FILES]   unsets new wallpapers"
-	echo "  -P, --preview FILE              temporarily sets a wallpaper"
-	echo "  -h, --help                      this message"
-	echo
-	echo "unset options:"
-	echo "  -a, --all                       clears wallconfig file"
-	echo "  -d, --delete                    deleted wallconfig file"
-	echo "  -c, --current                   unset currently applied wallpaper"
-	echo
-	echo "apply options:"
-	echo "  -r, --reapply                   reapply last applied wallpaper"
+  echo "Wallpaper mangement script"
+  echo
+  echo "Syntax: ${BINNAME} OPTIONS"
+  echo "options:"
+  echo "  -A, --apply [OPTIONS]           applies a random wallpaper"
+  echo "  -S, --set FILES                 sets new wallpapers"
+  echo "  -U, --unset [OPTIONS] [FILES]   unsets new wallpapers"
+  echo "  -P, --preview FILE              temporarily sets a wallpaper"
+  echo "  -h, --help                      this message"
+  echo
+  echo "unset options:"
+  echo "  -a, --all                       clears wallconfig file"
+  echo "  -d, --delete                    deleted wallconfig file"
+  echo "  -c, --current                   unset currently applied wallpaper"
+  echo
+  echo "apply options:"
+  echo "  -r, --reapply                   reapply last applied wallpaper"
 }
 
 function unknown() {
-	echo "${BINNAME}: unknown option $1" 1>&2
-	exit 1
+  echo "${BINNAME}: unknown option $1" 1>&2
+  exit 1
 }
 
 if [[ $# -eq 0 ]]; then
-	echo "${BINNAME}: no arguments given" 1>&2
-	help
-	exit 1
+  echo "${BINNAME}: no arguments given" 1>&2
+  help
+  exit 1
 fi
 
 mode="N"
 pos=""
 
+function apply_mode() {
+  case $mode in
+    U)
+      unsetwalls $pos
+      ;;
+    S)
+      setwalls $pos
+      ;;
+    A)
+      applywall $(shuf -n 1 $WALLFILE)
+      ;;
+  esac
+}
+
 while [[ $# -gt 0 ]]; do
-	keys="$1"
-	# If $1 does is single - argument
-	if [[ $1 == '-'* ]] && [[ ! $1 == '--'* ]] ; then
-		# Remove first -
-		keys=${keys#?}
-		# Place space between each character
-		keys=$(echo $keys | sed 's/./-& /g')
-	fi
+  keys="$1"
+  # If $1 does is single - argument
+  if [[ $1 == '-'* ]] && [[ ! $1 == '--'* ]] ; then
+    # Remove first -
+    keys=${keys#?}
+    # Place space between each character
+    keys=$(echo $keys | sed 's/./-& /g')
+  fi
 
-	for key in $keys; do
-		case $mode in 
-			U)
-				case $key in
-					-a|--all)
-						unsetall
-						exit 0
-						;;
-					-d|--delete)
-						delete
-						exit 0
-						;;
-                    -c|--current)
-                        unsetcur
-                        exit 0
-                        ;;
-					'-'*|'--'*)
-						unknown $key
-						;;
-					*)
-						pos="$pos $key"
-						shift
-						;;
-				esac
-				;;
-			A)
-				case $key in
-					-r|--reapply)
-						reapply
-						exit 0
-						;;
-					'-'*|'--'*)
-						unknown $key
-						;;
-					*)
-						echo Unexpected argument
-						help
-						exit 0
-						;;
-				esac
-				;;
-			S)
-				pos="$pos $key"
-				shift
-				;;
+  for key in $keys; do
+    case $mode in 
+      U)
+        case $key in
+          -a|--all)
+            unsetall
+            mode="N"
+            ;;
+          -d|--delete)
+            delete
+            mode="N"
+            ;;
+          -c|--current)
+            unsetcur
+            mode="N"
+            ;;
+          '-'*|'--'*)
+            unknown $key
+            ;;
+          *)
+            pos="$pos $key"
+            shift
+            ;;
+        esac
+        ;;
+      A)
+        case $key in
+          -r|--reapply)
+            reapply
+            mode="N"
+            ;;
+          '-'*|'--'*)
+            unknown $key
+            ;;
+          *)
+            echo Unexpected argument
+            help
+            mode="N"
+            ;;
+        esac
+        ;;
+      S)
+        pos="$pos $key"
+        shift
+        ;;
 
-			*)
-				case $key in
-					-A|--apply)
-						mode="A"
-						shift
-						;;
-					-U|--unset)
-						mode="U"
-						shift
-						;;
-					-S|--set)
-						mode="S"
-						shift
-						;;
-					-P|--preview)
-						applywall $2
-						exit 0
-						;;
-					-h|--help)
-						help
-						shift
-						exit 0
-						;;
-					*)
-						unknown $key
-						;;
-				esac
-				;;
-		esac
-	done
+      *)
+        apply_mode
+        case $key in
+          -A|--apply)
+            mode="A"
+            shift
+            ;;
+          -U|--unset)
+            mode="U"
+            shift
+            ;;
+          -S|--set)
+            mode="S"
+            shift
+            ;;
+          -P|--preview)
+            applywall $2
+            ;;
+          -h|--help)
+            help
+            shift
+            exit 0
+            ;;
+          *)
+            unknown $key
+            ;;
+        esac
+        ;;
+    esac
+  done
 done
 
-case $mode in
-	U)
-		unsetwalls $pos
-		;;
-	S)
-		setwalls $pos
-		;;
-	A)
-		applywall $(shuf -n 1 $WALLFILE)
-		;;
-esac
+apply_mode
