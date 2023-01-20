@@ -107,6 +107,10 @@ super + {_,shift + }{1-9,0}
 super + r
   bspc node --rotate 90
 
+# change ratio
+super + ctrl + shift + {1-9}
+	bspc node -r 0.{1-9}
+
 #
 # preselect
 #

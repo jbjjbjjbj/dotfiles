@@ -44,10 +44,10 @@ lua << EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = { "c", "lua", "vim", "rust", "help" },
 
-  auto_install = true,
-
   highlight = {
     enable = true,
+
+    disable = { "latex" },
   },
   incremental_selection = {
     enable = true,
