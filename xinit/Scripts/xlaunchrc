@@ -33,6 +33,12 @@ for arg in $args
 do
     echo $arg
     case $arg in
+        jpinput)
+          export GTK_IM_MODULE=fcitx
+          export QT_IM_MODULE=fcitx
+          export XMODIFIERS=@im=fcitx
+          fcitx5 --replace -d &
+          ;;
         panel)
             echo starting panel
             polybar main &

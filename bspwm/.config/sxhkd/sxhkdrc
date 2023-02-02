@@ -85,10 +85,6 @@ super + {p,b,comma,period}
 super + {_,shift + }c
 	bspc node -f {next,prev}.local.leaf
 
-# focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
-
 # focus the last node/desktop
 super + {grave,Tab}
 	bspc {node,desktop} -f last
@@ -110,6 +106,11 @@ super + r
 # change ratio
 super + ctrl + shift + {1-9}
 	bspc node -r 0.{1-9}
+
+super + {_,shift +} bracket{left,right}
+	bspc {monitor -f, node -m} {prev,next}
+
+  
 
 #
 # preselect
