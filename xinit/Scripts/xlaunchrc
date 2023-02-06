@@ -15,7 +15,7 @@ xrdb ~/.Xresources
 nm-applet &
 
 # set wallpaper
-~/Scripts/setwall -A
+setwall --config $WALLCONFIG
 
 dunst &
 play ~/Winsounds/login.wav -q &

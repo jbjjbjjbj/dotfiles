@@ -3,3 +3,4 @@ vim/.config/nvim/.netrwhist
 state*.json
 *.pyc
 *~
+**/target/*

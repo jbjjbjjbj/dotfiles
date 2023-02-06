@@ -42,7 +42,7 @@ handle_stuff() {
 	fi
 
 	if [ "$1" = "wall" ]; then
-		$HOME/Scripts/setwall -A
+		setwall --config $WALLCONFIG
 	fi
 
     if [ "$1" = "remember" ]; then
