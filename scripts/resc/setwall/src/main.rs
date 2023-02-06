@@ -30,12 +30,13 @@ enum Rule {
 
 #[derive(Debug, Deserialize)]
 struct Config {
-    #[serde(default = "default_folder")]
-    folder: String,
     #[serde(default)]
     rules: Vec<(String, Rule)>,
     #[serde(default = "default_background")]
     background: String,
+
+    #[serde(skip, default = "default_folder")]
+    folder: String,
 }
 
 #[derive(Debug)]
@@ -56,7 +57,8 @@ impl fmt::Display for Error {
 }
 impl error::Error for Error {}
 
-fn default_folder() -> String { String::from(".") }
+// Default used if we could not get the parent folder of the config file
+fn default_folder() -> String { String::from("/") }
 fn default_background() -> String { String::from("black") }
 
 fn main() -> Result<(), Box<dyn error::Error>> {
@@ -85,8 +87,10 @@ impl Config {
         let f = File::open(file)?;
         let mut config: Config = serde_yaml::from_reader(f)?;
 
-        config.folder = file.parent().unwrap_or(Path::new("/")).
-            join(config.folder).to_string_lossy().to_string();
+        if let Some(folder) = file.parent() {
+            config.folder = folder.to_string_lossy().into();
+        }
+
 
         Ok(config)
     }
@@ -118,8 +122,6 @@ impl Config {
             let file_name = String::from(entry.file_name().to_string_lossy());
             if let Some(index) = rs.matches(&file_name).iter().next() {
                 imgs.push((entry.path(), self.rules[index].1));
-            } else {
-                return Err(Box::new(Error::NoRule(file_name.into())));
             }
             // deja vu
         }
