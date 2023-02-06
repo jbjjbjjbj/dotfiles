@@ -105,9 +105,11 @@ impl Config {
         // TODO handle the invalid unicode here
         let file_name = img.file_name().ok_or(
             Box::new(Error::NoState))?.to_str().unwrap();
+        // Extract the `index` of the first matching rule
         if let Some(index) = rs.matches(file_name).iter().next() {
             self.apply_image_file(img, self.rules[index].1)
         } else {
+            // Ohh no, no rules matched
             Err(Box::new(Error::NoRule(file_name.into())))
         }
     }
@@ -154,7 +156,7 @@ mod state {
     use std::path::{Path,PathBuf};
     use std::fs;
 
-    // Hehe, not very cool but whatever
+    // Hehe, not a very cool default but whatever
     static FALLBACK_DATADIR: &str = ".";
 
     fn state_file() -> PathBuf {
@@ -167,6 +169,7 @@ mod state {
         if stf.exists() {
             let raw = fs::read(stf)?;
             let content = String::from_utf8_lossy(&raw);
+            // Extract only the first line
             Ok(content.lines().next().map(|x| x.into()))
         } else {
             Ok(None)
@@ -174,7 +177,6 @@ mod state {
     }
 
     pub fn save_state(img: &Path) -> Result<(), Box<dyn error::Error>> {
-
         Ok(fs::write(state_file(), img.to_str().unwrap())?)
     }
 }
