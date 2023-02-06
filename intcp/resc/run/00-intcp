@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -e
+set -x
+echo Running intcp
+
+cd ~/resc/intcp
+
+gcc main.c -o intcp
+sudo cp udevmon.yaml /etc/interception/udevmon.yaml
