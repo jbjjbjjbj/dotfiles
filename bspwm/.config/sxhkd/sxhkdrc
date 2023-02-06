@@ -38,7 +38,7 @@ XF86AudioNext
 	Scripts/volume forward
 
 # quit/restart bspwm
-super + shift + {e,r}
+super + ctrl + {e,r}
 	bspc {quit,wm -r}
 
 # close and kill
@@ -110,7 +110,8 @@ super + ctrl + shift + {1-9}
 super + {_,shift +} bracket{left,right}
 	bspc {monitor -f, node -m} {prev,next}
 
-  
+super + shift + b
+  bspc node --balance
 
 #
 # preselect
