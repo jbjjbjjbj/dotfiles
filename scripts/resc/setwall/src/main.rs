@@ -9,6 +9,8 @@ use std::error;
 use std::path::{PathBuf, Path};
 use std::process::Command;
 use std::fmt;
+use std::io;
+use std::io::Write;
 
 #[derive(Parser, Debug)]
 #[command(version, about, long_about=None)]
@@ -18,6 +20,9 @@ struct Args {
 
     #[arg(short, long, help="Reapply last applied wallpaper")]
     reapply: bool,
+
+    #[arg(short, long, help="Choose a specific wallpaper")]
+    specific: bool,
 }
 
 #[derive(Debug, Deserialize, Clone, Copy)]
@@ -72,6 +77,17 @@ fn main() -> Result<(), Box<dyn error::Error>> {
         config.reapply_image_file(&img)?;
 
         return Ok(());
+    } else if args.specific {
+        let files = config.get_images()?;
+        let choices: Vec<&str> = files.iter().map(|i|
+                                                    i.0.file_name().unwrap().to_str().unwrap()
+                                                    ).collect();
+        if let Some((index, _)) = choice(&choices)? {
+            config.reapply_image_file(&files[index].0)?;
+        } else {
+            println!("No images chosen, doing nothing");
+        }
+        return Ok(());
     }
 
     if let Some((img, rule)) = config.select_image_file()? {
@@ -80,6 +96,30 @@ fn main() -> Result<(), Box<dyn error::Error>> {
 
     Ok(())
 
+}
+
+fn choice<'a, T: fmt::Display>(choices: &'a [T]) -> Result<Option<(usize, &'a T)>, Box<dyn error::Error>>{
+
+    for (i, choice) in choices.iter().enumerate() {
+        println!("{}: {}", i, choice);
+    }
+
+    print!("Which one?: ");
+    io::stdout().flush()?;
+    let mut choice = String::new();
+    io::stdin().read_line(&mut choice)?;
+    choice.pop();
+
+    if choice == "" || choice == "q" {
+        return Ok(None)
+    }
+
+    let choice = choice.parse::<usize>()?;
+    if choice < choices.len() {
+        Ok(Some((choice, &choices[choice])))
+    } else {
+        Ok(None)
+    }
 }
 
 impl Config {
@@ -114,7 +154,7 @@ impl Config {
         }
     }
 
-    fn select_image_file(&self) -> Result<Option<(PathBuf, Rule)>, Box<dyn error::Error>> {
+    fn get_images(&self) -> Result<Vec<(PathBuf, Rule)>, Box<dyn error::Error>> {
         let folder = Path::new(&self.folder);
         let rs = self.build_regexset()?;
         let mut imgs: Vec<(PathBuf, Rule)> = Vec::new();
@@ -128,6 +168,11 @@ impl Config {
             // deja vu
         }
 
+        Ok(imgs)
+    }
+
+    fn select_image_file(&self) -> Result<Option<(PathBuf, Rule)>, Box<dyn error::Error>> {
+        let imgs = self.get_images()?;
 
         Ok(imgs.choose(&mut thread_rng()).cloned())
     }
