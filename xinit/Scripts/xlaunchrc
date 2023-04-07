@@ -27,6 +27,7 @@ xsetroot -cursor_name left_ptr
 
 # Set dbus display variable
 # dbus-update-activation-environment --systemd DISPLAY
+sleep 10 && oneko -idle 450 &
 
 args="$LOPTS"
 for arg in $args
