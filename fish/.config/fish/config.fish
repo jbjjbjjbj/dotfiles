@@ -10,6 +10,7 @@ set -x TERM xterm-256color
 set -x PATH $PATH $HOME/go/bin
 set -x PATH $PATH $HOME/Scripts/bin
 set -x PATH $PATH $HOME/.cargo/bin
+set -x PATH $PATH $HOME/.nix-profile/bin
 
 # Functions
 function gittr

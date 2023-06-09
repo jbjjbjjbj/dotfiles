@@ -9,9 +9,9 @@ fi
 
 echo $$ > $PIDFILE
 
-slstatus &
+$HOME/Software/slstatus/slstatus &
 
 while true; do
-    dwm >> /tmp/dwmsession.log
+    $HOME/Software/dwm/dwm >> /tmp/dwmsession.log
     sleep 1
 done

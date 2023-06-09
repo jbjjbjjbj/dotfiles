@@ -14,20 +14,19 @@ xrdb ~/.Xresources
 
 nm-applet &
 
-# set wallpaper
-setwall --config $WALLCONFIG
-
 dunst &
 play ~/Winsounds/login.wav -q &
 
-bash ~/remember_forever.sh
+# set wallpaper
+setwall --config $WALLCONFIG
 
 # Cursor thing
 xsetroot -cursor_name left_ptr
 
 # Set dbus display variable
 # dbus-update-activation-environment --systemd DISPLAY
-sleep 10 && oneko -idle 450 &
+#
+# sleep 10 && sh -c "oneko -idle 500" &
 
 args="$LOPTS"
 for arg in $args

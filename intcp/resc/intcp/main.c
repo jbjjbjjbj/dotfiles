@@ -16,7 +16,7 @@ int main(void) {
                     event.code = KEY_LEFTMETA;
                     break;
                 case KEY_102ND:
-                    event.code = KEY_LEFTALT;
+                    event.code = KEY_RIGHTALT;
                     break;
             }
         }
