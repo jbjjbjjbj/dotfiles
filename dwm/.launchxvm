@@ -1,0 +1,2 @@
+
+exec ~/Scripts/dwmsession 2>&1 | tee /tmp/vm.log

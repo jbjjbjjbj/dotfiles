@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 PIDFILE=/var/run/user/$UID/dwm.pid
 
-kill $(<$PIDFILE)
 
 if [ "$1" = "-e" ]; then
+    echo Killing $(<$PIDFILE)
+    kill $(<$PIDFILE)
+    killall xinit
     exit
 fi
 
 echo $$ > $PIDFILE
 
-$HOME/Software/slstatus/slstatus &
+~/resc/slstatus/slstatus &
 
 while true; do
-    $HOME/Software/dwm/dwm >> /tmp/dwmsession.log
+    $HOME/resc/dwm/dwm >> /tmp/dwmsession.log
     sleep 1
 done

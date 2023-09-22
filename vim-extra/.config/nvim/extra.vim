@@ -32,19 +32,15 @@
     colorscheme PaperColor
 
     lua << EOF
-      local on_attach = function(client, bufnr)
-        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-        local bufopts = { noremap=true, silent=true, buffer=bufnr }
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-      end
+      local lspconfig = require("lspconfig")
+      lspconfig.clangd.setup {}
 
-      require('lspconfig')['rust_analyzer'].setup{
-        on_attach = on_attach,
-        settings = {
-          ["rust-analyzer"] = {}
-          }
-      }
-
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+        callback = function (ev)
+          vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+        end,
+        })
 EOF
     "}}}
 

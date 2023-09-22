@@ -5,5 +5,5 @@ export WALLCONFIG="$HOME/Pictures/rand/walls/config.yaml"
 source ~/.xprofile
 source ~/Scripts/xlaunchrc
 
-sxhkd &
-exec bspwm
+# sxhkd &
+exec xmonad 2>&1 | tee /tmp/vm.log
