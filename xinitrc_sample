@@ -1,0 +1,8 @@
+
+export LOPTS="gnome-keyring jpinput"
+export WALLCONFIG="$HOME/Pictures/Rand/walls/config.yaml"
+# Launch other stuff
+source ~/.xprofile
+source ~/Scripts/xlaunchrc
+
+exec ~/.launchxvm
