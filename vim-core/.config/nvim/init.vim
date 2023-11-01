@@ -1,9 +1,8 @@
 set nocompatible
-filetype plugin on
+filetype plugin indent on
 set shellslash
 
-let mapleader=","
-
+let mapleader=" "
 runtime extra.vim
 filetype plugin indent on    " required
 
@@ -30,7 +29,6 @@ filetype plugin indent on    " required
     set softtabstop=2
 
     set autoindent
-    set smartindent
 
     " Show 5 lines above and below cursor
     set scrolloff=3
@@ -60,6 +58,8 @@ filetype plugin indent on    " required
 
     set autoread
 
+    set cino=J1,j1,L0,:0,=0,l1,h0
+
     " Exit insert mode on inactivity
     " au CursorHoldI * stopinsert}}}
 
@@ -87,6 +87,7 @@ filetype plugin indent on    " required
     " Fuzzy like menu
     set path+=**
     set wildmenu
+    set wildignore+=**/node_modules/**
 
     let g:netrw_liststyle=2"}}}
 
@@ -99,14 +100,16 @@ filetype plugin indent on    " required
     nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '' ) . 'j'
     nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '' ) . 'k'
 
-    nnoremap <leader>p :echo "Leader virker"<CR>
+    " Leader stuff
+    nnoremap <leader>t <cmd>echo "Yeah det virker"<cr>
 
 " Enforcing filetypes{{{
     autocmd BufRead,BufNewFile *.ino set filetype=c
     autocmd BufRead,BufNewFile *.asc set filetype=asciidoc
     autocmd BufRead,BufNewFile *.nix set filetype=nix
 
-    autocmd BufRead,BufNewFile *.tsx set filetype=typescript"}}}
+    autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact
+    "}}}
 
 " Highlightning And colors{{{
     set termguicolors
