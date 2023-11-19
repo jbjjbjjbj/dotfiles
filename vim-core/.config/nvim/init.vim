@@ -2,6 +2,8 @@ set nocompatible
 filetype plugin on
 set shellslash
 
+let mapleader=","
+
 runtime extra.vim
 filetype plugin indent on    " required
 
@@ -97,9 +99,7 @@ filetype plugin indent on    " required
     nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '' ) . 'j'
     nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '' ) . 'k'
 
-    " Leader stuff
-    let mapleader=" "
-    nnoremap <SPACE> <Nop>
+    nnoremap <leader>p :echo "Leader virker"<CR>
 
 " Enforcing filetypes{{{
     autocmd BufRead,BufNewFile *.ino set filetype=c
