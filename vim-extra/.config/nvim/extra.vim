@@ -18,6 +18,9 @@
 
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
+    "Plug 'github/copilot.vim'
+
+    Plug 'udalov/kotlin-vim'
 
     Plug 'NLKNguyen/papercolor-theme'
     Plug 'lervag/vimtex'
@@ -28,21 +31,21 @@
 colorscheme PaperColor
 
 " Treesitter {{{
-lua <<EOF
-  require'nvim-treesitter.configs'.setup {
-    ensure_installed = { "lua", "typescript", "java", "tsx" },
-    auto_install = false,
-    highlight = {
-      enable = true,
-    },
-    indent = {
-      enable = true,
-    },
-    incremental_selection = {
-      enable = true,
-    },
-  }
-EOF
+" lua << EOF
+"   require'nvim-treesitter.configs'.setup {
+"     ensure_installed = { "typescript", "java", "tsx", "go" },
+"     auto_install = false,
+"     highlight = {
+"       enable = true,
+"     },
+"     indent = {
+"       enable = true,
+"     },
+"     incremental_selection = {
+"       enable = true,
+"     },
+"   }
+" EOF
 " }}}
 
 " Telescope {{{
@@ -53,6 +56,11 @@ lua <<EOF
 EOF
 " }}}
 
+" Latex {{{
+  let g:vimtex_view_method = 'general'
+  let g:vimtex_quickfix_open_on_warning = 0
+    "}}}
+
 " Completion{{{
     set completeopt+=menuone
     set completeopt+=noselect
@@ -60,11 +68,17 @@ EOF
     " Close completion window
     autocmd CompleteDone * pclose
 
-    "}}}
 
-" Latex {{{
-  let g:vimtex_view_method = 'general'
-  let g:vimtex_quickfix_open_on_warning = 0
+lua <<EOF
+  local cmp = require'cmp'
+
+  cmp.setup({
+    mapping = cmp.mapping.preset.insert({
+      ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
+    }),
+    preselect = cmp.PreselectMode.None,
+  })
+EOF
 
     "}}}
 
@@ -76,8 +90,10 @@ lua <<EOF
 
     local lspconfig = require("lspconfig")
 
+    local pretty = "prettier --stdin --stdin-filepath '${INPUT}' ${--range-start:charStart} ${--range-end:charEnd} ${--tab-width:tabSize} ${--use-tabs:!insertSpaces}"
+
     local typescript_formatter = {
-      formatCommand = "prettier --stdin --stdin-filepath '${INPUT}' ${--range-start:charStart} ${--range-end:charEnd} ${--tab-width:tabSize} ${--use-tabs:!insertSpaces}",
+      formatCommand = pretty,
       formatCanRange = true,
       formatStdin = true,
       rootMarkers = {
@@ -94,21 +110,33 @@ lua <<EOF
     }
 
     lspconfig.omnisharp.setup {}
+    lspconfig.rust_analyzer.setup {}
     lspconfig.tsserver.setup {}
     lspconfig.jdtls.setup {}
     lspconfig.pyright.setup {}
     lspconfig.eslint.setup {}
     lspconfig.sourcekit.setup {}
+    lspconfig.gopls.setup {}
     lspconfig.efm.setup {
       settings = {
         rootMarkers = {".git/"},
         languages = {
-          typescript = typescript_formatter,
-          typescriptreact = typescript_formatter,
+          typescript = {
+            typescript_formatter,
+          },
+          typescriptreact = {
+            typescript_formatter,
+          },
+          html = {
+            {
+              formatCommand = "prettier --stdin-filepath '${INPUT}' ${--tab-width:tabWidth} ${--single-quote:singleQuote} --parser html",
+              formatStdin = true,
+            }
+          }
         },
       },
       init_options = {documentFormatting = true},
-      filetypes = { "typescript","typescriptreact" },
+      filetypes = { "typescript","typescriptreact","html" },
     }
 
     local cmp = require'cmp'
@@ -148,8 +176,13 @@ lua <<EOF
         vim.keymap.set('n', '<leader>he', vim.diagnostic.open_float, opts)
         vim.keymap.set('n', '<leader>hh', vim.lsp.buf.hover, opts)
         vim.keymap.set('n', '<leader>q', vim.diagnostic.setqflist, opts)
+        vim.keymap.set('n', '<leader>c', vim.lsp.buf.format, opts)
+
+        -- Hmm det er faktisk ikke så fedt
+        -- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
         vim.api.nvim_set_hl(0, '@lsp.type.function', {})
+
       end,
     })
 

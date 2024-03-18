@@ -22,11 +22,13 @@ filetype plugin indent on    " required
     set nobackup
 
     set tabstop=2
-    set shiftwidth=2
+    " when zero we use tabstop
+    set shiftwidth=0
     set expandtab
     set colorcolumn=80
 
-    set softtabstop=2
+    " Use the value to shiftwidth here
+    set softtabstop=-1
 
     set autoindent
 
@@ -58,7 +60,7 @@ filetype plugin indent on    " required
 
     set autoread
 
-    set cino=J1,j1,L0,:0,=0,l1,h0
+    " set cino=J1,j1,L0,:0,=0,l1,h0
 
     " Exit insert mode on inactivity
     " au CursorHoldI * stopinsert}}}
@@ -76,16 +78,18 @@ filetype plugin indent on    " required
     \ set shiftwidth=2 |
   autocmd FileType go setlocal noet
   autocmd FileType vim setlocal foldmethod=marker
+  autocmd FileType java setlocal tabstop=4
   autocmd BufNewFile,BufRead *.tex
     \ set nocursorline |
     \ set nornu |
     \ set number |
     \ let g:loaded_matchparen=1 |
+
 "}}}
 
 " File management{{{
     " Fuzzy like menu
-    set path+=**
+    set path=.,,src/**,Dtos/**,Controllers/**,Extensions/**,Helpers/**,Migrations/**,Integrations/**,Model/**,Services/**,Properties/**,apps/**,libs/**
     set wildmenu
     set wildignore+=**/node_modules/**
 
