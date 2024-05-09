@@ -1,3 +1,3 @@
-$HOME/Scripts/xlaunchrc
 
-exec i3
+source ~/Scripts/xlaunchrc
+exec ~/.launchxvm

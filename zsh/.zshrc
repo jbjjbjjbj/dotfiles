@@ -80,7 +80,9 @@ bindkey "^I" expand-or-complete-with-dots
 
 # Shift-tab
 zmodload zsh/complist
+bindkey -e
 bindkey -M menuselect '^[[Z' reverse-menu-complete
+
 
 #
 # Keybinding
@@ -159,5 +161,4 @@ function gotos {
     fi
 }
 
-source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
 

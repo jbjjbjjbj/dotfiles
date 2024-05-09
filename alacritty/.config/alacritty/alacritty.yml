@@ -1,0 +1,6 @@
+import:
+  - ~/.config/alacritty/themes/themes/alabaster_dark.yaml
+font:
+  size: 7.0
+  normal:
+    family: terminus

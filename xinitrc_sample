@@ -1,8 +1,7 @@
 
-export LOPTS="gnome-keyring jpinput"
+export LOPTS="gnome-keyring panel"
 export WALLCONFIG="$HOME/Pictures/Rand/walls/config.yaml"
 # Launch other stuff
 source ~/.xprofile
-source ~/Scripts/xlaunchrc
 
-exec ~/.launchxvm
+exec dbus-launch --exit-with-session ~/.xsession

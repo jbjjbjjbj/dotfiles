@@ -18,10 +18,10 @@ handle_stuff() {
 	fi
 # POWER COMMANDS
 	if [ "$1" = "suspend" ]; then
-		systemctl suspend
+		loginctl suspend
 	fi
 	if [ "$1" = "poweroff" ]; then
-		poweroff
+		loginctl poweroff
 	fi
 	if [ "$1" = "lock" ]; then
         $HOME/Scripts/lock.sh

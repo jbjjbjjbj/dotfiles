@@ -57,6 +57,7 @@ filetype plugin indent on    " required
 
     " Persistent undo
     set undofile
+    set undodir=$HOME/.vimundo
 
     set autoread
 
@@ -117,7 +118,6 @@ filetype plugin indent on    " required
 
 " Highlightning And colors{{{
     set termguicolors
-    colorscheme PaperColor
 
 " Spell check
     set spelllang=en,da

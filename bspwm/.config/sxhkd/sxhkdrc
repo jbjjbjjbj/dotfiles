@@ -1,9 +1,6 @@
 
 super + i
-	termite
-
-super + shift + i
-	termite --class float
+	alacritty
 
 # program launcher
 super + d

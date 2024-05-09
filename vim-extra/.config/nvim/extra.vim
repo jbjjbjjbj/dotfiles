@@ -28,7 +28,7 @@
 
 " }}}
 
-colorscheme PaperColor
+" colorscheme PaperColor
 
 " Treesitter {{{
 " lua << EOF
